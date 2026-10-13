@@ -14,6 +14,13 @@
  *   Packet type 0   (d[0] === 0)   — timer/calorie heartbeat
  *   Packet type 117 (d[0] === 117) — cadence/ticks/resistance telemetry
  *
+ * Multi-byte fields are little-endian 16-bit (low byte first):
+ *   type 0   : calories = d[4] + 256*d[5]   timer (s) = d[10] + 256*d[11]
+ *   type 117 : pulse    = d[2] + 256*d[3]   ticks     = d[4] + 256*d[5]
+ * Read only the low byte of calories or the timer and they wrap back to 0 every
+ * 256 (kcal / seconds): decoded from a ride log, d[5] ticked 0->1 exactly when d[4]
+ * rolled 255->0, and d[11] ticked at every d[10] rollover.
+ *
  * This device exposes a real, controllable FTMS control point — same UUID
  * and write format stock FTMS trainers use. It registers as
  * CONTROLLABLE_TRAINER + POWER_SOURCE + CADENCE_SOURCE + SPEED_SOURCE, and
@@ -45,8 +52,8 @@ function wait(ms) {
 
 // ─── Debug logging (temporary) ─────────────────────────────────────────────
 // For cross-checking the byte-offset assumptions above (d[2]/d[3] = pulse,
-// d[4]/d[5] = ticks, d[7] = resistance in telemetry packets; d[4] = calories,
-// d[10] = timer in heartbeat packets) against what the bike's own console
+// d[4]/d[5] = ticks, d[7] = resistance in telemetry packets; d[4]/d[5] = calories,
+// d[10]/d[11] = timer in heartbeat packets) against what the bike's own console
 // shows. Flip DEBUG_LOG_BYTES to false (or delete this block and its two
 // call sites in _handleTimerPacket/_handleTelemetryPacket) once you're done
 // verifying — it's not meant to ship on. Throttled per packet type so a
@@ -393,8 +400,10 @@ export class MerachDevice extends EventTarget {
   }
 
   _handleTimerPacket(d, now) {
-    this._rawTimer       = d[10];
-    this._bikeIntegerCal = d[4];
+    // Both are little-endian 16-bit (see the layout at the top of the file). `|` and `<<`
+    // treat a missing byte as 0, so a short packet still decodes from its low bytes.
+    this._rawTimer       = d[10] | (d[11] << 8);
+    this._bikeIntegerCal = d[4]  | (d[5]  << 8);
 
     if (!this._initialized && this._bikeIntegerCal > 0) {
       this._totalCalories = this._bikeIntegerCal;
@@ -405,8 +414,8 @@ export class MerachDevice extends EventTarget {
     this.metrics.calories       = this._totalCalories;
 
     this._logPacket('timer', d, {
-      'rawTimer (d[10])':       this._rawTimer,
-      'bikeIntegerCal (d[4])':  this._bikeIntegerCal,
+      'rawTimer (d[10],d[11])':      this._rawTimer,
+      'bikeIntegerCal (d[4],d[5])':  this._bikeIntegerCal,
       totalCalories_computed:   this._totalCalories,
       elapsedSeconds:           this.metrics.elapsedSeconds,
     });

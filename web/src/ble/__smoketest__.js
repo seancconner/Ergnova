@@ -104,6 +104,63 @@ console.log('merach-device.js (packet parsing)');
   check('power zeroes out when no pedal motion for >5s', device.metrics.power === 0);
 }
 
+console.log('merach-device.js (16-bit calorie + timer counters, decoded from a real ride log)');
+{
+  // Type-0 packets carry two little-endian 16-bit counters: calories = d[4] + 256*d[5] and
+  // timer seconds = d[10] + 256*d[11]. In a captured 26-minute ride d[5] ticked 0 -> 1 exactly
+  // when d[4] rolled 255 -> 0, and d[11] ticked at every d[10] rollover (every 256 s of bike time).
+  const calStore = new CalibrationStore();
+  registerMerachS09CalibrationProfile(calStore);
+  const device = new MerachDevice(calStore);
+  device._params = await calStore.load(MERACH_S09_DEVICE_TYPE);
+  let fakeNow = 1_000_000;
+  device._now = () => fakeNow;
+
+  const timerPkt = (calLo, calHi, tLo, tHi) => {
+    const p = new Uint8Array(12);
+    p[0] = 0; p[4] = calLo; p[5] = calHi; p[10] = tLo; p[11] = tHi;
+    return p;
+  };
+  let ticks = 1000;
+  const telemetryPkt = () => {           // pedaling: the tick counter advances every packet
+    ticks += 25;
+    const p = new Uint8Array(11);
+    p[0] = 117; p[2] = 200; p[3] = 0;    // pulse 200 -> 100 rpm
+    p[4] = ticks & 255; p[5] = ticks >> 8; p[7] = 5;
+    return p;
+  };
+  const ride = () => { fakeNow += 1000; device._handlePacket(telemetryPkt()); };
+
+  device._handlePacket(timerPkt(250, 0, 3, 0));
+  check('calories seed from the 16-bit counter', device.metrics.calories === 250);
+  device._handlePacket(telemetryPkt());  // first telemetry packet: init only
+  for (let cal = 251; cal <= 255; cal++) { device._handlePacket(timerPkt(cal, 0, cal - 247, 0)); ride(); }
+  check('just below the rollover the total follows the bike (255)',
+    device.metrics.calories >= 254.5 && device.metrics.calories <= 255.49);
+
+  device._handlePacket(timerPkt(0, 1, 9, 0)); ride();   // d[4] rolls 255 -> 0 while d[5] ticks 0 -> 1
+  check('calorie rollover (d[4] 255->0, d[5] 0->1) keeps counting at 256, not back at 0',
+    device.metrics.calories >= 255.5 && device.metrics.calories <= 256.49);
+  check('calories never drop across the rollover', device.metrics.calories > 255);
+
+  device._handlePacket(timerPkt(110, 1, 227, 0)); ride();
+  check('calories above 255 stay tethered to the bike (110 + 256 = 366)',
+    device.metrics.calories >= 365.5 && device.metrics.calories <= 366.49);
+
+  device._handlePacket(timerPkt(110, 1, 227, 5));
+  check('timer is 16-bit: d[10]=227, d[11]=5 -> 1507 s', device.metrics.elapsedSeconds === 1507);
+  device._handlePacket(timerPkt(110, 1, 255, 0));
+  const before = device.metrics.elapsedSeconds;
+  device._handlePacket(timerPkt(110, 1, 0, 1));
+  check('timer rolls 255 -> 256 instead of back to 0', before === 255 && device.metrics.elapsedSeconds === 256);
+  device._handlePacket(timerPkt(110, 1, 3, 1));
+  check('timer keeps counting past the rollover (259 s)', device.metrics.elapsedSeconds === 259);
+
+  const short = new Uint8Array(11); short[0] = 0; short[4] = 7; short[10] = 9;  // no d[11]: low bytes only, no NaN
+  device._handlePacket(short);
+  check('a short type-0 packet still decodes from its low bytes', device.metrics.elapsedSeconds === 9);
+}
+
 console.log('merach-device.js (calibration solvers)');
 {
   const calStore = new CalibrationStore();
