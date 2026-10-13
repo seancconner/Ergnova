@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!-- SPDX-FileCopyrightText: 2026 seancconner -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#07080d" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Ergnova</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="/icons/icon-64.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <!-- MAUI HybridWebView bridge (checklist §4/§5/§7/§8). Both must be plain
+       classic scripts (no type="module", no defer/async) so they run
+       synchronously, in this order, before the deferred `app.js` module
+       graph below — see native-shell-bridge.js's doc comment for why that
+       ordering matters. On a plain web/PWA load (no MAUI shell) the first
+       tag 404s harmlessly and the second one no-ops; every bridge falls
+       back to its normal web implementation exactly as it does today. -->
+  <script src="_framework/hybridwebview.js"></script>
+  <script src="/native-shell-bridge.js"></script>
+</head>
+<body>
+  <!-- Wash (style.css "Material layer"): one fixed teal gradient layer behind the
+       whole app, over a dark base. Decorative only. -->
+  <div class="wash-backdrop" aria-hidden="true">
+    <i class="wash-layer wash-teal"></i>
+  </div>
+
+<!-- Icon sprite — one consistent stroke-based icon family (used via
+     <use href="#icon-name">) for every control in the app, instead of
+     platform emoji that render differently (and inconsistently with each
+     other) across OSes. Hidden, never shown directly.
+     Credit: play, pause, nav-workout (Lucide, ISC) and activity, plus, minus,
+     x (Feather, MIT) use those sets' shapes - see THIRD_PARTY_NOTICES.md. -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="icon-stop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/></symbol>
+  <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M6 21V4"/><path d="M6 4h12l-3.5 4L18 12H6"/></symbol>
+  <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/><circle cx="12" cy="15" r="1.3"/></symbol>
+  <symbol id="icon-bluetooth" viewBox="0 0 24 24"><path d="M7 7l10 10-5 5V2l5 5L7 17"/></symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20s-7.2-4.4-9.6-8.8C.8 7.8 2.3 4 6.2 4c2.1 0 3.9 1.4 5.8 3.6C13.9 5.4 15.7 4 17.8 4c3.9 0 5.4 3.8 3.8 7.2C19.2 15.6 12 20 12 20z"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol>
+  <symbol id="icon-sliders" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="15" cy="6" r="2"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="9" cy="12" r="2"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="15" cy="18" r="2"/></symbol>
+  <symbol id="icon-droplet" viewBox="0 0 24 24"><path d="M12 3c3.8 4.6 7 8.4 7 12a7 7 0 11-14 0c0-3.6 3.2-7.4 7-12z"/></symbol>
+  <symbol id="icon-thermometer" viewBox="0 0 24 24"><rect x="10" y="4" width="4" height="12" rx="2"/><circle cx="12" cy="17" r="3"/><line x1="12" y1="8" x2="12" y2="14"/></symbol>
+  <symbol id="icon-nav-overview" viewBox="0 0 24 24"><line x1="4" y1="17" x2="4" y2="21"/><line x1="9" y1="12" x2="9" y2="21"/><line x1="14" y1="15" x2="14" y2="21"/><line x1="19" y1="11" x2="19" y2="21"/><path d="M2 15L9 8l5 4 8-9"/></symbol>
+  <symbol id="icon-nav-workout" viewBox="0 0 24 24"><path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"/><rect width="8" height="8" x="14" y="2" rx="1"/></symbol>
+  <symbol id="icon-session-history" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><polyline points="8.5 14 11 16.5 15.5 11.5"/></symbol>
+  <symbol id="icon-nav-settings" viewBox="0 0 24 24"><path d="M21.5 12 L18.74 14.79 L18.72 18.72 L14.79 18.74 L12 21.5 L9.21 18.74 L5.28 18.72 L5.26 14.79 L2.5 12 L5.26 9.21 L5.28 5.28 L9.21 5.26 L12 2.5 L14.79 5.26 L18.72 5.28 L18.74 9.21 Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="icon-dumbbell" viewBox="0 0 24 24"><rect x="1" y="9" width="2" height="6" rx="1"/><rect x="4" y="6.5" width="3.5" height="11" rx="1.2"/><rect x="8.2" y="10.5" width="7.6" height="3" rx="1.3"/><rect x="16.5" y="6.5" width="3.5" height="11" rx="1.2"/><rect x="21" y="9" width="2" height="6" rx="1"/></symbol>
+  <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><line x1="12" y1="5.3" x2="12" y2="7.8"/><line x1="12" y1="16.2" x2="12" y2="18.7"/><line x1="5.3" y1="12" x2="7.8" y2="12"/><line x1="16.2" y1="12" x2="18.7" y2="12"/><line x1="7.3" y1="7.3" x2="9" y2="9"/><line x1="15" y1="15" x2="16.7" y2="16.7"/><line x1="16.7" y1="7.3" x2="15" y2="9"/><line x1="9" y1="15" x2="7.3" y2="16.7"/></symbol>
+  <symbol id="icon-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5L10 8h4l4.5 9.5"/><path d="M10 8h3.5"/><path d="M14 17.5h-4"/></symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24"><path d="M3.5 11L12 3.5 20.5 11"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></symbol>
+  <symbol id="icon-free" viewBox="0 0 24 24"><path d="M2.5 14c2.2-6 4-6 5.5-1.5s3.3 4.5 5-1 3.4-5 5.5-.5"/><path d="M19 8.5l2.5 1.5"/></symbol>
+  <symbol id="icon-steady" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="7" x2="3" y2="17"/><line x1="21" y1="7" x2="21" y2="17"/></symbol>
+  <symbol id="icon-steps" viewBox="0 0 24 24"><polyline points="3 18 3 14 8 14 8 10 13 10 13 6 21 6"/><line x1="3" y1="21" x2="21" y2="21"/></symbol>
+  <symbol id="icon-half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 010 17z" fill="currentColor"/></symbol>
+  <symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></symbol>
+  <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></symbol>
+  <symbol id="icon-square" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/></symbol>
+  <symbol id="icon-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M8 4v5h7V4"/><rect x="8" y="14" width="8" height="6"/></symbol>
+  <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></symbol>
+  <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></symbol>
+  <symbol id="icon-chevron-left" viewBox="0 0 24 24"><polyline points="15 5 8 12 15 19"/></symbol>
+  <symbol id="icon-chevron-right" viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></symbol>
+  <symbol id="icon-chevron-up" viewBox="0 0 24 24"><polyline points="5 15 12 8 19 15"/></symbol>
+  <symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="5 9 12 16 19 9"/></symbol>
+  <symbol id="icon-duplicate" viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="14" rx="2"/><path d="M9 7V5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2h-2"/></symbol>
+  <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/><path d="M10 11v6M14 11v6"/></symbol>
+  <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 3c1 3-3 4-3 8a3 3 0 006 0c1.5 1 2 2.6 2 4a5 5 0 01-10 0c0-4 3-5 3-8a6 6 0 002-4z"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="5 13 10 18 19 7"/></symbol>
+  <symbol id="icon-hold-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><line x1="12" y1="2.5" x2="12" y2="4.5"/><polygon points="10 8.5 15.5 12 10 15.5 10 8.5"/></symbol>
+  <symbol id="icon-lightning" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></symbol>
+  <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0113.66-5.66L20 8"/><polyline points="20 3 20 8 15 8"/><path d="M20 12a8 8 0 01-13.66 5.66L4 16"/><polyline points="4 21 4 16 9 16"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="icon-minus" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="icon-stairs" viewBox="0 0 24 24"><path d="M4 20v-4h4v-4h4v-4h4v-4h4"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><line x1="12" y1="7.5" x2="12.01" y2="7.5"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24"><path d="M5 21v-1.5a5 5 0 015-5h4a5 5 0 015 5V21"/><circle cx="12" cy="7.5" r="4"/></symbol>
+  <symbol id="icon-activity" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+  <symbol id="icon-pencil" viewBox="0 0 24 24"><path d="M4 20l.8-3.6L15.4 6l3.6 3.6L8.4 20.4z"/><path d="M13.5 7.9l3.6 3.6"/><path d="M4 20h4"/></symbol>
+  <symbol id="icon-keyboard" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><line x1="6.5" y1="9.5" x2="6.51" y2="9.5"/><line x1="10" y1="9.5" x2="10.01" y2="9.5"/><line x1="14" y1="9.5" x2="14.01" y2="9.5"/><line x1="17.5" y1="9.5" x2="17.51" y2="9.5"/><line x1="6.5" y1="12.5" x2="6.51" y2="12.5"/><line x1="10" y1="12.5" x2="10.01" y2="12.5"/><line x1="14" y1="12.5" x2="14.01" y2="12.5"/><line x1="17.5" y1="12.5" x2="17.51" y2="12.5"/><path d="M7 15.5h10"/></symbol>
+  <symbol id="icon-print" viewBox="0 0 24 24"><path d="M6 9V4h12v5"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v7H7z"/></symbol>
+  <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></symbol>
+  <symbol id="icon-bowl" viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 01-18 0z"/><path d="M8.5 21h7"/><path d="M9 7.2c0-1.4 1.2-1.4 1.2-2.8M14 7.2c0-1.4 1.2-1.4 1.2-2.8"/></symbol>
+  <symbol id="icon-carrot" viewBox="0 0 24 24"><path d="M11.38 6.83L17.55 12.99C18.89 14.4 19.76 16.14 20.16 17.82Q20.83 20.83 17.82 20.16C16.14 19.76 14.4 18.89 12.99 17.55L6.83 11.38A2.01 2.01 0 0 1 6.83 8.57L8.57 6.83A2.01 2.01 0 0 1 11.38 6.83Z"/><path d="M12.59 8.03L10.88 9.74M15.4 10.85L13.7 12.56M18.22 13.66L16.7 15.18"/><path d="M7.7 7.7L4.57 4.57M7.7 7.7L7.19 3.44M7.7 7.7L3.44 7.19"/></symbol>
+  <symbol id="icon-filter" viewBox="0 0 24 24"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></symbol>
+  <!-- icon-diet used to live here as a <symbol> referenced via <use> from the
+       tab bar, but a <use>'s shadow-tree instance can't be reached by CSS
+       selectors that cross in from an ancestor of the <use> element itself —
+       .tab-btn.active[data-tab="diet"] .diet-slice, for instance, never
+       matched. The three <path>s now live directly in the tab button in the
+       markup below instead, as plain descendants .tab-btn's own selectors
+       can actually reach. -->
+</svg>
+
+<div id="app">
+
+  <!-- ── Overview Panel ─────────────────────────────────────────────────── -->
+  <div data-panel="overview" class="panel" id="overview-panel">
+    <!-- Populated by OverviewPage -->
+  </div>
+
+  <!-- ── Live Session (full-screen, opened by Start — not a nav tab) ──────── -->
+  <main data-panel="session" class="panel train-panel hidden" id="session-panel">
+
+    <!-- Toolbar — pre-ride setup (name/connect/sensors — collapses once the
+         ride is under way, see the .session-active rules in style.css).
+         Transport controls (Start/Stop/Pause/Lap) live in the fixed
+         .session-control-bar at the bottom of the panel instead, not up
+         here. Elapsed time isn't shown here at all — it's drawn on the
+         chart itself, at the end of the time axis (see
+         ChartEngine._drawTimeAxis). The FTP zone badge used to live here
+         too; it's now grouped with Calories/Distance/Pace in the chart's
+         own corner badge cluster (see commonBadges in app.js). -->
+    <div class="toolbar">
+      <div class="toolbar-setup">
+        <!-- Not a visible field — just a data holder. The workout name is
+             set during workout setup (Cardio Session, Workout
+             Editor, or a repeated/restored workout) and read back via
+             .value at session start; there's nowhere on screen it needs to
+             be shown, so it's a hidden input rather than a readonly text
+             box sitting in the toolbar. -->
+        <input type="hidden" id="workout-name-input" />
+        <div id="sensor-chips" class="sensor-chips"></div>
+      </div>
+    </div>
+
+    <!-- Live chart — swipeable, one metric per page (built by ChartCarousel). The panel's first child is
+         the fixed badge bar (ui/chart-badge-bar.js, inserted by app.js): current Power / Heart rate /
+         Cadence / Speed over Zone / Calories / Distance / Pace. It sits above the swipeable track, so it
+         does not move when the chart is swiped; the badge for the metric on screen fades toward the hero. -->
+    <div class="chart-container" id="chart-container"></div>
+
+    <!-- The live readout for whichever metric the chart is showing — swipe the chart to change
+         which metric this reflects. One row: the CURRENT value is the hero on the left (a giant
+         numeral, unit beside it, shrunk to fit by ux/fit-text.js) and Average over Peak are stacked
+         on the right. On the chart's "All" page, which overlays several metrics at once, this same row
+         steps through them on a timer instead, each arriving with a short fade (_renderMetricStats() and
+         _tickOverviewHero() in app.js). The row has a fixed height (--live-readout-h in style.css), so
+         the chart sits at the same height on every page. The whole row is hidden (.is-empty, and the
+         panel's .no-metrics drops its grid row) while no metric is available, so the chart panel's
+         Connect tile has the room instead of a row of dashes. The hero's own classes are .metric-hero-*,
+         not .metric-value/.metric-label. -->
+    <div class="metrics-row" id="metrics-row">
+      <div class="metric-card metric-card-hero" role="group" aria-label="Current reading">
+        <div class="metric-hero-head">
+          <span id="stat-metric-name" class="metric-hero-name">—</span>
+        </div>
+        <div class="metric-hero-body" aria-live="off">
+          <span id="stat-current-value" class="metric-hero-value">—</span>
+          <span id="stat-current-unit"  class="metric-hero-unit"></span>
+        </div>
+      </div>
+      <div class="metric-card metric-card-pair">
+        <span class="metric-label">Average</span>
+        <span id="stat-average-value" class="metric-pair-value">—</span>
+      </div>
+      <div class="metric-card metric-card-pair">
+        <span class="metric-label">Peak</span>
+        <span id="stat-peak-value" class="metric-pair-value">—</span>
+      </div>
+    </div>
+
+    <!-- Scripted playback HUD — sits below the chart, just above the control bar (the grid areas in style.css set the visual order, and the markup follows it
+         so tab and reading order agree). On the same glass as the Overview / History cards, with a solid
+         left rule in the current step's color (see --hud-color in style.css, set from STEP_COLORS by
+         updateScriptedHUD() in app.js; no .metric-wash — the card glass is the whole background). Three
+         pieces, top to bottom:
+           1. Overall: workout title (quiet eyebrow) + overall time left,
+              with a hairline progress track underneath the row.
+           2. Current step: badge + name + big countdown, with progress
+              shown as a translucent wash filling in behind the whole row
+              rather than a separate bar (#hud-step-fill is that wash —
+              same width% math as before, just applied to a full-row
+              background instead of a hairline underneath it).
+           3. The workout target map (unchanged structure) — see below.
+         See updateScriptedHUD() in app.js, which computes both fills'
+         percentages from ScriptedSession#currentStepInfo. -->
+    <div class="scripted-hud hidden" id="scripted-hud">
+      <div class="hud-overall">
+        <div class="hud-overall-head">
+          <span class="hud-workout-title" id="hud-workout-title">—</span>
+          <span class="hud-total-remaining" id="hud-total-remaining">—</span>
+        </div>
+        <div class="hud-overall-track">
+          <div class="hud-overall-fill" id="hud-total-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Step name shows the step's type ("Warm-up", "Interval") normally,
+           or the workout's own name when there's only one step and that
+           step is named the same as the workout — see
+           updateScriptedHUD()'s redundantName check in app.js (the
+           workout-name-input above is otherwise never shown on screen).
+           The step's target isn't shown here — it's on the timeline
+           below instead, since that's the one place it's actually live
+           (interpolating through a ramp) rather than a static number. -->
+      <div class="hud-step">
+        <div class="hud-step-fill" id="hud-step-fill" style="width:0%"></div>
+        <div class="hud-step-content">
+          <div class="hud-step-info">
+            <span  class="hud-step-badge" id="hud-step-badge">Step 1/1</span>
+            <span  class="hud-step-name"  id="hud-step-name">—</span>
+          </div>
+          <span  class="hud-remaining"  id="hud-remaining">—</span>
+        </div>
+      </div>
+
+      <!-- Workout target map (ui/hud-timeline.js draws it): every step's
+           target across the whole workout's span as a thin solid line with a
+           glow that softens to nothing beneath it, a "now" line, and a dot
+           that rides the target line at "now" — climbing or dropping
+           with an animation when the target jumps to a new step. The
+           current target's number overlays the bottom left. The drawing is
+           done once per workout (and again if the box is resized); each
+           tick only moves the line, the dot and the number. Hidden entirely
+           for a workout with no enforced target anywhere — e.g. Cardio
+           Session's Free Ride — since there's nothing to map there. -->
+      <div class="hud-timeline-row hidden" id="hud-timeline-row">
+        <div class="hud-timeline" id="hud-timeline">
+          <canvas class="hud-timeline-canvas" id="hud-timeline-canvas"></canvas>
+          <span class="hud-timeline-marker" id="hud-timeline-marker" style="left:0%"></span>
+          <span class="hud-timeline-dot" id="hud-timeline-dot" style="left:0%"></span>
+          <span class="hud-timeline-target" id="hud-timeline-target">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transport controls — fixed to the bottom of the screen like the
+         main tab bar, so Start/Stop/Pause/Lap sit in thumb's reach instead
+         of up in the toolbar. Lives inside #session-panel so switchTab()
+         in app.js hides/shows it along with the rest of the panel — no
+         extra JS wiring needed; button ids are unchanged so the existing
+         bindControls() listeners still work. -->
+    <div class="session-control-bar" id="session-control-bar">
+      <button id="start-btn"  class="btn btn-success">
+        <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-play"/></svg>
+        <span class="btn-label">Start</span>
+      </button>
+
+      <!-- Trainer settings — a menu button (not a direct-action button)
+           since the bottom bar only has room for an icon here, and there's
+           a handful of BLE roles to connect/disconnect plus (once a
+           trainer's connected) Control Mode and Spindown Calibration to
+           reach, same pattern as the FAB pillbox menu above. Square
+           sliders icon (rather than a flexed, labeled button) since this
+           is the mid-workout settings entry point, not a primary
+           transport action — see .trainer-menu-wrap in style.css. -->
+      <div class="trainer-menu-wrap">
+        <button id="trainer-menu-btn" class="btn btn-ghost trainer-menu-btn"
+          aria-haspopup="menu" aria-expanded="false" title="Settings" aria-label="Settings">
+          <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-sliders"/></svg>
+        </button>
+        <div id="trainer-menu" class="trainer-menu hidden" role="menu" aria-label="Trainer">
+        <div class="trainer-menu-scroll">
+
+          <!-- Connect/disconnect toggles — one button per supported BLE
+               role, doing double duty: connects when that role is empty,
+               or disconnects (after a confirm — see bindControls() in
+               app.js) once it's already occupied. Replaces the old
+               separate "Disconnect" item, which only ever covered the
+               trainer and left HR/SmO2/Core Temp with no menu path of
+               their own. data-label is the generic "Connect X" text.
+               Each item carries two label spans now instead of one:
+               .trainer-menu-label-default ("Connect X" / once connected,
+               "<actual device name> Connected") and .trainer-menu-label-hover
+               ("Disconnect <actual device name>"), the latter only shown
+               on hover while connected — see the .trainer-menu-item.connected:hover
+               rule in style.css. _updateDeviceMenuItem() in app.js keeps
+               both spans' text in sync. -->
+          <button type="button" class="trainer-menu-item" id="trainer-menu-connect" data-label="Trainer" role="menuitem">
+            <span class="trainer-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-bluetooth"/></svg></span>
+            <span class="trainer-menu-label-stack">
+              <span class="trainer-menu-label trainer-menu-label-default">Connect Trainer</span>
+              <span class="trainer-menu-label trainer-menu-label-hover">Disconnect Trainer</span>
+            </span>
+          </button>
+          <button type="button" class="trainer-menu-item" id="trainer-menu-connect-hrm" data-label="Heart Rate Monitor" role="menuitem">
+            <span class="trainer-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-heart"/></svg></span>
+            <span class="trainer-menu-label-stack">
+              <span class="trainer-menu-label trainer-menu-label-default">Connect Heart Rate Monitor</span>
+              <span class="trainer-menu-label trainer-menu-label-hover">Disconnect Heart Rate Monitor</span>
+            </span>
+          </button>
+          <button type="button" class="trainer-menu-item" id="trainer-menu-connect-smo2" data-label="SmO₂ Sensor" role="menuitem">
+            <span class="trainer-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-droplet"/></svg></span>
+            <span class="trainer-menu-label-stack">
+              <span class="trainer-menu-label trainer-menu-label-default">Connect SmO₂ Sensor</span>
+              <span class="trainer-menu-label trainer-menu-label-hover">Disconnect SmO₂ Sensor</span>
+            </span>
+          </button>
+          <button type="button" class="trainer-menu-item" id="trainer-menu-connect-coretemp" data-label="Core Temp Sensor" role="menuitem">
+            <span class="trainer-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-thermometer"/></svg></span>
+            <span class="trainer-menu-label-stack">
+              <span class="trainer-menu-label trainer-menu-label-default">Connect Core Temp Sensor</span>
+              <span class="trainer-menu-label trainer-menu-label-hover">Disconnect Core Temp Sensor</span>
+            </span>
+          </button>
+
+          <!-- Control Mode + Spindown Calibration — moved here from a
+               permanent sidebar on the main session page, so the live
+               chart gets the full page and these settings live behind
+               the same Settings entry point as the rest of the trainer
+               setup. Same ids/markup as before (see app.js), just a new
+               home; only shown once a controllable trainer is connected
+               — see updateTrainerUI(). -->
+          <div id="trainer-menu-controls" class="trainer-menu-controls hidden">
+
+            <section class="control-card">
+              <h3 class="control-card-title">Control Mode</h3>
+              <div class="control-row">
+                <select id="mode-select" class="input">
+                  <option value="erg">ERG — Fixed Power</option>
+                  <option value="resistance">Resistance — Fixed %</option>
+                  <option value="slope">Slope — Grade %</option>
+                  <option value="virtualGear">Virtual Gear</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <button id="nudge-down"  class="btn btn-ghost nudge">−</button>
+                <input  id="target-input" class="input target-input" type="number"
+                        placeholder="200" min="0" max="1500" />
+                <span   id="target-hint" class="target-hint">Watts</span>
+                <button id="nudge-up"   class="btn btn-ghost nudge">+</button>
+              </div>
+              <button id="apply-target" class="btn btn-primary full-width">Apply Target</button>
+              <div class="gear-row hidden">
+                <button id="shift-down" class="btn btn-ghost shift">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-chevron-left"/></svg>
+                  <span class="btn-label">Easier</span>
+                </button>
+                <button id="shift-up"   class="btn btn-ghost shift">
+                  <span class="btn-label">Harder</span>
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-chevron-right"/></svg>
+                </button>
+              </div>
+            </section>
+
+            <section class="control-card">
+              <h3 class="control-card-title">Spindown Calibration</h3>
+              <p id="cal-status" class="cal-status">Idle</p>
+              <progress id="cal-progress" class="cal-progress" value="0" max="100"></progress>
+              <div class="control-row">
+                <button id="cal-start-btn" class="btn btn-primary">Start Spindown</button>
+                <button id="cal-stop-btn"  class="btn btn-ghost"   disabled>Cancel</button>
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+        </div>
+      </div>
+
+      <button id="stop-btn"   class="btn btn-danger btn-square hidden" disabled title="Stop" aria-label="Stop">
+        <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-stop"/></svg>
+      </button>
+      <button id="pause-btn"  class="btn btn-ghost hidden">
+        <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-pause"/></svg>
+        <span class="btn-label" id="pause-btn-label">Pause</span>
+      </button>
+      <button id="lap-btn"    class="btn btn-ghost btn-square" disabled title="Lap" aria-label="Lap">
+        <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-flag"/></svg>
+      </button>
+      <button id="lock-btn"   class="btn btn-ghost btn-square" title="Lock screen" aria-label="Lock screen">
+        <span class="lock-btn-fill" id="lock-btn-fill"></span>
+        <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-lock"/></svg>
+        <span class="btn-label lock-btn-label" id="lock-btn-label">Hold to Unlock</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ── History Panel ──────────────────────────────────────────────────── -->
+  <div data-panel="history" class="panel hidden" id="history-panel">
+    <!-- Populated by HistoryBrowser -->
+  </div>
+
+  <!-- ── Workout Editor Panel ───────────────────────────────────────────── -->
+  <div data-panel="workout" class="panel hidden" id="workout-panel">
+    <!-- Populated by WorkoutEditor -->
+  </div>
+
+  <!-- ── Strength Panel ────────────────────────────────────────────────── -->
+  <div data-panel="strength" class="panel hidden" id="strength-panel">
+    <!-- Populated by app.js: an idle "Start Strength Session" prompt, or
+         a live StrengthSessionPanel while a strength session is running. -->
+  </div>
+
+  <!-- ── Diet Panel ────────────────────────────────────────────────────── -->
+  <div data-panel="diet" class="panel hidden" id="diet-panel">
+    <!-- Populated by DietPage (views/diet.js) -->
+  </div>
+
+  <!-- ── Settings Panel ────────────────────────────────────────────────── -->
+  <div data-panel="settings" class="panel hidden">
+   <div class="settings-page">
+
+    <div class="history-header history-header-compact">
+      <h2 class="history-title">Settings</h2>
+    </div>
+
+    <!-- ── Settings' master-detail rail ──────
+         nav.md-rail starts empty — ui/master-detail.js's MasterDetailRail
+         fills it in from the .md-cat[data-cat] sections below, in order,
+         reading each one's data-label/data-icon. Only .md-cat's OWN
+         wrapper changed to get here (<details>+<summary> → <section>,
+         one per settings-group); every row inside is untouched, and
+         becomes a tile automatically via style.css's
+         ".md-cat .settings-card.settings-list" rule. -->
+    <div class="md-shell" id="settings-md-shell">
+      <nav class="md-rail" aria-label="Settings categories"></nav>
+      <div class="md-pane">
+
+    <!-- ── General ───────────────────────────────────────────────────────
+         App-level behavior and data: units, audio, notifications, auto pause,
+         which control targets exist, and profile backup/restore. (Was three
+         separate rail pages — General, Targets, Backup — plus a dev-only
+         Developer page, each only a few rows tall; merged so no rail category
+         is mostly empty space.) The BLE Debug Console row at the bottom only
+         shows in a live `vite dev` session — see #developer-settings-group in
+         app.js. -->
+    <section class="md-cat" data-cat="general" data-label="General" data-icon="icon-settings">
+      <div class="settings-card settings-list">
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Units</span>
+              <button type="button" class="info-btn" aria-label="More info about units" data-tip="Switches every number in the app — weight, height, speed, distance — between metric and imperial. Applies app-wide, not just this page. Display only: everything is still stored the same way underneath, so switching back and forth loses nothing.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control">
+            <div class="segmented" id="pref-units" role="group" aria-label="Measurement system">
+              <button type="button" class="segmented-btn" data-value="metric">Metric</button>
+              <button type="button" class="segmented-btn" data-value="imperial">Imperial</button>
+            </div>
+          </div>
+        </div>
+        <!-- A lone on/off choice, same .toggle-tile the 2x2 group below uses — see that group's
+             comment. :has(> .toggle-tile:only-child) below lays a single tile out full-width and
+             row-wise instead of the small square the 2-up grid gives a group of four. -->
+        <div class="settings-toggle-grid" role="group" aria-label="Audio">
+          <label class="toggle-tile" for="pref-audio">
+            <span class="toggle-tile-name-line">
+              <span class="toggle-tile-name">Audio cues</span>
+              <button type="button" class="info-btn" aria-label="More info about audio cues" data-tip="Short synthesized tones for interval changes, heart-rate-zone alerts, and test/session completion — no spoken announcements, just tones. Muting this doesn't hide the on-screen alerts, just the sound.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+            <span class="switch switch-sm">
+              <input type="checkbox" id="pref-audio" checked />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </span>
+          </label>
+        </div>
+        <!-- Background workout notification: the same lone toggle tile as Audio cues above, with the
+             extra the row had — a status sentence under the name, a "Blocked" flag next to it, and
+             an Open settings button when notifications are blocked. The wrapper keeps the old id:
+             app.js's _renderBackgroundSettingsRow() hides it wholesale where there is nothing to
+             configure (browser/PWA, Windows, Mac Catalyst, iOS). -->
+        <div class="settings-toggle-grid hidden" id="background-notification-row" role="group" aria-label="Background workout notification">
+          <label class="toggle-tile toggle-tile-stacked" for="pref-background">
+            <span class="toggle-tile-head">
+              <span class="toggle-tile-name-line">
+                <span class="toggle-tile-name">Background workout notification</span>
+                <button type="button" class="info-btn" aria-label="More info about the background workout notification" data-tip="Keeps a running workout going when you switch apps or lock the screen, and shows its live stats and elapsed time in the notification tray so you can see it's still recording. Android requires that notification while a workout runs in the background, so turning this off means switching apps may pause your workout instead.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+                <span class="settings-warn" id="background-notification-warn" hidden>Blocked</span>
+              </span>
+              <span class="switch switch-sm">
+                <input type="checkbox" id="pref-background" checked />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </span>
+            </span>
+            <span class="toggle-tile-sub" id="background-notification-status"></span>
+            <button type="button" class="btn btn-ghost btn-sm hidden" id="background-open-settings">Open settings</button>
+          </label>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Auto pause</span>
+              <button type="button" class="info-btn" aria-label="More info about auto pause" data-tip="Automatically pauses a running workout a few seconds after you stop pedaling, and resumes it the instant you start again. Turn off to pause and resume by hand only. Doesn't affect the FTP/VO2 Max/Resting HR tests, which always end on their own when appropriate.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control">
+            <label class="switch">
+              <input type="checkbox" id="pref-auto-pause" checked aria-controls="auto-pause-triggers" />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-subrow-expand hidden" id="auto-pause-triggers">
+          <ul class="settings-trigger-list">
+            <li class="settings-check-row">
+              <span class="settings-trigger-text">
+                <span class="settings-trigger-name">Stopped pedaling</span>
+                <span class="settings-trigger-desc">No cadence, power, or speed for a few seconds</span>
+              </span>
+              <label class="switch switch-sm">
+                <input type="checkbox" id="pref-auto-pause-trigger-idle" checked />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+            </li>
+            <li class="settings-check-row">
+              <span class="settings-trigger-text">
+                <span class="settings-trigger-name">Controller disconnected</span>
+                <span class="settings-trigger-desc">Your trainer drops its connection mid-ride</span>
+              </span>
+              <label class="switch switch-sm">
+                <input type="checkbox" id="pref-auto-pause-trigger-controller" checked aria-controls="auto-pause-controller-types" />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+            </li>
+          </ul>
+
+          <div class="settings-subrow-expand settings-subrow-expand-nested hidden" id="auto-pause-controller-types">
+            <div class="settings-subhead">Controller types</div>
+            <ul class="settings-trigger-list">
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">Bike / rower controller</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-ctrl-controller" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">Heart rate monitor</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-ctrl-hrm" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">Core temp sensor</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-ctrl-temps" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <ul class="settings-trigger-list">
+            <li class="settings-check-row">
+              <span class="settings-trigger-text">
+                <span class="settings-trigger-name">Control modes</span>
+                <span class="settings-trigger-desc">Limit auto pause to specific control modes</span>
+              </span>
+              <label class="switch switch-sm">
+                <input type="checkbox" id="pref-auto-pause-trigger-modes" checked aria-controls="auto-pause-control-modes" />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+            </li>
+          </ul>
+
+          <div class="settings-subrow-expand settings-subrow-expand-nested hidden" id="auto-pause-control-modes">
+            <div class="settings-subhead">Control modes</div>
+            <ul class="settings-trigger-list">
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">ERG</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-mode-erg" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">Resistance</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-mode-resistance" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">Slope</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-mode-slope" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+              <li class="settings-check-row">
+                <span class="settings-trigger-name">Virtual Gear</span>
+                <label class="switch switch-sm">
+                  <input type="checkbox" id="pref-auto-pause-mode-virtualGear" checked />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Supported target types</span>
+              <button type="button" class="info-btn" aria-label="More info about supported target types" data-tip="Which target types show up as choices when building or editing a workout in the Advanced Builder — Power stays on since it's what every generated workout (Quick Start, FTP/VO2max tests) defaults to. Turning one off here just hides it from the picker; it doesn't touch a step that already uses it.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+        </div>
+        <!-- Four independent on/off choices, shown as a 2x2 of small tiles: the whole tile is the
+             <label>, so the tap target is the tile, not just the 32px switch. The input ids are
+             what app.js binds to (targetTypeCheckboxIds) — the markup around them is free to change. -->
+        <div class="settings-toggle-grid" role="group" aria-label="Supported target types">
+          <label class="toggle-tile">
+            <span class="toggle-tile-name">Power</span>
+            <span class="switch switch-sm">
+              <input type="checkbox" id="pref-target-power" checked />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </span>
+          </label>
+          <label class="toggle-tile">
+            <span class="toggle-tile-name">Slope</span>
+            <span class="switch switch-sm">
+              <input type="checkbox" id="pref-target-slope" checked />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </span>
+          </label>
+          <label class="toggle-tile">
+            <span class="toggle-tile-name">Resistance</span>
+            <span class="switch switch-sm">
+              <input type="checkbox" id="pref-target-resistance" checked />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </span>
+          </label>
+          <label class="toggle-tile">
+            <span class="toggle-tile-name">Heart Rate</span>
+            <span class="switch switch-sm">
+              <input type="checkbox" id="pref-target-heartRate" checked />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </span>
+          </label>
+        </div>
+        <div class="settings-subhead"><span>Backup</span></div>
+
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Export profile</span>
+              <button type="button" class="info-btn" aria-label="More info about exporting your profile" data-tip="Saves everything on this device to one file: workout history, diet diary, weigh-ins, custom ingredients/recipes/exercises/cardio presets, and a snapshot of your settings. Keep it somewhere safe, or use it to move to a new device.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control"><button type="button" class="btn btn-ghost btn-sm" id="profile-export-btn">Export</button></div>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Import profile</span>
+              <button type="button" class="info-btn" aria-label="More info about importing a profile" data-tip="Adds everything from a backup file that isn't already on this device, and replaces your current settings with the ones the file carries. Nothing already on this device is ever removed, and nothing but settings is overwritten.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control"><button type="button" class="btn btn-ghost btn-sm" id="profile-import-btn">Import</button></div>
+        </div>
+        <p class="settings-row-sub" id="profile-backup-status" hidden></p>
+
+        <div class="settings-row hidden" id="developer-settings-group">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">BLE Debug Console</span>
+              <button type="button" class="info-btn" aria-label="More info about the BLE Debug Console" data-tip="An nRF-Connect-style GATT browser built into the app — read, write, and subscribe to any characteristic by hand, on any nearby BLE device, not just ones this app already has a wrapper for. Web Bluetooth only; not available under the native-bridge shell (e.g. iOS). Advanced — most riders won't need this.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control">
+            <button type="button" class="btn btn-ghost btn-sm" id="open-ble-debug">Open</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Profile ───────────────────────────────────────────────────────
+         Everything about the rider: body measurements, then the performance
+         tests and thresholds (FTP, resting/max HR) they feed. (Was two rail
+         pages, Profile and Testing. They belong together — the Overview's
+         "fill this in first" prompts and the VO2 Max test's prerequisites
+         already send the rider to weight/age/sex *and* FTP in one go, and
+         with two pages only the last one's field was ever on screen.) -->
+    <section class="md-cat" data-cat="profile" data-label="Profile" data-icon="icon-user">
+      <div class="settings-card settings-list">
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Height</span>
+              <span class="settings-row-unit" id="height-unit-label">cm</span>
+              <button type="button" class="info-btn" aria-label="More info about height" data-tip="Feeds the BMR estimate on the Diet tab (Mifflin-St Jeor, or Katch-McArdle once body fat % is set below) and the body-composition estimate from a Fitdays scale sync. Not required for anything else.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+              <span class="settings-optional">Optional</span>
+            </span>
+          </div>
+          <div class="settings-row-control"><input class="input input-num" type="number" id="pref-height" placeholder="—" min="1" step="0.1" /></div>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Weight</span>
+              <span class="settings-row-unit" id="weight-unit-label">kg</span>
+              <button type="button" class="info-btn" aria-label="More info about weight" data-tip="Your body weight — drives every power-to-weight number (W/kg) in the app, plus the calorie and BMR estimates on the Diet tab. Updates automatically after a scale sync below.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control"><input class="input input-num" type="number" id="pref-weight" placeholder="—" min="1" step="0.1" /></div>
+        </div>
+
+        <!-- Body composition — expandable, sits directly under Weight since a
+             scale sync updates both together. Collapsed by default; opens on
+             its own if there's already saved body-composition data to show
+             (see populateSettingsUI()'s _toggleBodyCompPanel() call). Same
+             switch-drives-a-panel look as Auto Pause's Control modes row
+             below, though this switch has no backing preference of its own —
+             see _toggleBodyCompPanel()'s doc comment in app.js. -->
+        <ul class="settings-trigger-list">
+          <li class="settings-check-row">
+            <span class="settings-trigger-text">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Body composition</span>
+                <button type="button" class="info-btn" aria-label="More info about body composition fields" data-tip="Height, body fat %, muscle mass, body water, and basal metabolic rate can be filled in automatically with Sync Scale below, on a scale that reports them. (The actual Fitdays/ICOMON scale this app was built against only streams weight over Bluetooth today — its body composition data hasn't been decoded yet, so a sync from it only updates weight.) Bone mass and visceral fat rating aren't part of any Bluetooth scale spec and always need manual entry. Height and body fat % feed the BMR estimate on the Diet tab (Mifflin-St Jeor, or Katch-McArdle once body fat % is set); muscle mass, bone mass, body water, visceral fat rating, and basal metabolic rate are stored purely for reference, the same way a DEXA scan or in-clinic BIA reading would report them.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+                <span class="settings-optional">Optional</span>
+              </span>
+            </span>
+            <label class="switch switch-sm">
+              <input type="checkbox" id="body-comp-toggle" aria-controls="body-comp-panel" />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+          </li>
+        </ul>
+        <div class="settings-subrow-expand settings-subrow-expand-nested hidden" id="body-comp-panel">
+          <div class="settings-row">
+            <div class="settings-row-main">
+              <span class="settings-row-label-line">
+                <span class="settings-row-label">Sync scale</span>
+                <button type="button" class="info-btn" aria-label="More info about scale sync" data-tip="Pairs with a nearby Bluetooth scale and reads the next weigh-in — the Fitdays/ICOMON unit this app was built against, or any standard Bluetooth SIG Body Composition / Weight Scale device. Weight always updates; the other fields below only fill in if the scale reports them (see the Body composition tooltip above for what the Fitdays unit specifically can and can't provide).">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+                <span class="settings-warn" id="scale-sync-warn">Not synced</span>
+              </span>
+              <span class="settings-row-sub" id="scale-sync-status" hidden></span>
+            </div>
+            <div class="settings-row-control"><button type="button" class="btn btn-ghost btn-sm" id="sync-scale-btn">Sync</button></div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-main">
+              <span class="settings-row-label-line">
+                <span class="settings-row-label">Weigh-in history</span>
+                <button type="button" class="info-btn" aria-label="More info about weigh-in history" data-tip="Review every saved weigh-in, and fix or delete one that looks off — a pet on the scale, a misread, a wrong device clock. This only changes your weigh-in history; if a bad reading also ended up in the fields above, correct those separately.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <span class="settings-row-sub" id="weigh-in-review-sub" hidden></span>
+            </div>
+            <div class="settings-row-control"><button type="button" class="btn btn-ghost btn-sm" id="weigh-in-history-btn">Review</button></div>
+          </div>
+          <ul class="settings-trigger-list">
+            <li class="settings-check-row">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Body fat</span>
+                <span class="settings-row-unit">, %</span>
+                <button type="button" class="info-btn" aria-label="More info about body fat" data-tip="Feeds the Katch-McArdle BMR estimate on the Diet tab (more accurate than the age/sex-based Mifflin-St Jeor fallback) and derives lean body mass automatically. Typical healthy ranges run roughly 10–25% for men, 18–32% for women.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <div class="settings-row-control"><input class="input input-num hl-input" type="number" id="pref-body-fat" placeholder="—" min="1" max="70" step="0.1" /></div>
+            </li>
+            <li class="settings-check-row">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Muscle mass</span>
+                <span class="settings-row-unit" id="muscle-mass-unit-label">kg</span>
+                <button type="button" class="info-btn" aria-label="More info about muscle mass" data-tip="Reference only — nothing else in the app currently reads this. Stored the same way a DEXA scan or in-clinic BIA reading would report it.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <div class="settings-row-control"><input class="input input-num hl-input" type="number" id="pref-muscle-mass" placeholder="—" min="1" step="0.1" /></div>
+            </li>
+            <li class="settings-check-row">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Bone mass</span>
+                <span class="settings-row-unit" id="bone-mass-unit-label">kg</span>
+                <button type="button" class="info-btn" aria-label="More info about bone mass" data-tip="Reference only — not part of any Bluetooth scale spec, so this always needs manual entry, even after a scale sync fills in the fields above it.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <div class="settings-row-control"><input class="input input-num hl-input" type="number" id="pref-bone-mass" placeholder="—" min="0.1" step="0.1" /></div>
+            </li>
+            <li class="settings-check-row">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Body water</span>
+                <span class="settings-row-unit" id="body-water-unit-label">kg</span>
+                <button type="button" class="info-btn" aria-label="More info about body water" data-tip="Reference only — total body water mass, not a percentage. Typically 45–60% of body weight for adults.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <div class="settings-row-control"><input class="input input-num hl-input" type="number" id="pref-body-water" placeholder="—" min="1" step="0.1" /></div>
+            </li>
+            <li class="settings-check-row">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Visceral fat rating</span>
+                <span class="settings-row-unit">, index</span>
+                <button type="button" class="info-btn" aria-label="More info about visceral fat rating" data-tip="The scale's own unitless index, not a real organ measurement — most consumer scales call 1–9 healthy, 10–14 elevated, 15+ high, though exact ranges vary by manufacturer.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <div class="settings-row-control"><input class="input input-num hl-input" type="number" id="pref-visceral-fat" placeholder="—" min="1" max="59" step="1" /></div>
+            </li>
+            <li class="settings-check-row">
+              <span class="settings-row-label-line">
+                <span class="settings-trigger-name">Basal metabolic rate</span>
+                <span class="settings-row-unit">, kcal</span>
+                <button type="button" class="info-btn" aria-label="More info about basal metabolic rate" data-tip="A directly-reported number here — lab-measured, or read off a scale's own app — takes priority over the Diet tab's own Katch-McArdle/Mifflin-St Jeor estimate wherever BMR is used.">
+                  <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+                </button>
+              </span>
+              <div class="settings-row-control"><input class="input input-num hl-input" type="number" id="pref-bmr" placeholder="—" min="500" max="5000" step="1" /></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="settings-subhead">
+          <span>Age &amp; sex</span>
+          <button type="button" class="info-btn" aria-label="More info about age and sex" data-tip="Age feeds the Tanaka max-HR estimate (Heart rate zones below) and the VO2 Max test; sex only affects the VO2 Max formula's coefficient. Neither is needed for anything else.">
+            <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+          </button>
+          <span class="settings-optional">Optional</span>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main"><span class="settings-row-label-line"><span class="settings-row-label">Age</span><span class="settings-row-unit">, yrs</span></span></div>
+          <div class="settings-row-control"><input class="input input-num" type="number" id="pref-age" placeholder="—" min="10" max="100" step="1" /></div>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main"><span class="settings-row-label-line"><span class="settings-row-label">Sex</span></span></div>
+          <div class="settings-row-control">
+            <select class="input" id="pref-sex">
+              <option value="" selected>—</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-subhead"><span>Performance tests</span></div>
+
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">VO2 Max test</span>
+              <button type="button" class="info-btn" aria-label="More info about the VO2 Max test" data-tip="Estimated from a ramp test (Storer-Davis equation) — power steps up 15W every minute; the test ends on its own the moment you stop from genuine exhaustion. Needs FTP set below and weight, age, and sex set above (Profile). Result only becomes your saved VO2max once you confirm it afterward.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+              <span class="settings-warn" id="vo2max-warn" hidden>Not tested</span>
+            </span>
+            <span class="settings-row-sub" id="vo2max-result" hidden></span>
+          </div>
+          <div class="settings-row-control"><button class="btn btn-primary btn-sm" id="start-vo2max-test">Start</button></div>
+        </div>
+
+        <div class="settings-subhead"><span>FTP test</span></div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Ramp test</span>
+              <button type="button" class="info-btn" aria-label="More info about the FTP ramp test" data-tip="Power steps up 20W every minute; the test ends on its own the moment you stop from genuine exhaustion — FTP is ~75% of your best 1-minute power. Quick, but demanding. Result only becomes your saved FTP once you confirm it afterward.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+              <span class="settings-warn" id="ftp-ramp-warn" hidden>Not tested</span>
+            </span>
+          </div>
+          <div class="settings-row-control"><button class="btn btn-primary btn-sm" id="start-ftp-ramp-test">Start</button></div>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">20-minute test</span>
+              <button type="button" class="info-btn" aria-label="More info about the FTP 20-minute test" data-tip="Warm up, then hold the hardest pace you can genuinely sustain for a full 20 minutes — FTP is 95% of that average, the original Coggan/TrainingPeaks protocol. The opener and the 20-minute effort both end early on their own if you stop pedaling. Result only becomes your saved FTP once you confirm it afterward.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+              <span class="settings-warn" id="ftp-20min-warn" hidden>Not tested</span>
+            </span>
+            <span class="settings-row-sub" id="ftp-test-result" hidden></span>
+          </div>
+          <div class="settings-row-control"><button class="btn btn-primary btn-sm" id="start-ftp-20min-test">Start</button></div>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">FTP</span>
+              <span class="settings-row-unit">, W</span>
+              <button type="button" class="info-btn" aria-label="More info about FTP" data-tip="Functional Threshold Power — roughly the highest power you can sustain for about an hour. Drives every power zone and TSS estimate in the app; the two tests above will estimate it for you. Recalculates every power zone immediately when changed.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control"><input class="input input-num" type="number" id="pref-ftp" placeholder="200" min="50" max="600" /></div>
+        </div>
+
+        <div class="settings-subhead"><span>Heart rate test</span></div>
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Resting HR test</span>
+              <button type="button" class="info-btn" aria-label="More info about the resting heart rate test" data-tip="Sit or, ideally, lie down somewhere quiet and stay still for 3 minutes, breathing normally — reads the calmest sustained stretch after an initial settling period. Feeds the more individualized Karvonen zone method above; not a substitute for measuring by hand on waking.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+              <span class="settings-warn" id="resting-hr-warn" hidden>Not tested</span>
+            </span>
+            <span class="settings-row-sub" id="resting-hr-test-result" hidden></span>
+          </div>
+          <div class="settings-row-control"><button class="btn btn-primary btn-sm" id="start-resting-hr-test">Start</button></div>
+        </div>
+
+        <div class="settings-subhead">
+          <span>Heart rate</span>
+          <button type="button" class="info-btn" aria-label="More info about resting and max heart rate" data-tip="Resting HR enables the more individualized Karvonen (heart-rate-reserve) zone method below instead of a plain %-of-max table. Max HR falls back to an age-based estimate (Tanaka formula) when left blank.">
+            <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+          </button>
+          <span class="settings-optional">Optional</span>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main"><span class="settings-row-label-line"><span class="settings-row-label">Resting HR</span><span class="settings-row-unit">, bpm</span></span></div>
+          <div class="settings-row-control"><input class="input input-num" type="number" id="pref-resting-hr" placeholder="—" min="1" max="150" step="1" /></div>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-main"><span class="settings-row-label-line"><span class="settings-row-label">Max HR</span><span class="settings-row-unit">, bpm</span></span></div>
+          <div class="settings-row-control"><input class="input input-num" type="number" id="pref-max-hr" placeholder="—" min="100" max="240" step="1" /></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── Display ──────────────────────────────────────────────────────── -->
+    <section class="md-cat" data-cat="display" data-label="Display" data-icon="icon-sliders">
+      <div class="settings-card settings-list">
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Chart window</span>
+              <button type="button" class="info-btn" aria-label="More info about chart window" data-tip="How much history the live chart keeps on screen at once during a session. Shorter windows show more detail; longer ones show the bigger trend. Doesn't affect what's recorded — only the display, since the full session is always recorded regardless.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control">
+            <select class="input" id="pref-window">
+              <option value="120">2 minutes</option>
+              <option value="300" selected>5 minutes</option>
+              <option value="600">10 minutes</option>
+              <option value="1800">30 minutes</option>
+              <option value="3600">Full session</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-subhead">
+          <span>Power zones</span>
+          <button type="button" class="info-btn" aria-label="More info about power zones" data-tip="Based on your saved FTP.">
+            <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+          </button>
+        </div>
+        <div id="zone-strip" class="zone-strip"></div>
+
+        <div class="settings-subhead">
+          <span>Heart rate zones</span>
+          <button type="button" class="info-btn" aria-label="More info about heart rate zones" data-tip="Karvonen (heart-rate-reserve) zones when a resting HR is on file above; a plain %-of-max-HR table otherwise. Max HR falls back to an age-based estimate when not entered directly.">
+            <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+          </button>
+        </div>
+        <div id="hr-zone-strip" class="zone-strip"></div>
+
+        <div class="settings-row">
+          <div class="settings-row-main">
+            <span class="settings-row-label-line">
+              <span class="settings-row-label">Cardio zone reference</span>
+              <button type="button" class="info-btn" aria-label="More info about the cardio zone reference" data-tip="A deeper reference built on the same zones above — interval lengths, steady vs. intervals by goal, sample weekly structures, and fat-loss/maintenance plans. Opens pre-filled with your FTP, resting/max HR, and weight from this page and Performance Testing above.">
+                <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-info"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="settings-row-control"><button type="button" class="btn btn-ghost btn-sm" id="open-cardio-zone-reference">Open reference</button></div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ── Keyboard Shortcuts (a plain, always-visible reference — not collapsible: it is a short table people look at, not a setting
+         they change, so hiding it behind a tap only costs them one). Deliberately
+         NOT a .md-cat: it's a plain reference table, not tiles, and applies to the
+         whole Settings tab rather than one category — so it stays a sibling inside
+         .md-pane, always visible under every rail category instead of living behind
+         one of them (see style.css's Master-detail block comment on this same
+         choice). ──────────────────────────────────────────────────────────── -->
+    <section class="settings-group" id="keyboard-shortcuts" aria-labelledby="keyboard-shortcuts-title">
+      <h2 class="settings-subhead" id="keyboard-shortcuts-title">Keyboard Shortcuts</h2>
+      <div class="settings-card">
+        <table class="shortcuts-table">
+          <tr><td><kbd>Space</kbd></td><td>Start / Stop session</td></tr>
+          <tr><td><kbd>L</kbd></td><td>Mark lap</td></tr>
+          <tr><td><kbd>↑ ↓</kbd></td><td>Nudge target ±</td></tr>
+          <tr><td><kbd>← →</kbd></td><td>Shift gear (Virtual Gear mode)</td></tr>
+          <tr><td><kbd>E</kbd></td><td>ERG mode</td></tr>
+          <tr><td><kbd>R</kbd></td><td>Resistance mode</td></tr>
+          <tr><td><kbd>S</kbd></td><td>Slope mode</td></tr>
+          <tr><td><kbd>V</kbd></td><td>Virtual Gear mode</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>Deactivate control</td></tr>
+        </table>
+      </div>
+    </section>
+
+
+    <p class="settings-autosave-hint">Changes save automatically.</p>
+
+   </div>
+  </div>
+   </div>
+  </div>
+
+  <!-- ── Settings autosave pill — confirms a Settings field that's just been
+       written to disk (see the debounced 'input'/'change' autosave in
+       app.js's bindControls()). A top-level sibling of #app's other fixed
+       overlays (not nested inside .settings-page) so `position: fixed`
+       anchors it to the viewport's top edge — the *screen* — rather than to
+       a scrolled/transformed ancestor the way something inside the settings
+       panel itself could end up. Revert (red, left) restores every field to
+       how it stood before this run of edits; the checkmark (green, right)
+       just dismisses the pill and keeps what's already saved — see
+       _revertAutosave()/_confirmAutosave() in app.js. ──────────────────── -->
+  <div id="settings-autosave-pill" class="autosave-pill hidden" role="status" aria-live="polite">
+    <button type="button" class="autosave-pill-btn autosave-pill-revert" id="autosave-revert-btn" title="Revert" aria-label="Revert this change">
+      <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-refresh"/></svg>
+    </button>
+    <span class="autosave-pill-label">Changes autosaved</span>
+    <button type="button" class="autosave-pill-btn autosave-pill-confirm" id="autosave-confirm-btn" title="Dismiss" aria-label="Dismiss">
+      <svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-check"/></svg>
+    </button>
+  </div>
+
+  <!-- ── Session resume pill — shown when a session is running but the live
+       view has been minimized (e.g. the user switched to another tab). ──── -->
+  <button id="session-resume-bar" class="session-resume-bar hidden">
+    <span class="session-resume-dot"></span>
+    <span class="session-resume-text">
+      <span id="session-resume-name">Session running</span>
+      <span id="session-resume-elapsed">0:00</span>
+    </span>
+    <span class="session-resume-cta">Resume ›</span>
+  </button>
+
+  <!-- ── Floating start menu (pillbox) — Cardio Session / Strength Session / Repeat Last / Workout Editor ── -->
+  <div id="fab-menu" class="fab-menu hidden" role="menu" aria-label="Start a workout">
+    <button type="button" class="fab-menu-item" id="fab-menu-cardio" role="menuitem">
+      <span class="fab-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-lightning"/></svg></span>
+      <span class="fab-menu-label">Cardio Session</span>
+    </button>
+    <button type="button" class="fab-menu-item" id="fab-menu-strength" role="menuitem">
+      <span class="fab-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-dumbbell"/></svg></span>
+      <span class="fab-menu-label">Strength Session</span>
+    </button>
+    <button type="button" class="fab-menu-item" id="fab-menu-repeat" role="menuitem">
+      <span class="fab-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-refresh"/></svg></span>
+      <span class="fab-menu-label">Repeat Last Workout</span>
+    </button>
+    <button type="button" class="fab-menu-item" id="fab-menu-editor" role="menuitem">
+      <span class="fab-menu-icon"><svg class="btn-icon" viewBox="0 0 24 24"><use href="#icon-nav-workout"/></svg></span>
+      <span class="fab-menu-label">Workout Editor</span>
+    </button>
+  </div>
+
+  <!-- ── Floating start button ─────────────────────────────────────────── -->
+  <button id="fab-start-btn" class="fab-start" title="Start a workout" aria-label="Start a workout"
+    aria-haspopup="menu" aria-expanded="false">
+    <svg class="fab-start-icon" viewBox="0 0 24 24"><use href="#icon-x"/></svg>
+  </button>
+
+  <!-- ── Quick-start flow (single-screen, opened by the "Cardio Session" menu item) ── -->
+
+  <!-- ── BLE Debug Console (nRF-Connect-style GATT browser, opened from Settings → Developer) ── -->
+  <div id="ble-debug-flow" class="setup-flow hidden"></div>
+
+  <!-- ── Custom ingredient editor (Diet tab → Recipes / diary quick-add fallback) ── -->
+  <div id="ingredient-editor-flow" class="setup-flow hidden"></div>
+
+  <!-- ── Recipe editor (Diet tab → Recipes) ──────────────────────────────── -->
+  <div id="recipe-editor-flow" class="setup-flow hidden"></div>
+
+  <!-- ── Printable recipe sheet (Diet tab → Recipes "Print", and the recipe
+       editor's own "Print" button) — see ui/recipe-print.js ── -->
+  <div id="recipe-print-sheet" class="setup-flow hidden"></div>
+
+  <!-- ── Custom exercise editor (Strength tab → exercise Browse picker) ──── -->
+  <div id="exercise-editor-flow" class="setup-flow hidden"></div>
+
+
+
+  <!-- ── Detail sheet — the one shared glass sheet that rises over the page
+       (ui/detail-sheet.js). History's session detail uses it first. Its content
+       is built by that module; data-no-swipe keeps a drag on it from being read
+       as a tab swipe. ── -->
+  <div id="detail-sheet" class="detail-sheet-host hidden" data-no-swipe></div>
+
+  <!-- ── Bottom navigation — replaces the old top banner at every screen
+       size, so it stays out of the way of content above. ────────────── -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="overview"><svg  class="btn-icon"     viewBox="0 0 16 16"><use href="#icon-nav-overview"/></svg></button>
+    <button class="tab-btn"        data-tab="history"><svg   class="btn-icon"     viewBox="0 0 16 16"><use href="#icon-session-history"/></svg></button>
+    <button class="tab-btn"        data-tab="diet"><svg      class="btn-icon"     viewBox="0 0 24 24">
+      <path class="diet-slice diet-slice-protein" fill="currentColor" d="M12 12 L3.54 15.08 A 9.5 9.5 0 0 1 12 3 Z"/>
+      <path class="diet-slice diet-slice-carbs" fill="currentColor" d="M12 12 L12 3 A 9.5 9.5 0 0 1 15.08 20.46 Z"/>
+      <path class="diet-slice diet-slice-fat" fill="currentColor" d="M12 12 L15.08 20.46 A 9.5 9.5 0 0 1 3.54 15.08 Z"/>
+    </svg></button>
+    <button class="tab-btn"        data-tab="settings"><svg  class="btn-icon"     viewBox="0 0 16 16"><use href="#icon-nav-settings"/></svg></button>
+  </nav>
+
+</div><!-- #app -->
+
+<script type="module" src="/src/app.js"></script>
+</body>
+</html>

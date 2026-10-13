@@ -1,0 +1,606 @@
+[
+  {
+    "id": "seed-recipe:indian-chicken-tikka-masala",
+    "name": "Chicken Tikka Masala",
+    "cuisine": "indian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 575.0,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:yogurt-plain-whole",
+        "amountG": 152.304
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 307.5,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:heavy-cream",
+        "amountG": 118.294
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 105.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 15.0,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:ginger-raw",
+        "amountG": 15.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:ghee",
+        "amountG": 26.912
+      },
+      {
+        "ingredientId": "seed:garam-masala",
+        "amountG": 10.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 3.75,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 4.2,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:rice-basmati-cooked",
+        "amountG": 612.5,
+        "sizeOptionId": "cup"
+      }
+    ],
+    "steps": [
+      "Combine the yogurt with half the garam masala, half the cumin, and half the turmeric in a bowl; add the chicken and turn to coat. Marinate in the fridge for at least 30 minutes.",
+      "Heat the ghee in a large skillet over medium-high heat and sear the marinated chicken in batches until lightly charred on the outside; remove and set aside (it finishes cooking in the sauce).",
+      "In the same pan, add the onion and cook until softened, about 5 minutes, then stir in the garlic and ginger and cook for 1 minute more.",
+      "Add the chopped tomato and the remaining garam masala, cumin, and turmeric; simmer for 10 minutes, mashing the tomato down as it softens.",
+      "Stir in the cream, bring back to a gentle simmer, then return the chicken to the pan and cook for 8-10 minutes, until cooked through and the sauce has thickened.",
+      "Serve hot over the basmati rice."
+    ],
+    "perServing": {
+      "cholesterolMg": 197.814255,
+      "fat": {
+        "trans": 0.020183999999999997,
+        "saturated": 15.3214785,
+        "monounsaturated": 10.499675,
+        "total": 32.17119075,
+        "polyunsaturated": 5.786404999999999
+      },
+      "protein": 43.498473000000004,
+      "carbs": {
+        "starch": 42.11530125,
+        "fiber": 2.9580625000000005,
+        "total": 51.0222125,
+        "sugar": 5.9784222499999995
+      },
+      "potassiumMg": 783.0761500000001,
+      "minerals": {
+        "ironMg": 3.294905,
+        "magnesiumMg": 12.264875,
+        "calciumMg": 68.43220500000001,
+        "zincMg": 3.0539312500000007
+      },
+      "calories": 676.2095099999999,
+      "vitamins": {
+        "eMg": 0.399349,
+        "b12Mcg": 0.5750000000000001,
+        "b2Mg": 0.0045585,
+        "folateMcg": 6.3706249999999995,
+        "b6Mg": 0.5161924999999999,
+        "aMcg": 204.51246999999998,
+        "kMcg": 8.087808,
+        "b3Mg": 8.126204499999998,
+        "dMcg": 0.13455999999999999,
+        "b1Mg": 0.007719,
+        "cMg": 14.2805375
+      },
+      "sodiumMg": 156.2452
+    }
+  },
+  {
+    "id": "seed-recipe:indian-dal-tadka",
+    "name": "Dal Tadka (Red Lentils)",
+    "cuisine": "indian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:red-lentils-cooked",
+        "amountG": 700.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:ghee",
+        "amountG": 23.548
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 75.0,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 91.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 5.25,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 3.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:cilantro-raw",
+        "amountG": 9.0,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "If starting from dried lentils, rinse and simmer with the turmeric in water until soft, about 20 minutes (this recipe uses pre-cooked lentils, so you can skip ahead to the tempering).",
+      "Heat the ghee in a small pan over medium heat, add the cumin, and let it sizzle for about 30 seconds until fragrant.",
+      "Add the onion and cook until golden, about 5 minutes, then stir in the garlic and cook for another 30 seconds.",
+      "Add the chopped tomato and cook until it breaks down into a thick paste, about 5 minutes.",
+      "Pour this tempering (tadka) into the cooked lentils and stir to combine; simmer together for 5 minutes.",
+      "Garnish with chopped cilantro before serving."
+    ],
+    "perServing": {
+      "cholesterolMg": 15.07072,
+      "fat": {
+        "trans": 0.017661,
+        "saturated": 3.791526875,
+        "monounsaturated": 2.0110725,
+        "total": 6.980969749999999,
+        "polyunsaturated": 0.610005875
+      },
+      "protein": 16.68328125,
+      "carbs": {
+        "starch": 20.37028125,
+        "fiber": 14.842937500000001,
+        "total": 39.84165,
+        "sugar": 4.628431249999999
+      },
+      "potassiumMg": 791.9906,
+      "minerals": {
+        "ironMg": 6.9963,
+        "magnesiumMg": 69.83624999999999,
+        "calciumMg": 48.584855000000005,
+        "zincMg": 2.381875
+      },
+      "calories": 279.268625,
+      "vitamins": {
+        "eMg": 0.29779225,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.007936875,
+        "folateMcg": 322.13125,
+        "b6Mg": 0.054061875,
+        "aMcg": 67.42830000000001,
+        "kMcg": 9.449907,
+        "b3Mg": 0.085164375,
+        "dMcg": 0.11774,
+        "b1Mg": 0.00975,
+        "cMg": 6.226062500000001
+      },
+      "sodiumMg": 9.47649
+    }
+  },
+  {
+    "id": "seed-recipe:indian-chana-masala",
+    "name": "Chana Masala (Chickpea Curry)",
+    "cuisine": "indian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chickpeas-cooked",
+        "amountG": 656.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 246.0,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 105.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:ginger-raw",
+        "amountG": 12.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 23.807
+      },
+      {
+        "ingredientId": "seed:garam-masala",
+        "amountG": 8.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 5.25,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 3.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:cilantro-raw",
+        "amountG": 9.0,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "Heat the oil in a pot over medium heat, add the cumin, and toast for about 30 seconds until fragrant.",
+      "Add the onion and cook until golden brown, 6-7 minutes, then stir in the garlic and ginger and cook for 1 minute more.",
+      "Add the chopped tomato, garam masala, and turmeric; cook, stirring, until the tomato breaks down into a thick sauce, about 8 minutes.",
+      "Add the chickpeas along with a splash of water, and simmer for 10-15 minutes, mashing a few chickpeas against the side of the pot to thicken the sauce.",
+      "Season with salt to taste and stir in the chopped cilantro just before serving."
+    ],
+    "perServing": {
+      "cholesterolMg": 0.0,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 1.499059875,
+        "monounsaturated": 4.064081500000001,
+        "total": 11.02899375,
+        "polyunsaturated": 5.090716625
+      },
+      "protein": 16.23453125,
+      "carbs": {
+        "starch": 28.127031249999998,
+        "fiber": 14.5344375,
+        "total": 53.445399999999985,
+        "sugar": 10.783931249999998
+      },
+      "potassiumMg": 762.4237499999999,
+      "minerals": {
+        "ironMg": 6.595299999999998,
+        "magnesiumMg": 90.84625,
+        "calciumMg": 23.579375,
+        "zincMg": 0.17707499999999998
+      },
+      "calories": 364.83409499999993,
+      "vitamins": {
+        "eMg": 1.2108914999999998,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.008836875,
+        "folateMcg": 289.61625,
+        "b6Mg": 0.068861875,
+        "aMcg": 35.2525,
+        "kMcg": 14.543426499999999,
+        "b3Mg": 0.107664375,
+        "dMcg": 0.0,
+        "b1Mg": 0.01065,
+        "cMg": 12.3398125
+      },
+      "sodiumMg": 20.966250000000002
+    }
+  },
+  {
+    "id": "seed-recipe:indian-saag-paneer",
+    "name": "Saag Paneer",
+    "cuisine": "indian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:spinach-raw",
+        "amountG": 510.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:paneer",
+        "amountG": 300,
+        "sizeOptionId": "cup_cubed"
+      },
+      {
+        "ingredientId": "seed:heavy-cream",
+        "amountG": 103.507
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 75.0,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:ginger-raw",
+        "amountG": 12.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:ghee",
+        "amountG": 26.912
+      },
+      {
+        "ingredientId": "seed:garam-masala",
+        "amountG": 6.0,
+        "sizeOptionId": "tsp"
+      }
+    ],
+    "steps": [
+      "Blanch the spinach in boiling water for 1-2 minutes until wilted, then transfer to ice water, drain well, and blend into a coarse purée.",
+      "Heat half the ghee in a skillet over medium heat and pan-fry the paneer cubes until lightly golden on a couple of sides; remove and set aside.",
+      "Add the remaining ghee to the pan, then the onion, and cook until softened, about 5 minutes. Stir in the garlic and ginger and cook for 1 minute more.",
+      "Stir in the garam masala, then add the puréed spinach and simmer for 5 minutes.",
+      "Stir in the cream and the paneer, and simmer for another 3-4 minutes until heated through and the sauce is glossy."
+    ],
+    "perServing": {
+      "cholesterolMg": 103.6748275,
+      "fat": {
+        "trans": 0.020183999999999997,
+        "saturated": 20.2611375,
+        "monounsaturated": 8.7758465,
+        "total": 32.419549,
+        "polyunsaturated": 2.226897
+      },
+      "protein": 18.740298999999997,
+      "carbs": {
+        "starch": 3.6029999999999998,
+        "fiber": 3.538875,
+        "total": 11.836174,
+        "sugar": 4.72017575
+      },
+      "potassiumMg": 872.2205625,
+      "minerals": {
+        "ironMg": 4.060499999999999,
+        "magnesiumMg": 114.015,
+        "calciumMg": 366.74912,
+        "zincMg": 1.1802
+      },
+      "calories": 396.1191999999999,
+      "vitamins": {
+        "eMg": 0.271184,
+        "b12Mcg": 0.375,
+        "b2Mg": 0.0009,
+        "folateMcg": 251.54250000000002,
+        "b6Mg": 0.0438,
+        "aMcg": 895.8088249999998,
+        "kMcg": 617.156608,
+        "b3Mg": 0.0225,
+        "dMcg": 0.13455999999999999,
+        "b1Mg": 0.0009,
+        "cMg": 2.4315
+      },
+      "sodiumMg": 126.528975
+    }
+  },
+  {
+    "id": "seed-recipe:indian-vegetable-biryani",
+    "name": "Vegetable Biryani",
+    "cuisine": "indian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:rice-basmati-cooked",
+        "amountG": 700,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:carrot-raw",
+        "amountG": 91.5,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:peas-green-cooked",
+        "amountG": 120.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:cauliflower-raw",
+        "amountG": 107.0,
+        "sizeOptionId": "cup_florets"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 105.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:ghee",
+        "amountG": 40.368
+      },
+      {
+        "ingredientId": "seed:cashews-raw",
+        "amountG": 29.75,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:garam-masala",
+        "amountG": 8.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 3.0,
+        "sizeOptionId": "tsp"
+      }
+    ],
+    "steps": [
+      "Heat half the ghee in a wide pot over medium heat and fry the cashews until golden; remove and set aside for garnish.",
+      "In the same pot, add the onion and cook until deep golden brown, about 8-10 minutes; set aside about a third of it for garnish.",
+      "Add the remaining ghee, then the carrot and cauliflower, and cook for 5 minutes. Stir in the garam masala and turmeric and cook for 1 minute more.",
+      "Add the peas and the cooked rice, and gently fold everything together so the rice doesn't break up, warming it through over low heat for 5 minutes.",
+      "Serve topped with the reserved fried onions and cashews."
+    ],
+    "perServing": {
+      "cholesterolMg": 25.835520000000002,
+      "fat": {
+        "trans": 0.030276,
+        "saturated": 7.061665,
+        "monounsaturated": 5.037885,
+        "total": 14.566066,
+        "polyunsaturated": 1.7642790000000002
+      },
+      "protein": 8.994100000000001,
+      "carbs": {
+        "starch": 48.838224999999994,
+        "fiber": 4.7874375,
+        "total": 58.604425,
+        "sugar": 4.9787625
+      },
+      "potassiumMg": 377.1371,
+      "minerals": {
+        "ironMg": 1.4088125,
+        "calciumMg": 9.77618,
+        "magnesiumMg": 27.165,
+        "zincMg": 0.5239999999999999
+      },
+      "calories": 405.41362499999997,
+      "vitamins": {
+        "eMg": 0.41557600000000006,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0,
+        "folateMcg": 40.427499999999995,
+        "b6Mg": 0.0235,
+        "aMcg": 276.77905,
+        "kMcg": 16.574161999999998,
+        "b3Mg": 0.0,
+        "dMcg": 0.20184000000000002,
+        "b1Mg": 0.0,
+        "cMg": 20.739875
+      },
+      "sodiumMg": 29.588090000000005
+    }
+  },
+  {
+    "id": "seed-recipe:indian-tandoori-chicken",
+    "name": "Tandoori Chicken",
+    "cuisine": "indian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 690.0,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:yogurt-plain-whole",
+        "amountG": 197.995
+      },
+      {
+        "ingredientId": "seed:lemon-raw",
+        "amountG": 38.5,
+        "sizeOptionId": "wedge"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:ginger-raw",
+        "amountG": 12.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:garam-masala",
+        "amountG": 8.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 3.75,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 4.2,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:paprika",
+        "amountG": 5.75,
+        "sizeOptionId": "tsp"
+      }
+    ],
+    "steps": [
+      "Whisk together the yogurt, lemon juice, garlic, ginger, garam masala, turmeric, cumin, and paprika in a large bowl.",
+      "Add the chicken thighs, turn to coat thoroughly, cover, and marinate in the fridge for at least 2 hours (overnight develops the best flavor).",
+      "Preheat the oven to 450°F (230°C) or heat a grill to medium-high.",
+      "Shake off excess marinade and arrange the chicken on a rack over a baking sheet, or directly on the grill grates.",
+      "Roast or grill for 25-30 minutes, turning once, until charred in spots and the internal temperature reaches 165°F (74°C).",
+      "Rest for 5 minutes before serving."
+    ],
+    "perServing": {
+      "cholesterolMg": 168.5848375,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 5.1156412499999995,
+        "monounsaturated": 7.073125000000001,
+        "total": 16.93755625,
+        "polyunsaturated": 4.6065932499999995
+      },
+      "protein": 45.19634875,
+      "carbs": {
+        "starch": 3.0784575000000003,
+        "fiber": 1.609375,
+        "total": 7.594505,
+        "sugar": 2.9066725000000004
+      },
+      "potassiumMg": 607.2276875,
+      "minerals": {
+        "ironMg": 3.7317925,
+        "calciumMg": 83.15648750000003,
+        "magnesiumMg": 13.501125,
+        "zincMg": 3.673625000000001
+      },
+      "calories": 366.5879875,
+      "vitamins": {
+        "eMg": 0.6023275,
+        "b12Mcg": 0.6900000000000001,
+        "b2Mg": 0.029389125000000002,
+        "folateMcg": 2.724375,
+        "b6Mg": 0.6159331249999999,
+        "aMcg": 46.4460375,
+        "kMcg": 2.3396375000000003,
+        "b3Mg": 9.875192,
+        "dMcg": 0.0,
+        "b1Mg": 0.016765875,
+        "cMg": 6.50685
+      },
+      "sodiumMg": 167.62092499999997
+    }
+  }
+]

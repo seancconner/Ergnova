@@ -1,0 +1,593 @@
+[
+  {
+    "id": "seed-recipe:italian-spaghetti-bolognese",
+    "name": "Spaghetti Bolognese",
+    "cuisine": "italian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:pasta-cooked",
+        "amountG": 560,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:ground-beef-85-raw",
+        "amountG": 400
+      },
+      {
+        "ingredientId": "seed:marinara-sauce",
+        "amountG": 487.372
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 75.0,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 13.604
+      },
+      {
+        "ingredientId": "seed:parmesan-cheese",
+        "amountG": 40,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "Heat the olive oil in a large pot over medium heat, add the onion, and cook until softened, about 5 minutes. Stir in the garlic and cook for 1 minute more.",
+      "Add the ground beef, breaking it up with a spoon, and cook until browned, about 6-8 minutes.",
+      "Stir in the marinara sauce, bring to a simmer, then reduce the heat and let it simmer gently for 20-25 minutes, stirring occasionally, until thickened.",
+      "Meanwhile, cook the spaghetti in salted boiling water until al dente; drain, reserving a little pasta water.",
+      "Toss the pasta with the sauce, loosening with a splash of pasta water if needed.",
+      "Serve topped with grated Parmesan."
+    ],
+    "perServing": {
+      "cholesterolMg": 79.8,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 8.927492,
+        "monounsaturated": 10.271474000000001,
+        "total": 24.822362999999996,
+        "polyunsaturated": 5.53157
+      },
+      "protein": 31.530052,
+      "carbs": {
+        "starch": 34.84711600000001,
+        "fiber": 4.965206,
+        "total": 48.135594,
+        "sugar": 8.323272
+      },
+      "potassiumMg": 771.93286,
+      "minerals": {
+        "ironMg": 2.0,
+        "calciumMg": 118.4,
+        "magnesiumMg": 0.0,
+        "zincMg": 4.48
+      },
+      "calories": 545.1160199999999,
+      "vitamins": {
+        "eMg": 0.489744,
+        "b12Mcg": 2.4,
+        "b2Mg": 0.0,
+        "folateMcg": 27.362499999999997,
+        "b6Mg": 0.3315,
+        "aMcg": 0.0,
+        "kMcg": 2.047402,
+        "b3Mg": 4.4,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 13.17237
+      },
+      "sodiumMg": 684.56767
+    }
+  },
+  {
+    "id": "seed-recipe:italian-marinara-pasta",
+    "name": "Marinara Pasta",
+    "cuisine": "italian",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:pasta-cooked",
+        "amountG": 315.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:marinara-sauce",
+        "amountG": 304.607
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 6.0,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 13.604
+      },
+      {
+        "ingredientId": "seed:parmesan-cheese",
+        "amountG": 20,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "Cook the pasta in salted boiling water until al dente; drain, reserving a little pasta water.",
+      "Meanwhile, heat the olive oil in a pan over medium heat, add the garlic, and cook for 30-60 seconds until fragrant but not browned.",
+      "Pour in the marinara sauce and simmer for 8-10 minutes to let the flavors deepen.",
+      "Toss the drained pasta into the sauce, adding a splash of pasta water if it needs loosening.",
+      "Serve topped with grated Parmesan."
+    ],
+    "perServing": {
+      "cholesterolMg": 8.8,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 3.6235865,
+        "monounsaturated": 7.567388,
+        "total": 13.886356000000001,
+        "polyunsaturated": 2.5117274999999997
+      },
+      "protein": 14.049249,
+      "carbs": {
+        "starch": 38.642641999999995,
+        "fiber": 5.4871595,
+        "total": 53.4191905,
+        "sugar": 9.289389000000002
+      },
+      "potassiumMg": 581.26922,
+      "minerals": {
+        "ironMg": 0.0,
+        "calciumMg": 118.4,
+        "magnesiumMg": 0.0,
+        "zincMg": 0.27999999999999997
+      },
+      "calories": 391.69946500000003,
+      "vitamins": {
+        "eMg": 0.979488,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0,
+        "folateMcg": 26.775,
+        "b6Mg": 0.036,
+        "aMcg": 0.0,
+        "kMcg": 4.094804,
+        "b3Mg": 0.0,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 14.643315000000001
+      },
+      "sodiumMg": 733.8743400000001
+    }
+  },
+  {
+    "id": "seed-recipe:italian-caprese-salad",
+    "name": "Caprese Salad",
+    "cuisine": "italian",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 307.5,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:mozzarella-cheese",
+        "amountG": 150.0,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 20.406
+      }
+    ],
+    "steps": [
+      "Slice the tomatoes and mozzarella into rounds of similar thickness.",
+      "Arrange them alternating and slightly overlapping on a platter.",
+      "Drizzle with olive oil and season with salt and pepper; add fresh basil leaves if you have them.",
+      "Serve immediately at room temperature, when the flavors are most vivid."
+    ],
+    "perServing": {
+      "cholesterolMg": 40.5,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 8.758014000000001,
+        "monounsaturated": 10.37694,
+        "total": 22.435499999999998,
+        "polyunsaturated": 3.0250649999999997
+      },
+      "protein": 19.60875,
+      "carbs": {
+        "starch": 1.5037500000000001,
+        "fiber": 1.845,
+        "total": 8.09625,
+        "sugar": 4.7475000000000005
+      },
+      "potassiumMg": 435.73953000000006,
+      "minerals": {
+        "ironMg": 0.0,
+        "calciumMg": 548.25,
+        "magnesiumMg": 0.0,
+        "zincMg": 0.0
+      },
+      "calories": 308.36952,
+      "vitamins": {
+        "eMg": 1.4692319999999999,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0,
+        "folateMcg": 0.0,
+        "b6Mg": 0.0,
+        "aMcg": 198.075,
+        "kMcg": 18.288456000000004,
+        "b3Mg": 0.0,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 21.06375
+      },
+      "sodiumMg": 372.39156
+    }
+  },
+  {
+    "id": "seed-recipe:italian-chicken-parmesan",
+    "name": "Chicken Parmesan",
+    "cuisine": "italian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 600.0,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:panko-breadcrumbs",
+        "amountG": 100.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:egg-whole-raw",
+        "amountG": 100.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 30.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:parmesan-cheese",
+        "amountG": 60,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:mozzarella-cheese",
+        "amountG": 120.0,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:marinara-sauce",
+        "amountG": 304.607
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 27.208
+      },
+      {
+        "ingredientId": "seed:pasta-cooked",
+        "amountG": 385.0,
+        "sizeOptionId": "cup"
+      }
+    ],
+    "steps": [
+      "Slice each chicken breast horizontally into two thinner cutlets and pound to an even thickness.",
+      "Set up a dredging station: flour in one dish, beaten egg in a second, and the panko mixed with the grated Parmesan in a third.",
+      "Coat each cutlet in flour, then egg, then the panko-Parmesan mixture, pressing gently to help the crumbs adhere.",
+      "Heat the olive oil in a large skillet over medium-high heat and fry the cutlets for 3-4 minutes per side, until golden and cooked through; drain on a rack.",
+      "Spoon a little marinara onto each cutlet, top with the mozzarella, and broil for 2-3 minutes until melted and bubbling.",
+      "Meanwhile, cook the pasta in salted boiling water until al dente; toss with the remaining marinara and serve alongside the chicken."
+    ],
+    "perServing": {
+      "cholesterolMg": 249.89999999999998,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 9.604631249999999,
+        "monounsaturated": 11.688424000000001,
+        "total": 26.924177999999998,
+        "polyunsaturated": 5.3724687499999995
+      },
+      "protein": 72.4911245,
+      "carbs": {
+        "starch": 45.808820999999995,
+        "fiber": 4.07957975,
+        "total": 56.210595250000004,
+        "sugar": 6.322194500000001
+      },
+      "potassiumMg": 791.8786200000001,
+      "minerals": {
+        "ironMg": 1.8699999999999999,
+        "calciumMg": 429.4,
+        "magnesiumMg": 49.75,
+        "zincMg": 2.12
+      },
+      "calories": 769.7045724999999,
+      "vitamins": {
+        "eMg": 1.229488,
+        "b12Mcg": 0.6749999999999999,
+        "b2Mg": 0.125,
+        "folateMcg": 34.1125,
+        "b6Mg": 0.8999999999999999,
+        "aMcg": 93.4,
+        "kMcg": 4.094804,
+        "b3Mg": 20.549999999999997,
+        "dMcg": 0.5,
+        "b1Mg": 0.0,
+        "cMg": 6.853657500000001
+      },
+      "sodiumMg": 974.77519
+    }
+  },
+  {
+    "id": "seed-recipe:italian-mushroom-risotto",
+    "name": "Creamy Mushroom Risotto",
+    "cuisine": "italian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:rice-white-cooked",
+        "amountG": 660.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:portobello-mushroom-raw",
+        "amountG": 210.0,
+        "sizeOptionId": "cap"
+      },
+      {
+        "ingredientId": "seed:mushroom-white-raw",
+        "amountG": 153.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 75.0,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:butter",
+        "amountG": 42.586
+      },
+      {
+        "ingredientId": "seed:chicken-broth",
+        "amountG": 473.176
+      },
+      {
+        "ingredientId": "seed:parmesan-cheese",
+        "amountG": 60,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 13.604
+      }
+    ],
+    "steps": [
+      "Warm the chicken broth in a saucepan and keep it at a gentle simmer.",
+      "Heat the olive oil in a wide, heavy pot over medium heat and saut\u00e9 the mushrooms until golden and any liquid they release has cooked off; remove and set aside.",
+      "Add half the butter to the same pot, then the onion, and cook until softened, about 5 minutes. Stir in the garlic and cook for 1 minute more.",
+      "Add the rice and stir for 1-2 minutes until the grains look glossy.",
+      "Ladle in the warm broth one scoop at a time, stirring frequently and letting each addition absorb before adding the next, until the rice is creamy and just tender, about 18-20 minutes.",
+      "Stir in the mushrooms, remaining butter, and Parmesan; season to taste and serve immediately."
+    ],
+    "perServing": {
+      "cholesterolMg": 36.089974999999995,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 8.990013999999999,
+        "monounsaturated": 5.662351,
+        "total": 17.355230499999998,
+        "polyunsaturated": 2.5007884999999996
+      },
+      "protein": 13.908082499999999,
+      "carbs": {
+        "starch": 48.328838,
+        "fiber": 2.098875,
+        "total": 53.4329035,
+        "sugar": 3.0051905000000003
+      },
+      "potassiumMg": 519.6288599999999,
+      "minerals": {
+        "ironMg": 0.1575,
+        "calciumMg": 179.17499999999998,
+        "magnesiumMg": 24.525,
+        "zincMg": 0.6825
+      },
+      "calories": 421.658255,
+      "vitamins": {
+        "eMg": 0.7346135,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.279,
+        "folateMcg": 16.6875,
+        "b6Mg": 0.0315,
+        "aMcg": 72.82206,
+        "kMcg": 2.047402,
+        "b3Mg": 3.9495000000000005,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 2.2065
+      },
+      "sodiumMg": 645.8213049999999
+    }
+  },
+  {
+    "id": "seed-recipe:italian-pesto-pasta",
+    "name": "Pesto Pasta with Pine Nuts",
+    "cuisine": "italian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:pasta-cooked",
+        "amountG": 595.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:pesto-sauce",
+        "amountG": 159.401
+      },
+      {
+        "ingredientId": "seed:pine-nuts-raw",
+        "amountG": 40.5,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:parmesan-cheese",
+        "amountG": 50,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 136.5,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 13.604
+      }
+    ],
+    "steps": [
+      "Cook the pasta in salted boiling water until al dente; drain, reserving a little pasta water.",
+      "Toast the pine nuts in a dry skillet over medium heat for 2-3 minutes, shaking often, until golden; watch closely, they burn fast.",
+      "Toss the hot pasta with the basil pesto and a splash of the reserved pasta water until evenly coated and glossy.",
+      "Fold in the halved cherry tomatoes.",
+      "Serve topped with the toasted pine nuts and extra grated Parmesan."
+    ],
+    "perServing": {
+      "cholesterolMg": 13.7895175,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 6.6392317499999995,
+        "monounsaturated": 16.103269,
+        "total": 33.987115,
+        "polyunsaturated": 8.0471745
+      },
+      "protein": 15.737511249999999,
+      "carbs": {
+        "starch": 35.5155805,
+        "fiber": 4.0593787500000005,
+        "total": 42.23021175,
+        "sugar": 2.6552525
+      },
+      "potassiumMg": 310.10206,
+      "minerals": {
+        "ironMg": 1.15462875,
+        "magnesiumMg": 37.368825,
+        "calciumMg": 209.395375,
+        "zincMg": 1.326927
+      },
+      "calories": 535.600235,
+      "vitamins": {
+        "eMg": 3.025379,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0,
+        "folateMcg": 25.2875,
+        "b6Mg": 0.0,
+        "aMcg": 86.06295,
+        "kMcg": 50.050902,
+        "b3Mg": 0.0,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 5.870632499999999
+      },
+      "sodiumMg": 453.615895
+    }
+  },
+  {
+    "id": "seed-recipe:italian-homemade-ciabatta-rolls",
+    "name": "Homemade Ciabatta Rolls",
+    "cuisine": "italian",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 300
+      },
+      {
+        "ingredientId": "seed:water",
+        "amountG": 225
+      },
+      {
+        "ingredientId": "seed:yeast-active-dry",
+        "amountG": 2,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 6
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 9
+      }
+    ],
+    "steps": [
+      "In a large bowl, whisk the yeast into the water and let it sit for 5 minutes until foamy.",
+      "Add the flour, salt, and olive oil. Mix with a spatula or your hands until a very wet, shaggy dough forms \u2014 it will be too sticky to knead by hand, which is normal for ciabatta's high hydration.",
+      "Cover the bowl and let the dough rise at room temperature for 1.5-2 hours, until roughly doubled and full of bubbles.",
+      "Generously flour a work surface and turn the dough out without deflating it too much. Divide into 4 equal pieces and gently shape each into a rough rectangle, keeping as much air in the dough as possible.",
+      "Transfer the rolls to a floured or parchment-lined baking sheet, dust with flour, and let rest uncovered for 30-40 minutes while the oven preheats to 450\u00b0F (232\u00b0C).",
+      "Bake for 20-25 minutes until the crust is deep golden brown and the rolls sound hollow when tapped on the bottom. Cool on a wire rack for at least 15 minutes before slicing."
+    ],
+    "perServing": {
+      "cholesterolMg": 0.0,
+      "fat": {
+        "total": 3.03805,
+        "saturated": 0.466,
+        "monounsaturated": 2.02675,
+        "polyunsaturated": 0.4845499999999999,
+        "trans": 0.0
+      },
+      "protein": 7.927200000000001,
+      "carbs": {
+        "total": 57.431099999999994,
+        "sugar": 0.22499999999999998,
+        "fiber": 2.1595000000000004,
+        "starch": 55.04659999999999
+      },
+      "potassiumMg": 85.1675,
+      "minerals": {
+        "calciumMg": 0.51,
+        "ironMg": 3.4657999999999998,
+        "magnesiumMg": 0.28500000000000003,
+        "zincMg": 0.039850000000000003
+      },
+      "calories": 294.515,
+      "vitamins": {
+        "aMcg": 0.0,
+        "cMg": 0.0015,
+        "dMcg": 0.0,
+        "eMg": 0.324,
+        "kMcg": 1.3565,
+        "b1Mg": 0.05495,
+        "b2Mg": 0.02,
+        "b3Mg": 0.201,
+        "b6Mg": 0.0075,
+        "b12Mcg": 0.0,
+        "folateMcg": 11.700000000000001
+      },
+      "sodiumMg": 583.17
+    }
+  }
+]

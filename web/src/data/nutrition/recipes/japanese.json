@@ -1,0 +1,506 @@
+[
+  {
+    "id": "seed-recipe:japanese-teriyaki-salmon-rice-bowl",
+    "name": "Teriyaki Salmon Rice Bowl",
+    "cuisine": "japanese",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:salmon-raw",
+        "amountG": 340.0,
+        "sizeOptionId": "fillet"
+      },
+      {
+        "ingredientId": "seed:rice-white-cooked",
+        "amountG": 288.75,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:soy-sauce",
+        "amountG": 29.758
+      },
+      {
+        "ingredientId": "seed:honey",
+        "amountG": 15.748
+      },
+      {
+        "ingredientId": "seed:sesame-oil",
+        "amountG": 10.203
+      }
+    ],
+    "steps": [
+      "Whisk together the soy sauce, honey, and sesame oil to make the teriyaki glaze.",
+      "Pat the salmon dry and season lightly with salt and pepper.",
+      "Heat a nonstick skillet over medium-high heat and sear the salmon skin-side down for 4 minutes, then flip and cook for 2-3 minutes more.",
+      "Pour the glaze into the pan and let it bubble and reduce for 1-2 minutes, spooning it over the salmon as it thickens.",
+      "Serve the glazed salmon over the rice, spooning any extra glaze from the pan on top."
+    ],
+    "perServing": {
+      "cholesterolMg": 93.5,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 6.1536669999999996,
+        "monounsaturated": 12.7543075,
+        "total": 28.403899000000003,
+        "polyunsaturated": 9.2714585
+      },
+      "protein": 39.806946,
+      "carbs": {
+        "starch": 40.550272,
+        "fiber": 0.71228,
+        "total": 47.930997000000005,
+        "sugar": 6.668444999999998
+      },
+      "potassiumMg": 719.04095,
+      "minerals": {
+        "ironMg": 0.0,
+        "calciumMg": 0.0,
+        "magnesiumMg": 63.225,
+        "zincMg": 0.0
+      },
+      "calories": 618.2075899999999,
+      "vitamins": {
+        "eMg": 6.191421,
+        "b12Mcg": 5.44,
+        "b2Mg": 0.0,
+        "folateMcg": 0.0,
+        "b6Mg": 1.02,
+        "aMcg": 0.0,
+        "kMcg": 0.693804,
+        "b3Mg": 13.43,
+        "dMcg": 18.7,
+        "b1Mg": 0.0,
+        "cMg": 0.0
+      },
+      "sodiumMg": 919.3621800000001
+    }
+  },
+  {
+    "id": "seed-recipe:japanese-miso-soup-with-tofu",
+    "name": "Miso Soup with Tofu",
+    "cuisine": "japanese",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:vegetable-broth",
+        "amountG": 709.764
+      },
+      {
+        "ingredientId": "seed:miso-paste",
+        "amountG": 59.147
+      },
+      {
+        "ingredientId": "seed:tofu-firm",
+        "amountG": 199.5,
+        "sizeOptionId": "cup_cubed"
+      },
+      {
+        "ingredientId": "seed:edamame-cooked",
+        "amountG": 77.5,
+        "sizeOptionId": "cup"
+      }
+    ],
+    "steps": [
+      "Bring the vegetable broth to a gentle simmer in a pot (avoid a hard boil, which can dull the miso's flavor).",
+      "Ladle a little of the hot broth into a small bowl, whisk in the miso paste until smooth, then stir this mixture back into the pot.",
+      "Add the cubed tofu and edamame, and warm through for 2-3 minutes.",
+      "Serve immediately, while hot."
+    ],
+    "perServing": {
+      "cholesterolMg": 0.0,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 0.89770575,
+        "monounsaturated": 3.3728302500000003,
+        "total": 6.411271,
+        "polyunsaturated": 2.140735
+      },
+      "protein": 12.270806750000002,
+      "carbs": {
+        "starch": 3.2392987499999997,
+        "fiber": 2.9531095,
+        "total": 8.31713475,
+        "sugar": 2.1746015
+      },
+      "potassiumMg": 282.378715,
+      "minerals": {
+        "ironMg": 1.7922500000000001,
+        "magnesiumMg": 34.46014,
+        "calciumMg": 174.5625,
+        "zincMg": 0.0
+      },
+      "calories": 130.20636249999998,
+      "vitamins": {
+        "eMg": 0.0,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0,
+        "folateMcg": 60.25625,
+        "b6Mg": 0.0,
+        "aMcg": 0.0,
+        "kMcg": 0.0,
+        "b3Mg": 0.0,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 0.0
+      },
+      "sodiumMg": 1038.4857399999999
+    }
+  },
+  {
+    "id": "seed-recipe:japanese-chicken-teriyaki-udon",
+    "name": "Chicken Teriyaki Udon",
+    "cuisine": "japanese",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:udon-noodles-cooked",
+        "amountG": 398.75,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 300.0,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:soy-sauce",
+        "amountG": 29.758
+      },
+      {
+        "ingredientId": "seed:honey",
+        "amountG": 15.748
+      },
+      {
+        "ingredientId": "seed:sesame-oil",
+        "amountG": 10.203
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 35.0,
+        "sizeOptionId": "small"
+      }
+    ],
+    "steps": [
+      "Whisk together the soy sauce, honey, and sesame oil to make the teriyaki sauce.",
+      "Slice the chicken breast into thin strips and season lightly with salt and pepper.",
+      "Heat a wok or large skillet over medium-high heat and stir-fry the chicken for 4-5 minutes, until cooked through and lightly browned.",
+      "Add the sliced onion and stir-fry for 2 minutes, until just softened.",
+      "Add the cooked udon noodles and the teriyaki sauce, tossing to coat everything and warm the noodles through, about 2 minutes.",
+      "Serve immediately."
+    ],
+    "perServing": {
+      "cholesterolMg": 127.5,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 2.438667,
+        "monounsaturated": 4.8861825,
+        "total": 11.405774,
+        "polyunsaturated": 3.8564585
+      },
+      "protein": 54.30132100000001,
+      "carbs": {
+        "starch": 52.392771999999994,
+        "fiber": 2.824779999999999,
+        "total": 63.07474699999999,
+        "sugar": 7.857194999999999
+      },
+      "potassiumMg": 514.79095,
+      "minerals": {
+        "ironMg": 0.0,
+        "magnesiumMg": 43.5,
+        "calciumMg": 0.0,
+        "zincMg": 1.5
+      },
+      "calories": 584.6263399999999,
+      "vitamins": {
+        "eMg": 0.071421,
+        "b12Mcg": 0.44999999999999996,
+        "b2Mg": 0.0,
+        "folateMcg": 9.325,
+        "b6Mg": 0.8999999999999999,
+        "aMcg": 0.0,
+        "kMcg": 0.693804,
+        "b3Mg": 20.549999999999997,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 1.295
+      },
+      "sodiumMg": 1128.69343
+    }
+  },
+  {
+    "id": "seed-recipe:japanese-chicken-katsu",
+    "name": "Chicken Katsu with Cabbage Slaw",
+    "cuisine": "japanese",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 402.5,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:panko-breadcrumbs",
+        "amountG": 80,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:egg-whole-raw",
+        "amountG": 50.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 30.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 27.208
+      },
+      {
+        "ingredientId": "seed:cabbage-raw",
+        "amountG": 178.0,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:rice-white-cooked",
+        "amountG": 288.75,
+        "sizeOptionId": "cup"
+      }
+    ],
+    "steps": [
+      "Pound the chicken thighs to an even thickness and season with salt and pepper.",
+      "Set up a dredging station: flour, beaten egg, then panko.",
+      "Coat each piece of chicken in flour, then egg, then panko, pressing to help the crumbs stick.",
+      "Heat the oil in a skillet over medium-high heat and fry the chicken for 3-4 minutes per side, until deep golden brown and cooked through; drain on a rack.",
+      "Toss the shredded cabbage with a little salt and let it sit for a few minutes to soften slightly.",
+      "Slice the katsu into strips and serve over the rice with the cabbage slaw alongside."
+    ],
+    "perServing": {
+      "cholesterolMg": 282.175,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 7.949249000000001,
+        "monounsaturated": 12.126237,
+        "total": 34.95612499999999,
+        "polyunsaturated": 14.203383
+      },
+      "protein": 64.23982500000001,
+      "carbs": {
+        "starch": 77.630875,
+        "fiber": 4.5675,
+        "total": 87.05575,
+        "sugar": 4.857375
+      },
+      "potassiumMg": 766.2437500000001,
+      "minerals": {
+        "ironMg": 5.290800000000001,
+        "calciumMg": 87.6,
+        "magnesiumMg": 38.005,
+        "zincMg": 4.5052
+      },
+      "calories": 929.98436,
+      "vitamins": {
+        "eMg": 2.467452,
+        "b12Mcg": 1.0300000000000002,
+        "b2Mg": 0.125,
+        "folateMcg": 50.02,
+        "b6Mg": 0.60375,
+        "aMcg": 40.0,
+        "kMcg": 71.149832,
+        "b3Mg": 11.27,
+        "dMcg": 0.5,
+        "b1Mg": 0.0,
+        "cMg": 32.574000000000005
+      },
+      "sodiumMg": 476.27625000000006
+    }
+  },
+  {
+    "id": "seed-recipe:japanese-beef-sukiyaki-stirfry",
+    "name": "Beef Sukiyaki-Style Stir Fry",
+    "cuisine": "japanese",
+    "servings": 3,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:beef-sirloin-raw",
+        "amountG": 400
+      },
+      {
+        "ingredientId": "seed:tofu-firm",
+        "amountG": 199.5,
+        "sizeOptionId": "cup_cubed"
+      },
+      {
+        "ingredientId": "seed:shiitake-mushroom-raw",
+        "amountG": 97.5,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:bok-choy-raw",
+        "amountG": 157.5,
+        "sizeOptionId": "cup_chopped"
+      },
+      {
+        "ingredientId": "seed:green-onion-raw",
+        "amountG": 40.0,
+        "sizeOptionId": "stalk"
+      },
+      {
+        "ingredientId": "seed:soy-sauce",
+        "amountG": 42.512
+      },
+      {
+        "ingredientId": "seed:mirin",
+        "amountG": 29.758
+      },
+      {
+        "ingredientId": "seed:sugar-white",
+        "amountG": 15.625,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "Whisk together the soy sauce, mirin, and sugar to make the sukiyaki-style sauce.",
+      "Slice the beef thinly against the grain.",
+      "Heat a wok or large skillet over high heat and sear the beef in batches for 1-2 minutes per side, until just browned; remove and set aside.",
+      "In the same pan, stir-fry the shiitake mushrooms and bok choy for 2-3 minutes, until just tender.",
+      "Return the beef to the pan along with the tofu and green onion, pour in the sauce, and toss everything together for 1-2 minutes until heated through and glazed."
+    ],
+    "perServing": {
+      "cholesterolMg": 80.0,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 3.721437333333334,
+        "monounsaturated": 5.645653666666665,
+        "total": 13.363357333333333,
+        "polyunsaturated": 3.891791333333334
+      },
+      "protein": 41.42116266666666,
+      "carbs": {
+        "starch": 1.87976,
+        "fiber": 3.3270319999999995,
+        "total": 16.383014666666668,
+        "sugar": 11.242722666666666
+      },
+      "potassiumMg": 885.3604066666668,
+      "minerals": {
+        "ironMg": 4.945809133333333,
+        "magnesiumMg": 39.09166666666666,
+        "calciumMg": 298.42258,
+        "zincMg": 6.0767500000000005
+      },
+      "calories": 360.4935833333333,
+      "vitamins": {
+        "eMg": 0.0,
+        "b12Mcg": 2.6666666666666665,
+        "b2Mg": 0.08216666666666667,
+        "folateMcg": 47.40833333333333,
+        "b6Mg": 0.10225000000000001,
+        "aMcg": 134.24166666666665,
+        "kMcg": 51.4875,
+        "b3Mg": 9.067499999999999,
+        "dMcg": 0.13,
+        "b1Mg": 0.04699999999999999,
+        "cMg": 26.131666666666664
+      },
+      "sodiumMg": 901.8522999999998
+    }
+  },
+  {
+    "id": "seed-recipe:japanese-yaki-udon",
+    "name": "Yaki Udon (Stir-Fried Udon)",
+    "cuisine": "japanese",
+    "servings": 3,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:udon-noodles-cooked",
+        "amountG": 616.25,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:ground-pork-raw",
+        "amountG": 200
+      },
+      {
+        "ingredientId": "seed:cabbage-raw",
+        "amountG": 178.0,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:carrot-raw",
+        "amountG": 61.0,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:bean-sprouts-raw",
+        "amountG": 104,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:soy-sauce",
+        "amountG": 29.758
+      },
+      {
+        "ingredientId": "seed:oyster-sauce",
+        "amountG": 21.256
+      },
+      {
+        "ingredientId": "seed:sesame-oil",
+        "amountG": 13.604
+      }
+    ],
+    "steps": [
+      "Heat the sesame oil in a wok or large skillet over high heat and cook the ground pork, breaking it up, until browned, about 4-5 minutes.",
+      "Add the cabbage and carrot and stir-fry for 2-3 minutes, until just starting to soften.",
+      "Add the bean sprouts and cooked udon noodles, tossing to combine.",
+      "Pour in the soy sauce and oyster sauce, and stir-fry for another 2 minutes until everything is well coated and heated through."
+    ],
+    "perServing": {
+      "cholesterolMg": 53.33333333333334,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 6.015934666666667,
+        "monounsaturated": 8.677596666666668,
+        "total": 19.739772,
+        "polyunsaturated": 3.667696666666667
+      },
+      "protein": 20.725127333333333,
+      "carbs": {
+        "starch": 53.921760000000006,
+        "fiber": 5.228106666666666,
+        "total": 64.577434,
+        "sugar": 5.427567333333334
+      },
+      "potassiumMg": 517.5105133333335,
+      "minerals": {
+        "ironMg": 1.2617200000000002,
+        "magnesiumMg": 26.400000000000002,
+        "calciumMg": 39.302800000000005,
+        "zincMg": 1.582266666666667
+      },
+      "calories": 518.73972,
+      "vitamins": {
+        "eMg": 0.06348533333333334,
+        "b12Mcg": 0.4,
+        "b2Mg": 0.0,
+        "folateMcg": 46.66000000000001,
+        "b6Mg": 0.0,
+        "aMcg": 170.13000000000002,
+        "kMcg": 59.834048,
+        "b3Mg": 0.0,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 27.491666666666674
+      },
+      "sodiumMg": 1007.0463133333334
+    }
+  }
+]

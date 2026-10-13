@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/appicon.appiconset</string>
+
+	<!-- BLE bridge (checklist §6). NSBluetoothAlwaysUsageDescription is the
+	     modern (iOS 13+) key; NSBluetoothPeripheralUsageDescription is kept
+	     alongside it for pre-13 compatibility per Apple's own guidance,
+	     even though SupportedOSPlatformVersion (Ergnova.csproj) is already
+	     15.0+ here — harmless to leave in. Not supplied here:
+	     UIBackgroundModes -> bluetooth-central, since that's opt-in
+	     background behavior (checklist §5's "screen off mid-workout"
+	     question) rather than something every build needs; add it only
+	     once that's a deliberate decision, not a default. -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Ergnova uses Bluetooth to connect to your trainer, rower, heart rate monitor, and other sensors.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Ergnova uses Bluetooth to connect to your trainer, rower, heart rate monitor, and other sensors.</string>
+</dict>
+</plist>

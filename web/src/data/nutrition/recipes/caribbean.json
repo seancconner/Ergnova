@@ -1,0 +1,1104 @@
+[
+  {
+    "id": "seed-recipe:caribbean-jamaican-beef-patties",
+    "name": "Jamaican Beef Patties",
+    "cuisine": "caribbean",
+    "servings": 8,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 480,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 6,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 6
+      },
+      {
+        "ingredientId": "seed:butter",
+        "amountG": 170
+      },
+      {
+        "ingredientId": "seed:water",
+        "amountG": 160
+      },
+      {
+        "ingredientId": "seed:ground-beef-85-raw",
+        "amountG": 400
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 110,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 9,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 9,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:green-onion-raw",
+        "amountG": 20,
+        "sizeOptionId": "stalk"
+      },
+      {
+        "ingredientId": "seed:thyme-dried",
+        "amountG": 1.5
+      },
+      {
+        "ingredientId": "seed:allspice-ground",
+        "amountG": 2
+      },
+      {
+        "ingredientId": "seed:curry-powder",
+        "amountG": 8
+      },
+      {
+        "ingredientId": "seed:breadcrumbs",
+        "amountG": 25
+      },
+      {
+        "ingredientId": "seed:beef-broth",
+        "amountG": 90
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 2
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 10
+      },
+      {
+        "ingredientId": "seed:egg-whole-raw",
+        "amountG": 50,
+        "sizeOptionId": "whole"
+      }
+    ],
+    "steps": [
+      "Whisk together the flour, turmeric, and salt, then cut in the cold butter with a pastry cutter or your fingers until the mixture resembles coarse crumbs.",
+      "Add the ice water a little at a time, mixing just until a firm dough comes together. Shape into a disc, wrap, and refrigerate for at least 30 minutes.",
+      "Meanwhile, make the filling: heat the vegetable oil in a skillet over medium heat and cook the onion, garlic, and scotch bonnet pepper until softened, about 4 minutes.",
+      "Add the ground beef and cook, breaking it up with a spoon, until browned, about 6-8 minutes.",
+      "Stir in the green onion, thyme, allspice, curry powder, and black pepper and cook for 1 minute until fragrant.",
+      "Add the breadcrumbs and beef broth, stir to combine, and simmer for 5 minutes until moist but holding together. Season with salt to taste and let cool.",
+      "Preheat the oven to 375\u00b0F (190\u00b0C). Roll the dough out on a floured surface to about 1/8-inch thickness and cut into 8 circles, roughly 6 inches (15 cm) across.",
+      "Spoon the cooled beef filling onto one half of each circle, fold the dough over to form a half-moon, and crimp the edges firmly with a fork to seal.",
+      "Arrange the patties on a parchment-lined baking sheet, brush the tops with the beaten egg, and bake for 25-30 minutes until golden brown and crisp.",
+      "Let cool slightly before serving."
+    ],
+    "perServing": {
+      "calories": 527.1999999999999,
+      "protein": 17.554262500000007,
+      "carbs": {
+        "total": 51.6064125,
+        "sugar": 1.1754875,
+        "fiber": 2.805875,
+        "starch": 47.625049999999995
+      },
+      "fat": {
+        "total": 27.604725,
+        "saturated": 14.468212499999998,
+        "monounsaturated": 7.542625000000001,
+        "polyunsaturated": 5.525824999999999,
+        "trans": 0
+      },
+      "sodiumMg": 400.06562499999995,
+      "cholesterolMg": 104.4375,
+      "potassiumMg": 301.21,
+      "vitamins": {
+        "aMcg": 157.85624999999996,
+        "cMg": 3.83325,
+        "dMcg": 0.125,
+        "eMg": 0.8106125,
+        "kMcg": 9.258625,
+        "b1Mg": 0.4999125,
+        "b2Mg": 0.3487324999999999,
+        "b3Mg": 5.964192500000002,
+        "b6Mg": 0.21781250000000002,
+        "b12Mcg": 1.2562499999999999,
+        "folateMcg": 8.1475
+      },
+      "minerals": {
+        "calciumMg": 27.447499999999998,
+        "ironMg": 5.105899999999999,
+        "magnesiumMg": 6.156250000000001,
+        "zincMg": 2.6395750000000002
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-jerk-chicken",
+    "name": "Jerk Chicken",
+    "cuisine": "caribbean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 690,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 18,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:green-onion-raw",
+        "amountG": 40,
+        "sizeOptionId": "stalk"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 9,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:ginger-raw",
+        "amountG": 12,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:allspice-ground",
+        "amountG": 4
+      },
+      {
+        "ingredientId": "seed:thyme-dried",
+        "amountG": 2
+      },
+      {
+        "ingredientId": "seed:cinnamon-ground",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:nutmeg-ground",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:soy-sauce",
+        "amountG": 30
+      },
+      {
+        "ingredientId": "seed:brown-sugar-dark",
+        "amountG": 28.8,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:lime-raw",
+        "amountG": 67,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 20
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 3
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 1
+      }
+    ],
+    "steps": [
+      "In a blender or food processor, combine the scotch bonnet peppers, green onion, garlic, ginger, allspice, thyme, cinnamon, and nutmeg with the soy sauce, brown sugar, lime juice, vegetable oil, salt, and black pepper. Blend into a thick, fragrant paste.",
+      "Place the chicken thighs in a large bowl or zip-top bag and pour the jerk paste over them, massaging it into every piece.",
+      "Cover and marinate in the refrigerator for at least 4 hours, ideally overnight, for the best flavor.",
+      "Preheat a grill or grill pan to medium-high heat.",
+      "Grill the chicken for 6-8 minutes per side, turning occasionally, until deeply charred in spots and the internal temperature reaches 165\u00b0F (74\u00b0C).",
+      "Let rest for 5 minutes before serving."
+    ],
+    "perServing": {
+      "calories": 406.151,
+      "protein": 43.793205,
+      "carbs": {
+        "total": 13.001100000000001,
+        "sugar": 7.804525000000001,
+        "fiber": 1.69375,
+        "starch": 3.495625
+      },
+      "fat": {
+        "total": 19.874250000000004,
+        "saturated": 4.8747725,
+        "monounsaturated": 7.597760000000002,
+        "polyunsaturated": 7.124582499999998,
+        "trans": 0
+      },
+      "sodiumMg": 849.4655,
+      "cholesterolMg": 162.15,
+      "potassiumMg": 535.7295,
+      "vitamins": {
+        "aMcg": 9.5875,
+        "cMg": 14.70025,
+        "dMcg": 0,
+        "eMg": 0.8893000000000001,
+        "kMcg": 31.198250000000005,
+        "b1Mg": 0.0141325,
+        "b2Mg": 0.0137805,
+        "b3Mg": 9.843985000000002,
+        "b6Mg": 0.580377,
+        "b12Mcg": 0.6900000000000001,
+        "folateMcg": 9.0745
+      },
+      "minerals": {
+        "calciumMg": 35.8765,
+        "ironMg": 2.84185,
+        "magnesiumMg": 8.901,
+        "zincMg": 3.5782650000000005
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-rice-and-peas",
+    "name": "Rice and Peas (Coconut Rice and Red Kidney Beans)",
+    "cuisine": "caribbean",
+    "servings": 6,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:rice-white-cooked",
+        "amountG": 660,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:kidney-beans-cooked",
+        "amountG": 240
+      },
+      {
+        "ingredientId": "seed:coconut-milk-canned",
+        "amountG": 270
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 6,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:green-onion-raw",
+        "amountG": 20,
+        "sizeOptionId": "stalk"
+      },
+      {
+        "ingredientId": "seed:thyme-dried",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 9,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 4
+      }
+    ],
+    "steps": [
+      "In a medium saucepan, combine the coconut milk, garlic, thyme, whole scotch bonnet pepper, green onion, and salt. Bring to a gentle simmer over medium heat.",
+      "Add the kidney beans and simmer for 5 minutes to let the flavors infuse.",
+      "Remove the whole scotch bonnet pepper (take care not to burst it) along with the thyme sprig.",
+      "Fold in the cooked rice and stir gently until well coated and heated through, about 3-4 minutes.",
+      "Fluff with a fork and serve warm alongside jerk chicken or curry."
+    ],
+    "perServing": {
+      "calories": 300.9166666666667,
+      "protein": 7.653666666666668,
+      "carbs": {
+        "total": 43.42916666666667,
+        "sugar": 1.891,
+        "fiber": 4.2088333333333345,
+        "starch": 37.32933333333334
+      },
+      "fat": {
+        "total": 11.272666666666668,
+        "saturated": 9.652466666666669,
+        "monounsaturated": 0.9141833333333335,
+        "polyunsaturated": 0.6950833333333335,
+        "trans": 0
+      },
+      "sodiumMg": 267.56666666666666,
+      "cholesterolMg": 0,
+      "potassiumMg": 337.77,
+      "vitamins": {
+        "aMcg": 3.0033333333333334,
+        "cMg": 3.1670000000000003,
+        "dMcg": 0,
+        "eMg": 0.0245,
+        "kMcg": 9.758333333333336,
+        "b1Mg": 0.06743333333333335,
+        "b2Mg": 0.027633333333333333,
+        "b3Mg": 0.27183333333333337,
+        "b6Mg": 0.06886666666666667,
+        "b12Mcg": 0,
+        "folateMcg": 54.81500000000001
+      },
+      "minerals": {
+        "calciumMg": 17.090000000000003,
+        "ironMg": 1.4242000000000001,
+        "magnesiumMg": 49.145,
+        "zincMg": 0.45439999999999997
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-jamaican-curry-chicken",
+    "name": "Jamaican Curry Chicken",
+    "cuisine": "caribbean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 690,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 110,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 9,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:curry-powder",
+        "amountG": 12
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 3,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:allspice-ground",
+        "amountG": 2
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 9,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:thyme-dried",
+        "amountG": 1.5
+      },
+      {
+        "ingredientId": "seed:potato-raw",
+        "amountG": 340,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:carrot-raw",
+        "amountG": 61,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 20
+      },
+      {
+        "ingredientId": "seed:chicken-broth",
+        "amountG": 240
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 4
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 1
+      }
+    ],
+    "steps": [
+      "Season the chicken thighs with half the curry powder, salt, and black pepper.",
+      "Heat the vegetable oil in a large pot over medium heat. Add the remaining curry powder and toast it in the oil for about 30 seconds until fragrant \u2014 a traditional Jamaican technique that deepens the curry's flavor.",
+      "Add the onion and garlic and cook until softened, about 4 minutes.",
+      "Add the seasoned chicken and sear on all sides until browned, about 5 minutes.",
+      "Stir in the turmeric, allspice, thyme, and whole scotch bonnet pepper.",
+      "Add the potatoes, carrot, and chicken broth. Bring to a simmer, cover, and cook for 30-35 minutes, until the chicken is tender and the potatoes are cooked through.",
+      "Remove the scotch bonnet pepper before serving. Adjust seasoning with salt and pepper to taste."
+    ],
+    "perServing": {
+      "calories": 457.3975,
+      "protein": 45.713675000000016,
+      "carbs": {
+        "total": 22.956899999999997,
+        "sugar": 2.87855,
+        "fiber": 4.36225,
+        "starch": 15.716099999999997
+      },
+      "fat": {
+        "total": 20.241575,
+        "saturated": 4.8481000000000005,
+        "monounsaturated": 7.88415,
+        "polyunsaturated": 7.272475000000001,
+        "trans": 0
+      },
+      "sodiumMg": 752.8987499999998,
+      "cholesterolMg": 162.15,
+      "potassiumMg": 981,
+      "vitamins": {
+        "aMcg": 129.85,
+        "cMg": 24.176999999999996,
+        "dMcg": 0,
+        "eMg": 0.9017250000000001,
+        "kMcg": 11.930499999999999,
+        "b1Mg": 0.0853025,
+        "b2Mg": 0.036615,
+        "b3Mg": 10.610530000000002,
+        "b6Mg": 0.8257749999999999,
+        "b12Mcg": 0.6900000000000001,
+        "folateMcg": 20.505000000000003
+      },
+      "minerals": {
+        "calciumMg": 29.9075,
+        "ironMg": 4.998375,
+        "magnesiumMg": 31.025000000000002,
+        "zincMg": 3.8202500000000006
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-escovitch-fish",
+    "name": "Escovitch Fish",
+    "cuisine": "caribbean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:tilapia-raw",
+        "amountG": 600
+      },
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 60
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 75
+      },
+      {
+        "ingredientId": "seed:carrot-raw",
+        "amountG": 61,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:bell-pepper-red-raw",
+        "amountG": 119,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 70,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 9,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:apple-cider-vinegar",
+        "amountG": 90
+      },
+      {
+        "ingredientId": "seed:allspice-ground",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 4
+      }
+    ],
+    "steps": [
+      "Season the tilapia fillets with salt and black pepper, then dredge lightly in the flour, shaking off any excess.",
+      "Heat the vegetable oil in a large skillet over medium-high heat. Fry the fillets for 3-4 minutes per side until golden brown and cooked through. Transfer to a serving platter.",
+      "In the same skillet, add the carrot, bell pepper, onion, and scotch bonnet pepper and cook for 2-3 minutes until just softened but still crisp.",
+      "Add the vinegar and allspice, bring to a brief simmer, and cook for 1 minute.",
+      "Pour the hot pickled vegetables and liquid over the fried fish.",
+      "Let sit for at least 15 minutes before serving so the fish absorbs the tangy escovitch flavor; serve warm or at room temperature."
+    ],
+    "perServing": {
+      "calories": 393.73500000000007,
+      "protein": 32.40622500000001,
+      "carbs": {
+        "total": 17.068925,
+        "sugar": 2.9660999999999995,
+        "fiber": 1.9457499999999999,
+        "starch": 12.246324999999999
+      },
+      "fat": {
+        "total": 21.630724999999998,
+        "saturated": 3.8655249999999994,
+        "monounsaturated": 5.498850000000001,
+        "polyunsaturated": 11.522125,
+        "trans": 0
+      },
+      "sodiumMg": 479.86249999999995,
+      "cholesterolMg": 75,
+      "potassiumMg": 636.26,
+      "vitamins": {
+        "aMcg": 175.70999999999998,
+        "cMg": 43.501,
+        "dMcg": 0,
+        "eMg": 3.06555,
+        "kMcg": 7.2955000000000005,
+        "b1Mg": 0.128675,
+        "b2Mg": 0.07995750000000001,
+        "b3Mg": 6.767505,
+        "b6Mg": 0.0184,
+        "b12Mcg": 2.8499999999999996,
+        "folateMcg": 3.6849999999999996
+      },
+      "minerals": {
+        "calciumMg": 11.12,
+        "ironMg": 0.789225,
+        "magnesiumMg": 2.34,
+        "zincMg": 0.15385
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-fried-dumplings",
+    "name": "Jamaican Fried Dumplings (Fried Bakes)",
+    "cuisine": "caribbean",
+    "servings": 6,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 360,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:baking-powder",
+        "amountG": 10
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 4
+      },
+      {
+        "ingredientId": "seed:sugar-white",
+        "amountG": 12.5,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:butter",
+        "amountG": 30
+      },
+      {
+        "ingredientId": "seed:water",
+        "amountG": 200
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 150
+      }
+    ],
+    "steps": [
+      "In a large bowl, whisk together the flour, baking powder, salt, and sugar.",
+      "Rub in the butter with your fingertips until the mixture resembles coarse crumbs.",
+      "Gradually add the water, mixing until a soft, slightly sticky dough forms. Knead briefly on a floured surface, then cover and rest for 15-20 minutes.",
+      "Divide the dough into 12 pieces and shape each into a flattened oval or round about 1/2-inch thick.",
+      "Heat the vegetable oil in a deep skillet or pot to 350\u00b0F (177\u00b0C).",
+      "Fry the dumplings in batches for 3-4 minutes per side, until deep golden brown and cooked through in the center.",
+      "Drain on a wire rack and serve warm."
+    ],
+    "perServing": {
+      "calories": 484.19583333333344,
+      "protein": 6.225000000000002,
+      "carbs": {
+        "total": 48.33,
+        "sugar": 2.2683333333333335,
+        "fiber": 1.6233333333333335,
+        "starch": 44.43833333333334
+      },
+      "fat": {
+        "total": 29.655000000000005,
+        "saturated": 6.589999999999999,
+        "monounsaturated": 6.8900000000000015,
+        "polyunsaturated": 15.200000000000005,
+        "trans": 0
+      },
+      "sodiumMg": 436.8033333333334,
+      "cholesterolMg": 10.750000000000002,
+      "potassiumMg": 65.65333333333334,
+      "vitamins": {
+        "aMcg": 34.2,
+        "cMg": 0,
+        "dMcg": 0,
+        "eMg": 4.190000000000001,
+        "kMcg": 6.450000000000001,
+        "b1Mg": 0.4740000000000001,
+        "b2Mg": 0.29400000000000004,
+        "b3Mg": 3.540000000000001,
+        "b6Mg": 0.030000000000000006,
+        "b12Mcg": 0,
+        "folateMcg": 0
+      },
+      "minerals": {
+        "calciumMg": 107.09333333333336,
+        "ironMg": 2.7622000000000004,
+        "magnesiumMg": 0.006666666666666668,
+        "zincMg": 0.4200666666666667
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-brown-stew-chicken",
+    "name": "Brown Stew Chicken",
+    "cuisine": "caribbean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 690,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:brown-sugar-dark",
+        "amountG": 28.8,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 20
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 110,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:bell-pepper-green-raw",
+        "amountG": 119,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:carrot-raw",
+        "amountG": 61,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 9,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:ginger-raw",
+        "amountG": 6,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 9,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:thyme-dried",
+        "amountG": 1.5
+      },
+      {
+        "ingredientId": "seed:allspice-ground",
+        "amountG": 2
+      },
+      {
+        "ingredientId": "seed:soy-sauce",
+        "amountG": 20
+      },
+      {
+        "ingredientId": "seed:chicken-broth",
+        "amountG": 200
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 3
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 1
+      }
+    ],
+    "steps": [
+      "Season the chicken thighs with salt, black pepper, and half the thyme; let sit for 10 minutes.",
+      "Heat the vegetable oil in a large heavy pot over medium-high heat. Add the brown sugar and cook, stirring constantly, until it melts and turns a deep amber caramel, about 1-2 minutes \u2014 watch closely so it doesn't burn.",
+      "Add the chicken thighs and turn to coat in the caramel, browning on all sides, about 5 minutes.",
+      "Add the onion, bell pepper, carrot, garlic, and ginger and cook for 3-4 minutes until just softened.",
+      "Stir in the remaining thyme, allspice, soy sauce, and the whole scotch bonnet pepper.",
+      "Pour in the chicken broth, bring to a simmer, cover, and cook over low heat for 30-35 minutes, until the chicken is tender and the sauce has thickened slightly.",
+      "Remove the scotch bonnet pepper before serving. Adjust seasoning with salt and pepper to taste."
+    ],
+    "perServing": {
+      "calories": 416.1135,
+      "protein": 44.150005000000014,
+      "carbs": {
+        "total": 14.707550000000001,
+        "sugar": 9.679975,
+        "fiber": 1.90175,
+        "starch": 3.118625
+      },
+      "fat": {
+        "total": 19.794025000000005,
+        "saturated": 4.801355,
+        "monounsaturated": 7.65134,
+        "polyunsaturated": 7.09948,
+        "trans": 0
+      },
+      "sodiumMg": 893.3042499999999,
+      "cholesterolMg": 162.15,
+      "potassiumMg": 640.042,
+      "vitamins": {
+        "aMcg": 135.205,
+        "cMg": 31.231750000000005,
+        "dMcg": 0,
+        "eMg": 0.9742,
+        "kMcg": 12.418,
+        "b1Mg": 0.03543,
+        "b2Mg": 0.020543,
+        "b3Mg": 9.888800000000002,
+        "b6Mg": 0.6267469999999999,
+        "b12Mcg": 0.6900000000000001,
+        "folateMcg": 9.8245
+      },
+      "minerals": {
+        "calciumMg": 28.833999999999996,
+        "ironMg": 2.5583999999999993,
+        "magnesiumMg": 7.291000000000001,
+        "zincMg": 3.5922150000000004
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-callaloo",
+    "name": "Callaloo (Saut\u00e9ed Greens)",
+    "cuisine": "caribbean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:collard-greens-raw",
+        "amountG": 400
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 70,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 6,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 91,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:scotch-bonnet-pepper-raw",
+        "amountG": 9,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:thyme-dried",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:coconut-oil",
+        "amountG": 15
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 3
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 1
+      }
+    ],
+    "steps": [
+      "Fresh callaloo (taro or Caribbean amaranth leaves) can be hard to find outside the Caribbean, so this version uses collard greens, a widely available substitute with a similar hearty texture.",
+      "Heat the coconut oil in a large pot over medium heat and cook the onion and garlic until softened, about 3 minutes.",
+      "Add the tomato, thyme, and whole scotch bonnet pepper and cook for 2 minutes.",
+      "Stir in the chopped greens a handful at a time, letting each batch wilt down before adding more.",
+      "Cover and cook over low heat for 12-15 minutes, stirring occasionally, until the greens are tender.",
+      "Remove the whole scotch bonnet pepper, season with salt and black pepper, and serve warm."
+    ],
+    "perServing": {
+      "calories": 80.99749999999999,
+      "protein": 3.5847499999999997,
+      "carbs": {
+        "total": 8.928875000000001,
+        "sugar": 1.9756,
+        "fiber": 4.832000000000001,
+        "starch": 2.1212750000000002
+      },
+      "fat": {
+        "total": 4.427,
+        "saturated": 3.136825,
+        "monounsaturated": 0.313925,
+        "polyunsaturated": 0.4004,
+        "trans": 0
+      },
+      "sodiumMg": 313.1675,
+      "cholesterolMg": 0,
+      "potassiumMg": 311.58750000000003,
+      "vitamins": {
+        "aMcg": 344.56,
+        "cMg": 43.52225000000001,
+        "dMcg": 0,
+        "eMg": 0.02225,
+        "kMcg": 443.494,
+        "b1Mg": 0.011172499999999998,
+        "b2Mg": 0.007299999999999999,
+        "b3Mg": 0.037605,
+        "b6Mg": 0.02915,
+        "b12Mcg": 0,
+        "folateMcg": 170.37
+      },
+      "minerals": {
+        "calciumMg": 242.3075,
+        "ironMg": 0.81575,
+        "magnesiumMg": 10.425,
+        "zincMg": 0.2628
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-fried-sweet-plantains",
+    "name": "Fried Sweet Plantains (Maduros)",
+    "cuisine": "caribbean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:plantain-raw",
+        "amountG": 537,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:coconut-oil",
+        "amountG": 30
+      },
+      {
+        "ingredientId": "seed:brown-sugar-dark",
+        "amountG": 14.4,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:cinnamon-ground",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 1
+      }
+    ],
+    "steps": [
+      "Peel the ripe plantains (they should be mostly black/yellow-black for maximum sweetness) and slice diagonally into 1/2-inch pieces.",
+      "Heat the coconut oil in a large skillet over medium heat.",
+      "Add the plantain slices in a single layer and fry for 2-3 minutes per side, until deep golden brown and caramelized at the edges.",
+      "Sprinkle with the brown sugar and cinnamon during the last minute of cooking, tossing gently to coat.",
+      "Season with a small pinch of salt and transfer to a paper-towel-lined plate to drain briefly before serving warm."
+    ],
+    "perServing": {
+      "calories": 244.7305,
+      "protein": 1.7602650000000002,
+      "carbs": {
+        "total": 46.4842,
+        "sugar": 23.562925,
+        "fiber": 3.2205,
+        "starch": 19.697175
+      },
+      "fat": {
+        "total": 7.932324999999999,
+        "saturated": 6.3762975,
+        "monounsaturated": 0.5136649999999999,
+        "polyunsaturated": 0.22181250000000002,
+        "trans": 0
+      },
+      "sodiumMg": 103.694,
+      "cholesterolMg": 0,
+      "potassiumMg": 678.856,
+      "vitamins": {
+        "aMcg": 75.2175,
+        "cMg": 24.711499999999997,
+        "dMcg": 0,
+        "eMg": 0.19375000000000003,
+        "kMcg": 1.01775,
+        "b1Mg": 0.070225,
+        "b2Mg": 0.07292150000000001,
+        "b3Mg": 0.9278850000000002,
+        "b6Mg": 0.40201849999999995,
+        "b12Mcg": 0,
+        "folateMcg": 29.586000000000002
+      },
+      "minerals": {
+        "calciumMg": 10.2645,
+        "ironMg": 0.920725,
+        "magnesiumMg": 50.473,
+        "zincMg": 0.20047000000000004
+      }
+    }
+  },
+  {
+    "id": "seed-recipe:caribbean-pasteles",
+    "name": "Pasteles (Puerto Rican Meat-Filled Plantain Bundles)",
+    "cuisine": "caribbean",
+    "servings": 12,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:plantain-green-raw",
+        "amountG": 895,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:yautia-raw",
+        "amountG": 340
+      },
+      {
+        "ingredientId": "seed:calabaza-raw",
+        "amountG": 200
+      },
+      {
+        "ingredientId": "seed:milk-whole",
+        "amountG": 100
+      },
+      {
+        "ingredientId": "seed:achiote-oil",
+        "amountG": 75
+      },
+      {
+        "ingredientId": "seed:ground-pork-raw",
+        "amountG": 500
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 110,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 9,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:bell-pepper-green-raw",
+        "amountG": 119,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 123,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:cilantro-raw",
+        "amountG": 6,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:black-olives-canned",
+        "amountG": 34
+      },
+      {
+        "ingredientId": "seed:capers",
+        "amountG": 9,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:raisins",
+        "amountG": 20
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 2.1,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:oregano-dried",
+        "amountG": 1,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 1
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 10
+      }
+    ],
+    "steps": [
+      "Make the filling: heat half the achiote oil in a large skillet over medium heat and cook the onion, garlic, and bell pepper until softened, about 5 minutes.",
+      "Add the ground pork (traditionally diced pork shoulder, if you'd rather chop it by hand) and cook, breaking it up with a spoon, until browned, 6-8 minutes.",
+      "Stir in the tomato, cumin, oregano, black pepper, and half the salt, and simmer for 8-10 minutes until thickened. Stir in the olives, capers, and raisins, then remove from the heat and let cool completely.",
+      "Make the masa: peel and finely grate or food-process the green plantains, yaut\u00eda, and calabaza together until you have a smooth, thick paste.",
+      "Stir the remaining achiote oil, milk, and remaining salt into the masa until it's a spreadable, evenly colored batter.",
+      "Lay a piece of banana leaf (or a sheet of parchment topped with foil), about 10x12 inches/25x30 cm, lightly greased. Spread a thin, even layer of masa down the center, leaving a border, then top with a couple of tablespoons of the cooled filling.",
+      "Fold the two long sides over the filling so they overlap, then fold in the ends to seal into a tight rectangular packet. Tie with kitchen twine, or wrap securely in a second layer of foil. Repeat with the remaining masa and filling to make 12 pasteles.",
+      "Bring a large pot of salted water to a boil. Gently lower in the pasteles, weighing them down with a heatproof plate so they stay submerged, and boil for 45-60 minutes until the masa is firm and fully cooked.",
+      "Drain and let rest for 5 minutes, then unwrap and serve hot, traditionally with hot sauce or ketchup on the side."
+    ],
+    "perServing": {
+      "calories": 337.5779166666667,
+      "protein": 9.347100833333332,
+      "carbs": {
+        "total": 40.03779499999999,
+        "sugar": 4.612720833333334,
+        "fiber": 3.614208333333332,
+        "starch": 31.686699166666664
+      },
+      "fat": {
+        "total": 15.937280833333336,
+        "saturated": 4.505357916666665,
+        "monounsaturated": 5.795154999999999,
+        "polyunsaturated": 4.677199083333334,
+        "trans": 0.0
+      },
+      "sodiumMg": 400.5373333333333,
+      "cholesterolMg": 34.166666666666664,
+      "potassiumMg": 765.9931666666666,
+      "vitamins": {
+        "aMcg": 84.46783333333332,
+        "cMg": 28.352141666666668,
+        "dMcg": 0.10833333333333334,
+        "eMg": 1.8995358333333332,
+        "kMcg": 6.060866666666666,
+        "b1Mg": 0.12329316666666668,
+        "b2Mg": 0.1277155833333333,
+        "b3Mg": 0.7671065833333333,
+        "b6Mg": 0.1785870833333333,
+        "b12Mcg": 0.2833333333333333,
+        "folateMcg": 33.25249999999999
+      },
+      "minerals": {
+        "calciumMg": 42.66758333333334,
+        "ironMg": 1.529771666666667,
+        "magnesiumMg": 51.855500000000006,
+        "zincMg": 1.1359749999999997
+      }
+    }
+  }
+]

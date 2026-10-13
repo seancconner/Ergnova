@@ -1,0 +1,21 @@
+{
+  "name": "ergnova",
+  "version": "0.1.0",
+  "description": "Multi-modal fitness tracker with live Bluetooth trainer/rower/elliptical control, ERG/resistance/slope targets, and auto-save on workout completion.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:https": "vite --mode https",
+    "build": "vite build",
+    "build:maui": "vite build --mode maui",
+    "preview": "vite preview",
+    "preview:https": "vite preview --mode https",
+    "test": "node scripts/run-smoketests.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2",
+    "vite-plugin-mkcert": "^2.1.0",
+    "vite-plugin-pwa": "^1.3.0"
+  }
+}

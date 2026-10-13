@@ -1,0 +1,753 @@
+[
+  {
+    "id": "seed-recipe:american-cheeseburger",
+    "name": "Classic Cheeseburger",
+    "cuisine": "american",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:ground-beef-85-patty",
+        "amountG": 600,
+        "sizeOptionId": "patty"
+      },
+      {
+        "ingredientId": "seed:cheddar-cheese",
+        "amountG": 80,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:bread-white",
+        "amountG": 200,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:lettuce-romaine-raw",
+        "amountG": 58.75,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 91,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:red-onion-raw",
+        "amountG": 35,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:ketchup",
+        "amountG": 42.142
+      },
+      {
+        "ingredientId": "seed:mustard-yellow",
+        "amountG": 18.483
+      }
+    ],
+    "steps": [
+      "Divide the ground beef into equal portions and shape into patties slightly wider than the buns (they shrink as they cook). Season both sides with salt and pepper.",
+      "Heat a skillet or grill pan over medium-high heat.",
+      "Cook the patties for 3-4 minutes per side, flipping once, until a thermometer reads 160°F (71°C) at the center.",
+      "During the last minute, top each patty with a slice of cheddar and let it melt.",
+      "Toast the cut sides of the buns lightly in the same pan or under a broiler.",
+      "Spread ketchup and mustard on the bottom bun, then layer on the lettuce, tomato, and red onion.",
+      "Add the patty, close with the top bun, and serve immediately."
+    ],
+    "perServing": {
+      "cholesterolMg": 127.5,
+      "fat": {
+        "trans": 0,
+        "saturated": 13.4109915,
+        "monounsaturated": 10.671865250000002,
+        "total": 31.052403749999996,
+        "polyunsaturated": 6.9660470000000005
+      },
+      "protein": 38.4396665,
+      "carbs": {
+        "starch": 21.980773499999998,
+        "fiber": 2.12481425,
+        "total": 30.200418000000003,
+        "sugar": 6.09483025
+      },
+      "potassiumMg": 626.530475,
+      "minerals": {
+        "ironMg": 4.818375,
+        "magnesiumMg": 0.875,
+        "calciumMg": 146.2125,
+        "zincMg": 6.934875000000001
+      },
+      "calories": 561.0413300000001,
+      "vitamins": {
+        "eMg": 0,
+        "b12Mcg": 3.5999999999999996,
+        "b2Mg": 0,
+        "folateMcg": 21.637500000000003,
+        "b6Mg": 0.44999999999999996,
+        "aMcg": 126.5925,
+        "kMcg": 16.851937500000002,
+        "b3Mg": 6.6000000000000005,
+        "dMcg": 0,
+        "b1Mg": 0,
+        "cMg": 4.4911995000000005
+      },
+      "sodiumMg": 640.2520625
+    }
+  },
+  {
+    "id": "seed-recipe:american-bbq-pulled-pork",
+    "name": "BBQ Pulled Pork Sandwich",
+    "cuisine": "american",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:pork-tenderloin-raw",
+        "amountG": 700
+      },
+      {
+        "ingredientId": "seed:bbq-sauce",
+        "amountG": 202.283
+      },
+      {
+        "ingredientId": "seed:bread-white",
+        "amountG": 200,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:cabbage-raw",
+        "amountG": 178,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:mayonnaise",
+        "amountG": 40.368
+      }
+    ],
+    "steps": [
+      "Pat the pork tenderloin dry and season with salt and pepper.",
+      "Sear in a heavy pot over medium-high heat until browned on all sides, about 6-8 minutes total.",
+      "Add about half the BBQ sauce and enough water to come halfway up the meat; cover and simmer over low heat for 45-60 minutes, until the pork shreds easily with a fork.",
+      "Remove the pork, shred with two forks, and stir it back into the pot along with the remaining BBQ sauce.",
+      "While the pork cooks, toss the shredded cabbage with the mayonnaise to make a quick slaw; season with salt and pepper.",
+      "Pile the pulled pork onto the bread and top with the slaw."
+    ],
+    "perServing": {
+      "cholesterolMg": 112.73864,
+      "fat": {
+        "trans": 0,
+        "saturated": 3.6656007500000003,
+        "monounsaturated": 7.7960715,
+        "total": 15.6919245,
+        "polyunsaturated": 3.9745835000000005
+      },
+      "protein": 43.501227500000006,
+      "carbs": {
+        "starch": 24.13045725,
+        "fiber": 2.6664952499999997,
+        "total": 47.469852,
+        "sugar": 20.6728995
+      },
+      "potassiumMg": 834.143275,
+      "minerals": {
+        "ironMg": 2.36314525,
+        "calciumMg": 27.91415,
+        "magnesiumMg": 5.34,
+        "zincMg": 3.5801
+      },
+      "calories": 509.73229000000003,
+      "vitamins": {
+        "eMg": 0,
+        "b12Mcg": 0,
+        "b2Mg": 0,
+        "folateMcg": 19.135,
+        "b6Mg": 1.05,
+        "aMcg": 0,
+        "kMcg": 33.82,
+        "b3Mg": 9.625,
+        "dMcg": 0,
+        "b1Mg": 1.4000000000000001,
+        "cMg": 16.287000000000003
+      },
+      "sodiumMg": 859.73095
+    }
+  },
+  {
+    "id": "seed-recipe:american-southern-fried-chicken",
+    "name": "Southern Fried Chicken",
+    "cuisine": "american",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-thigh-raw",
+        "amountG": 690,
+        "sizeOptionId": "thigh"
+      },
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 150,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:buttermilk",
+        "amountG": 197.995
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 122.434
+      },
+      {
+        "ingredientId": "seed:paprika",
+        "amountG": 5.75,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:cayenne-pepper",
+        "amountG": 3.15,
+        "sizeOptionId": "tsp"
+      }
+    ],
+    "steps": [
+      "Combine the buttermilk with half the paprika and cayenne in a bowl; add the chicken thighs, turn to coat, cover, and marinate in the fridge for at least 1 hour (overnight is even better).",
+      "In a separate shallow dish, whisk the flour with the remaining paprika and cayenne and a good pinch of salt and pepper.",
+      "Lift each piece of chicken from the buttermilk, letting the excess drip off, then dredge thoroughly in the seasoned flour, pressing to help it stick.",
+      "Heat the oil in a heavy skillet to 325-350°F (163-177°C) — about 1/2 inch deep for shallow-frying.",
+      "Fry the chicken in batches, turning occasionally, for 12-15 minutes per batch, until deep golden brown and the internal temperature reaches 165°F (74°C).",
+      "Drain on a wire rack (not paper towels, which trap steam and soften the crust) and rest for 5 minutes before serving."
+    ],
+    "perServing": {
+      "cholesterolMg": 164.12995,
+      "fat": {
+        "trans": 0,
+        "saturated": 9.171141,
+        "monounsaturated": 13.760765500000002,
+        "total": 46.2897825,
+        "polyunsaturated": 22.092980375000003
+      },
+      "protein": 48.2288,
+      "carbs": {
+        "starch": 27.763614999999998,
+        "fiber": 1.7283875000000002,
+        "total": 32.26000625,
+        "sugar": 2.76800375
+      },
+      "potassiumMg": 558.5283625,
+      "minerals": {
+        "ironMg": 3.835112,
+        "magnesiumMg": 9.200612500000002,
+        "calciumMg": 61.875925,
+        "zincMg": 3.7297687500000003
+      },
+      "calories": 742.21164,
+      "vitamins": {
+        "eMg": 5.6421730000000005,
+        "b12Mcg": 0.83849625,
+        "b2Mg": 0.03229275,
+        "folateMcg": 2.3585000000000003,
+        "b6Mg": 0.5674843749999999,
+        "aMcg": 56.2120375,
+        "kMcg": 9.683667999999999,
+        "b3Mg": 9.873132875,
+        "dMcg": 0,
+        "b1Mg": 0.011854875,
+        "cMg": 0.6145875000000001
+      },
+      "sodiumMg": 193.6624375
+    }
+  },
+  {
+    "id": "seed-recipe:american-mac-and-cheese",
+    "name": "Mac and Cheese",
+    "cuisine": "american",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:pasta-cooked",
+        "amountG": 595,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:cheddar-cheese",
+        "amountG": 226,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:milk-whole",
+        "amountG": 304.607
+      },
+      {
+        "ingredientId": "seed:butter",
+        "amountG": 49.684
+      },
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 30,
+        "sizeOptionId": "cup"
+      }
+    ],
+    "steps": [
+      "Cook the pasta in salted boiling water until al dente; drain and set aside.",
+      "Melt the butter in a saucepan over medium heat, whisk in the flour, and cook for 1-2 minutes, stirring, until golden and fragrant.",
+      "Gradually whisk in the milk, a splash at a time, until smooth, then keep whisking over medium heat until the sauce thickens enough to coat the back of a spoon, about 5 minutes.",
+      "Remove from the heat and stir in the cheddar a handful at a time until fully melted and smooth.",
+      "Fold the cooked pasta into the cheese sauce until evenly coated.",
+      "Serve immediately, or transfer to a baking dish and broil for 2-3 minutes until bubbling and lightly browned on top."
+    ],
+    "perServing": {
+      "cholesterolMg": 93.64532499999999,
+      "fat": {
+        "trans": 0,
+        "saturated": 20.008777249999998,
+        "monounsaturated": 7.725902,
+        "total": 32.99918875,
+        "polyunsaturated": 5.2645095
+      },
+      "protein": 24.827145,
+      "carbs": {
+        "starch": 39.567,
+        "fiber": 2.8800000000000003,
+        "total": 47.312205,
+        "sugar": 5.09366025
+      },
+      "potassiumMg": 232.34635,
+      "minerals": {
+        "ironMg": 0.345,
+        "calciumMg": 493.4164774999999,
+        "magnesiumMg": 0,
+        "zincMg": 1.7514999999999998
+      },
+      "calories": 585.3686375,
+      "vitamins": {
+        "eMg": 0.28568299999999996,
+        "b12Mcg": 0.30460700000000007,
+        "b2Mg": 0.15230350000000004,
+        "folateMcg": 25.2875,
+        "b6Mg": 0,
+        "aMcg": 269.714445,
+        "kMcg": 0,
+        "b3Mg": 0,
+        "dMcg": 0.9899727500000002,
+        "b1Mg": 0,
+        "cMg": 0
+      },
+      "sodiumMg": 386.61406249999993
+    }
+  },
+  {
+    "id": "seed-recipe:american-cobb-salad",
+    "name": "Cobb Salad",
+    "cuisine": "american",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:lettuce-romaine-raw",
+        "amountG": 199.75,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 200,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:bacon-raw",
+        "amountG": 56,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:egg-whole-raw",
+        "amountG": 125,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:blue-cheese",
+        "amountG": 60,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:avocado-raw",
+        "amountG": 102,
+        "sizeOptionId": "half"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 91,
+        "sizeOptionId": "small"
+      }
+    ],
+    "steps": [
+      "Bring a small pot of water to a boil, gently lower in the eggs, and cook for 9-10 minutes for firm yolks; cool in ice water, then peel and chop.",
+      "Season the chicken breast with salt and pepper and cook in a skillet over medium heat for 6-7 minutes per side, until it reaches 165°F (74°C); rest, then dice.",
+      "Cook the bacon in a skillet until crisp, then drain on paper towels and crumble.",
+      "Spread the chopped romaine over a serving platter as the base.",
+      "Arrange the chicken, bacon, egg, blue cheese, avocado, and tomato in neat rows on top of the lettuce.",
+      "Season with salt and pepper and serve with dressing of your choice."
+    ],
+    "perServing": {
+      "cholesterolMg": 370.8,
+      "fat": {
+        "trans": 0,
+        "saturated": 13.538499999999999,
+        "monounsaturated": 15.14025,
+        "total": 37.795125000000006,
+        "polyunsaturated": 8.696375
+      },
+      "protein": 58.28300000000001,
+      "carbs": {
+        "starch": 1.726,
+        "fiber": 6.0603750000000005,
+        "total": 10.924875,
+        "sugar": 3.1384999999999996
+      },
+      "potassiumMg": 1171.62625,
+      "minerals": {
+        "ironMg": 1.215,
+        "calciumMg": 158.4,
+        "magnesiumMg": 35.9,
+        "zincMg": 2.37
+      },
+      "calories": 618.5237500000001,
+      "vitamins": {
+        "eMg": 1.6960000000000002,
+        "b12Mcg": 1.2225000000000001,
+        "b2Mg": 0.3125,
+        "folateMcg": 210.51500000000001,
+        "b6Mg": 0.6,
+        "aMcg": 615.765,
+        "kMcg": 116.676375,
+        "b3Mg": 15.1,
+        "dMcg": 1.25,
+        "b1Mg": 0,
+        "cMg": 11.3335
+      },
+      "sodiumMg": 1075.845
+    }
+  },
+  {
+    "id": "seed-recipe:american-loaded-baked-potato",
+    "name": "Loaded Baked Potato",
+    "cuisine": "american",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:potato-baked",
+        "amountG": 500,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:cheddar-cheese",
+        "amountG": 84.75,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:bacon-raw",
+        "amountG": 56,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:sour-cream",
+        "amountG": 78.074
+      },
+      {
+        "ingredientId": "seed:green-onion-raw",
+        "amountG": 20,
+        "sizeOptionId": "stalk"
+      },
+      {
+        "ingredientId": "seed:butter",
+        "amountG": 21.293
+      }
+    ],
+    "steps": [
+      "Preheat the oven to 425°F (220°C). Scrub the potatoes, pierce a few times with a fork, and rub the skins lightly with oil and salt.",
+      "Bake directly on the oven rack for 45-60 minutes, until a knife slides in easily.",
+      "Meanwhile, cook the bacon in a skillet until crisp, drain, and crumble.",
+      "Slice each potato open lengthwise and fluff the flesh with a fork. Add the butter and let it melt in.",
+      "Top with the shredded cheddar while the potato is still hot so it melts, then add the bacon, sour cream, and sliced green onion."
+    ],
+    "perServing": {
+      "cholesterolMg": 121.215555,
+      "fat": {
+        "trans": 0,
+        "saturated": 23.017727999999998,
+        "monounsaturated": 12.131224000000001,
+        "total": 42.2626145,
+        "polyunsaturated": 6.7175925
+      },
+      "protein": 28.3770815,
+      "carbs": {
+        "starch": 45.940444,
+        "fiber": 5.76,
+        "total": 56.4832235,
+        "sugar": 4.782779499999999
+      },
+      "potassiumMg": 1615.7885399999998,
+      "minerals": {
+        "ironMg": 0.187037,
+        "magnesiumMg": 5.12296,
+        "calciumMg": 354.10296999999997,
+        "zincMg": 2.068773
+      },
+      "calories": 711.5799150000001,
+      "vitamins": {
+        "eMg": 0.24486949999999996,
+        "b12Mcg": 0,
+        "b2Mg": 0.008,
+        "folateMcg": 46.4,
+        "b6Mg": 0.756,
+        "aMcg": 253.74612,
+        "kMcg": 20.700000000000003,
+        "b3Mg": 1.4500000000000002,
+        "dMcg": 0,
+        "b1Mg": 0.006,
+        "cMg": 25.88
+      },
+      "sodiumMg": 784.1717050000001
+    }
+  },
+  {
+    "id": "seed-recipe:american-chicken-caprese-sandwich",
+    "name": "Chicken Caprese Sandwich",
+    "cuisine": "american",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 200,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 3,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 2.317
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 2.958
+      },
+      {
+        "ingredientId": "seed:egg-yolk-raw",
+        "amountG": 17,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:milk-whole",
+        "amountG": 60.921
+      },
+      {
+        "ingredientId": "seed:chipotle-chili-powder",
+        "amountG": 2.7,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:oregano-dried",
+        "amountG": 3
+      },
+      {
+        "ingredientId": "seed:basil-dried",
+        "amountG": 1.4,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 1.5,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:red-onion-raw",
+        "amountG": 100,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 182,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:mozzarella-cheese",
+        "amountG": 120,
+        "sizeOptionId": "slice"
+      },
+      {
+        "ingredientId": "seed:ciabatta-bread",
+        "amountG": 476,
+        "sizeOptionId": "roll"
+      }
+    ],
+    "steps": [
+      "Pat the chicken breast dry, then mince the garlic clove. Season the chicken all over with the minced garlic, black pepper, and salt.",
+      "Heat a heavy skillet over medium-high heat. Sear the chicken for 5-7 minutes per side until deeply browned and cooked through (165°F/74°C internal). Remove the chicken and set aside, leaving the drippings and browned bits in the pan.",
+      "Reduce the heat to medium-low. Whisk the egg yolk and milk together, then pour into the skillet with the drippings along with the chipotle chili powder, oregano, basil, and turmeric.",
+      "Simmer the sauce, stirring constantly, for 3-4 minutes until it thickens enough to coat the back of a spoon. Scrape up any browned bits from the bottom of the pan as it reduces.",
+      "Shred the rested chicken with two forks, then toss it through the thickened sauce to coat.",
+      "Split and lightly toast the ciabatta buns. Pile the saucy shredded chicken onto the bottoms, then top with the sliced red onion, sliced tomato, and mozzarella slices.",
+      "Return the open-faced sandwiches to a broiler or hot skillet just until the mozzarella melts, then close with the top buns and serve warm."
+    ],
+    "perServing": {
+      "cholesterolMg": 106.33552500000002,
+      "fat": {
+        "total": 11.458995999999999,
+        "saturated": 4.665741325,
+        "monounsaturated": 4.5860520000000005,
+        "polyunsaturated": 2.0623860749999996,
+        "trans": 0
+      },
+      "protein": 32.865089999999995,
+      "carbs": {
+        "total": 65.095807375,
+        "sugar": 3.68984745,
+        "fiber": 4.02712525,
+        "starch": 57.424525425
+      },
+      "potassiumMg": 461.3192125,
+      "minerals": {
+        "calciumMg": 272.52090999999996,
+        "ironMg": 4.485675049999999,
+        "magnesiumMg": 22.9685325,
+        "zincMg": 0.7618784499999999
+      },
+      "calories": 502.24337,
+      "vitamins": {
+        "aMcg": 106.967915,
+        "cMg": 8.576025000000001,
+        "dMcg": 0.42749325000000005,
+        "eMg": 0.8281499999999999,
+        "kMcg": 17.03798225,
+        "b1Mg": 0.0549248825,
+        "b2Mg": 0.07937419999999999,
+        "b3Mg": 7.116377035,
+        "b6Mg": 0.37221445,
+        "b12Mcg": 0.293796,
+        "folateMcg": 25.648382499999997
+      },
+      "sodiumMg": 1350.6600325
+    }
+  },
+  {
+    "id": "seed-recipe:american-chicken-caprese-salad",
+    "name": "Chicken Caprese Salad",
+    "cuisine": "american",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 200,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 3,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:black-pepper-ground",
+        "amountG": 2.317
+      },
+      {
+        "ingredientId": "seed:salt-table",
+        "amountG": 2.958
+      },
+      {
+        "ingredientId": "seed:egg-yolk-raw",
+        "amountG": 17,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:milk-whole",
+        "amountG": 60.921
+      },
+      {
+        "ingredientId": "seed:chipotle-chili-powder",
+        "amountG": 2.7,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:oregano-dried",
+        "amountG": 3
+      },
+      {
+        "ingredientId": "seed:basil-dried",
+        "amountG": 1.4,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:turmeric-ground",
+        "amountG": 1.5,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:red-onion-raw",
+        "amountG": 100,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 182,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:mozzarella-cheese",
+        "amountG": 120,
+        "sizeOptionId": "slice"
+      }
+    ],
+    "steps": [
+      "Pat the chicken breast dry, then mince the garlic clove. Season the chicken all over with the minced garlic, black pepper, and salt.",
+      "Heat a heavy skillet over medium-high heat. Sear the chicken for 5-7 minutes per side until deeply browned and cooked through (165°F/74°C internal). Remove the chicken and set aside, leaving the drippings and browned bits in the pan.",
+      "Reduce the heat to medium-low. Whisk the egg yolk and milk together, then pour into the skillet with the drippings along with the chipotle chili powder, oregano, basil, and turmeric.",
+      "Simmer the sauce, stirring constantly, for 3-4 minutes until it thickens enough to coat the back of a spoon. Scrape up any browned bits from the bottom of the pan as it reduces.",
+      "Shred the rested chicken with two forks, then toss it through the thickened sauce to coat.",
+      "Slice the red onion, tomato, and mozzarella. Arrange them on plates or in a bowl, then pile the saucy shredded chicken on top.",
+      "Serve right away while the chicken is still warm, or chill and serve cold."
+    ],
+    "perServing": {
+      "calories": 208.31337000000002,
+      "protein": 25.01109,
+      "carbs": {
+        "total": 7.737807374999999,
+        "sugar": 3.45184745,
+        "fiber": 1.88512525,
+        "starch": 2.4465254250000004
+      },
+      "fat": {
+        "total": 8.483996,
+        "saturated": 4.189741325,
+        "monounsaturated": 2.5630520000000003,
+        "polyunsaturated": 1.5863860749999996,
+        "trans": 0
+      },
+      "sodiumMg": 482.2315175,
+      "cholesterolMg": 106.33552500000002,
+      "potassiumMg": 377.9600724999999,
+      "vitamins": {
+        "aMcg": 106.967915,
+        "cMg": 8.576025000000001,
+        "dMcg": 0.42749325000000005,
+        "eMg": 0.47115,
+        "kMcg": 15.72898225,
+        "b1Mg": 0.013274882500000001,
+        "b2Mg": 0.0639042,
+        "b3Mg": 6.965247035,
+        "b6Mg": 0.36626444999999996,
+        "b12Mcg": 0.293796,
+        "folateMcg": 16.8423825
+      },
+      "minerals": {
+        "calciumMg": 271.86749,
+        "ironMg": 1.0322355250000002,
+        "magnesiumMg": 22.72314,
+        "zincMg": 0.726104525
+      }
+    }
+  }
+]

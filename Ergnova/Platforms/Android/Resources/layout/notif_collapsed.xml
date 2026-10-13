@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Stage 2 of the workout notification: the row shown in the shade before it is
+  pulled open. Built by BackgroundNotificationViews.BuildCollapsed and wrapped by
+  NotificationCompat.DecoratedCustomViewStyle, so the system still draws its own
+  header (app name, elapsed timer) and, on the expanded view, the Pause/Play
+  button — this is only the content area, which has ~48dp of height to work with.
+
+    notif_title / notif_status   workout name, then "Paused · 12:34" or
+                                 "Waiting to start" (hidden while running: the
+                                 header's chronometer already says it)
+    notif_message                one line of plain text, shown only when there are
+                                 no readings yet ("Waiting for sensor data")
+    notif_chips                  up to MaxCollapsedChips notif_chip children.
+                                 weightSum must equal that constant: each chip
+                                 owns a fixed 1/3 of the row, so a value's column
+                                 never shifts when a neighbour appears or vanishes.
+
+  Only classes RemoteViews permits are used (no plain <View>).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/notif_title"
+            style="@android:style/TextAppearance.Material.Notification.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/notif_status"
+            style="@android:style/TextAppearance.Material.Notification.Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notif_message"
+        style="@android:style/TextAppearance.Material.Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/notif_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3" />
+</LinearLayout>

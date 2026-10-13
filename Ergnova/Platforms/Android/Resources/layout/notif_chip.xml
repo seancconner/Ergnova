@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  "icon  215 W" — one live reading, used by the collapsed row and the expanded
+  view's totals row. layout_width 0dp + weight 1 is only meaningful because the
+  parent (notif_chips / notif_totals) is a horizontal LinearLayout with a
+  weightSum of 3: every chip is exactly a third of the row.
+  The icon is a white VectorDrawable tinted at runtime with setColorFilter.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
+
+    <ImageView
+        android:id="@+id/notif_chip_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/notif_chip_value"
+        style="@android:style/TextAppearance.Material.Notification.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/notif_chip_unit"
+        style="@android:style/TextAppearance.Material.Notification.Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:maxLines="1"
+        android:textSize="11sp" />
+</LinearLayout>

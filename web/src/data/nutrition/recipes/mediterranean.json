@@ -1,0 +1,569 @@
+[
+  {
+    "id": "seed-recipe:mediterranean-greek-salad",
+    "name": "Greek Salad",
+    "cuisine": "mediterranean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:cucumber-raw",
+        "amountG": 300.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 307.5,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:red-onion-raw",
+        "amountG": 57.5,
+        "sizeOptionId": "cup_sliced"
+      },
+      {
+        "ingredientId": "seed:feta-cheese",
+        "amountG": 153.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:kalamata-olives",
+        "amountG": 80.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 40.811
+      },
+      {
+        "ingredientId": "seed:oregano-dried",
+        "amountG": 3.0,
+        "sizeOptionId": "tsp"
+      }
+    ],
+    "steps": [
+      "Chop the cucumber and tomato into bite-sized chunks and thinly slice the red onion.",
+      "Combine them in a large bowl with the olives.",
+      "Drizzle with olive oil and sprinkle with the dried oregano; toss gently.",
+      "Top with the feta, either crumbled or in a single slab, and a pinch more oregano.",
+      "Season with salt and pepper to taste and serve."
+    ],
+    "perServing": {
+      "cholesterolMg": 34.042500000000004,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 7.398054500000001,
+        "monounsaturated": 11.0586825,
+        "total": 20.765225,
+        "polyunsaturated": 1.5703762499999998
+      },
+      "protein": 7.042,
+      "carbs": {
+        "starch": 2.3831,
+        "fiber": 2.520625,
+        "total": 10.380149999999999,
+        "sugar": 5.476425
+      },
+      "potassiumMg": 348.29827750000004,
+      "minerals": {
+        "ironMg": 1.2148125,
+        "calciumMg": 221.45624999999998,
+        "magnesiumMg": 10.705,
+        "zincMg": 1.1538625000000002
+      },
+      "calories": 246.99731,
+      "vitamins": {
+        "eMg": 1.9464460000000001,
+        "b12Mcg": 0.646425,
+        "b2Mg": 0.00396,
+        "folateMcg": 4.786249999999999,
+        "b6Mg": 0.00783,
+        "aMcg": 86.38000000000001,
+        "kMcg": 29.3779305,
+        "b3Mg": 0.0348,
+        "dMcg": 0.0,
+        "b1Mg": 0.0013275,
+        "cMg": 13.712875
+      },
+      "sodiumMg": 668.2628050000001
+    }
+  },
+  {
+    "id": "seed-recipe:mediterranean-chicken-souvlaki",
+    "name": "Chicken Souvlaki with Tzatziki",
+    "cuisine": "mediterranean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 600.0,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 27.208
+      },
+      {
+        "ingredientId": "seed:lemon-raw",
+        "amountG": 38.5,
+        "sizeOptionId": "wedge"
+      },
+      {
+        "ingredientId": "seed:oregano-dried",
+        "amountG": 4.0,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:pita-bread",
+        "amountG": 260.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:tzatziki",
+        "amountG": 158.366
+      },
+      {
+        "ingredientId": "seed:red-onion-raw",
+        "amountG": 57.5,
+        "sizeOptionId": "cup_sliced"
+      }
+    ],
+    "steps": [
+      "Cut the chicken into bite-sized cubes and combine with the olive oil, lemon juice, oregano, and garlic in a bowl. Marinate for at least 30 minutes, or up to a few hours in the fridge.",
+      "Thread the chicken onto skewers if using, or simply keep it loose for the pan.",
+      "Grill or pan-sear over medium-high heat for 8-10 minutes, turning occasionally, until charred in spots and cooked through.",
+      "Warm the pita briefly on the grill or in a dry pan.",
+      "Fill the pita with the chicken, a spoonful of tzatziki, and the sliced red onion."
+    ],
+    "perServing": {
+      "cholesterolMg": 132.25098,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 4.1004785,
+        "monounsaturated": 8.393603,
+        "total": 16.197073500000002,
+        "polyunsaturated": 2.948372000000001
+      },
+      "protein": 55.481477,
+      "carbs": {
+        "starch": 30.5300565,
+        "fiber": 5.9227745,
+        "total": 40.162918000000005,
+        "sugar": 3.7100870000000006
+      },
+      "potassiumMg": 638.5332199999999,
+      "minerals": {
+        "ironMg": 2.1023704999999997,
+        "magnesiumMg": 86.1875,
+        "calciumMg": 71.1586,
+        "zincMg": 2.5913375
+      },
+      "calories": 528.634955,
+      "vitamins": {
+        "eMg": 1.162488,
+        "b12Mcg": 0.44999999999999996,
+        "b2Mg": 0.00528,
+        "folateMcg": 27.071250000000003,
+        "b6Mg": 0.9419399999999999,
+        "aMcg": 0.78,
+        "kMcg": 10.311804,
+        "b3Mg": 20.596399999999996,
+        "dMcg": 0.0,
+        "b1Mg": 0.19677,
+        "cMg": 7.007
+      },
+      "sodiumMg": 538.5876900000001
+    }
+  },
+  {
+    "id": "seed-recipe:mediterranean-falafel-wrap",
+    "name": "Falafel Wrap",
+    "cuisine": "mediterranean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chickpeas-cooked",
+        "amountG": 492,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:cilantro-raw",
+        "amountG": 15.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 5.25,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:flour-all-purpose",
+        "amountG": 30.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:vegetable-oil",
+        "amountG": 61.217
+      },
+      {
+        "ingredientId": "seed:pita-bread",
+        "amountG": 260.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:tahini",
+        "amountG": 60.921
+      }
+    ],
+    "steps": [
+      "Combine the chickpeas, garlic, cilantro, cumin, and flour in a food processor and pulse until finely chopped and the mixture holds together when pressed (don't over-process into a paste).",
+      "Shape the mixture into small patties or balls.",
+      "Heat the oil in a skillet over medium heat and fry the falafel for 3-4 minutes per side, until golden brown and crisp.",
+      "Warm the pita and spread with tahini.",
+      "Fill with the falafel and wrap to serve."
+    ],
+    "perServing": {
+      "cholesterolMg": 0.0,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 4.197028625,
+        "monounsaturated": 10.007716,
+        "total": 28.65604325,
+        "polyunsaturated": 13.412435375000001
+      },
+      "protein": 21.745273750000003,
+      "carbs": {
+        "starch": 55.09455475,
+        "fiber": 16.074850750000003,
+        "total": 78.950463,
+        "sugar": 7.7810575
+      },
+      "potassiumMg": 628.1394849999999,
+      "minerals": {
+        "ironMg": 7.8450725,
+        "magnesiumMg": 118.9374875,
+        "calciumMg": 95.86274,
+        "zincMg": 1.12175
+      },
+      "calories": 636.8751824999999,
+      "vitamins": {
+        "eMg": 2.6320490000000003,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.010366875,
+        "folateMcg": 229.61624999999998,
+        "b6Mg": 0.042796875000000005,
+        "aMcg": 13.4775,
+        "kMcg": 15.644371499999998,
+        "b3Mg": 0.10187437499999999,
+        "dMcg": 0.0,
+        "b1Mg": 0.20575500000000002,
+        "cMg": 1.9325625
+      },
+      "sodiumMg": 353.70103750000004
+    }
+  },
+  {
+    "id": "seed-recipe:mediterranean-shakshuka",
+    "name": "Shakshuka",
+    "cuisine": "mediterranean",
+    "servings": 3,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 500.5,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:egg-whole-raw",
+        "amountG": 250.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:bell-pepper-green-raw",
+        "amountG": 119.0,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 75.0,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 23.807
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 4.2,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:paprika",
+        "amountG": 4.025,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:feta-cheese",
+        "amountG": 63.0,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "Heat the olive oil in a wide skillet over medium heat, add the onion and bell pepper, and cook until softened, about 6-7 minutes.",
+      "Stir in the garlic, cumin, and paprika, and cook for 1 minute until fragrant.",
+      "Add the chopped tomato and simmer, stirring occasionally, for 12-15 minutes, until thickened into a chunky sauce.",
+      "Make small wells in the sauce with a spoon and crack an egg into each one.",
+      "Cover the pan and cook over low heat for 6-8 minutes, until the egg whites are set but the yolks are still soft.",
+      "Crumble the feta over the top and serve straight from the pan."
+    ],
+    "perServing": {
+      "cholesterolMg": 328.69000000000005,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 6.884432000000001,
+        "monounsaturated": 10.428190833333334,
+        "total": 21.253654166666667,
+        "polyunsaturated": 3.4622826666666673
+      },
+      "protein": 16.262685,
+      "carbs": {
+        "starch": 3.0892891666666666,
+        "fiber": 3.7900750000000007,
+        "total": 14.6185925,
+        "sugar": 7.739228333333333
+      },
+      "potassiumMg": 689.0680233333335,
+      "minerals": {
+        "ironMg": 2.984035,
+        "calciumMg": 123.60308333333333,
+        "magnesiumMg": 15.468833333333333,
+        "zincMg": 0.7858608333333333
+      },
+      "calories": 306.96979333333337,
+      "vitamins": {
+        "eMg": 2.5598810000000003,
+        "b12Mcg": 1.1049000000000002,
+        "b2Mg": 0.4557365833333334,
+        "folateMcg": 49.4455,
+        "b6Mg": 0.1655879166666667,
+        "aMcg": 268.26475,
+        "kMcg": 22.045396333333336,
+        "b3Mg": 0.402171,
+        "dMcg": 1.666666666666667,
+        "b1Mg": 0.04005575000000001,
+        "cMg": 57.810041666666685
+      },
+      "sodiumMg": 325.4530466666667
+    }
+  },
+  {
+    "id": "seed-recipe:mediterranean-grilled-salmon-orzo",
+    "name": "Mediterranean Grilled Salmon with Orzo",
+    "cuisine": "mediterranean",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:salmon-raw",
+        "amountG": 340.0,
+        "sizeOptionId": "fillet"
+      },
+      {
+        "ingredientId": "seed:orzo-cooked",
+        "amountG": 297.5,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 23.807
+      },
+      {
+        "ingredientId": "seed:lemon-raw",
+        "amountG": 29.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:kalamata-olives",
+        "amountG": 40.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 91.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:spinach-raw",
+        "amountG": 90.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:feta-cheese",
+        "amountG": 49.5,
+        "sizeOptionId": "tbsp"
+      }
+    ],
+    "steps": [
+      "Cook the orzo in salted boiling water until al dente; drain.",
+      "Pat the salmon dry, season with salt and pepper, and drizzle with a little of the olive oil and lemon juice.",
+      "Heat a grill pan or skillet over medium-high heat and cook the salmon for 4 minutes per side, until just cooked through.",
+      "Toss the cooked orzo with the remaining olive oil and lemon juice, the olives, chopped tomato, and spinach (the residual heat will wilt the spinach slightly).",
+      "Serve the orzo topped with the salmon and crumbled feta."
+    ],
+    "perServing": {
+      "cholesterolMg": 115.5275,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 11.133683,
+        "monounsaturated": 22.335555,
+        "total": 43.7485,
+        "polyunsaturated": 9.248367499999999
+      },
+      "protein": 48.864,
+      "carbs": {
+        "starch": 44.218,
+        "fiber": 5.2795000000000005,
+        "total": 53.874,
+        "sugar": 4.3765
+      },
+      "potassiumMg": 1106.821535,
+      "minerals": {
+        "ironMg": 3.5233749999999997,
+        "magnesiumMg": 116.7025,
+        "calciumMg": 154.4925,
+        "zincMg": 1.61025
+      },
+      "calories": 804.9369400000002,
+      "vitamins": {
+        "eMg": 8.174104,
+        "b12Mcg": 5.858275000000001,
+        "b2Mg": 0.0,
+        "folateMcg": 139.3625,
+        "b6Mg": 1.02,
+        "aMcg": 265.9825,
+        "kMcg": 228.310407,
+        "b3Mg": 15.661249999999999,
+        "dMcg": 18.7,
+        "b1Mg": 0.223125,
+        "cMg": 13.9185
+      },
+      "sodiumMg": 681.2730700000001
+    }
+  },
+  {
+    "id": "seed-recipe:mediterranean-lentil-soup",
+    "name": "Mediterranean Lentil Soup",
+    "cuisine": "mediterranean",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:lentils-cooked",
+        "amountG": 594,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:carrot-raw",
+        "amountG": 91.5,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:celery-raw",
+        "amountG": 80.0,
+        "sizeOptionId": "stalk"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 105.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 23.807
+      },
+      {
+        "ingredientId": "seed:cumin-ground",
+        "amountG": 4.2,
+        "sizeOptionId": "tsp"
+      },
+      {
+        "ingredientId": "seed:vegetable-broth",
+        "amountG": 473.176
+      },
+      {
+        "ingredientId": "seed:lemon-raw",
+        "amountG": 21.0,
+        "sizeOptionId": "wedge"
+      }
+    ],
+    "steps": [
+      "Heat the olive oil in a pot over medium heat, add the onion, carrot, and celery, and cook until softened, about 7-8 minutes.",
+      "Stir in the garlic and cumin and cook for 1 minute until fragrant.",
+      "Add the cooked lentils and vegetable broth, bring to a simmer, and cook for 15-20 minutes to let the flavors meld.",
+      "For a thicker soup, blend a portion of it with an immersion blender and stir back in.",
+      "Finish with a squeeze of lemon juice and season with salt and pepper to taste."
+    ],
+    "perServing": {
+      "cholesterolMg": 0.0,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 0.9885839999999999,
+        "monounsaturated": 4.9923665,
+        "total": 7.038753999999999,
+        "polyunsaturated": 0.86123825
+      },
+      "protein": 14.648968,
+      "carbs": {
+        "starch": 18.519902000000002,
+        "fiber": 13.450625,
+        "total": 37.61715900000001,
+        "sugar": 5.646631999999999
+      },
+      "potassiumMg": 800.1441275000001,
+      "minerals": {
+        "ironMg": 5.5972800000000005,
+        "calciumMg": 9.775500000000001,
+        "magnesiumMg": 57.303000000000004,
+        "zincMg": 0.0504
+      },
+      "calories": 260.47229,
+      "vitamins": {
+        "eMg": 0.892017,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0034335000000000004,
+        "folateMcg": 273.87750000000005,
+        "b6Mg": 0.0360675,
+        "aMcg": 191.67825,
+        "kMcg": 12.5191535,
+        "b3Mg": 0.0480795,
+        "dMcg": 0.0,
+        "b1Mg": 0.006594,
+        "cMg": 6.974475
+      },
+      "sodiumMg": 357.63183499999997
+    }
+  }
+]

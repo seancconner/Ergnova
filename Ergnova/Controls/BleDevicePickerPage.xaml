@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!-- SPDX-FileCopyrightText: 2026 seancconner -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:services="clr-namespace:Ergnova.Services"
+             xmlns:local="clr-namespace:Ergnova.Controls"
+             x:Class="Ergnova.Controls.BleDevicePickerPage"
+             x:DataType="local:BleDevicePickerPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#111318">
+
+    <!--
+      Modal device-chooser shown by BleDevicePicker/NativeBridgeMethods'
+      BleRequestDevice — stands in for Web Bluetooth's own native chooser
+      dialog on platforms/situations where nothing shows one otherwise (see
+      BleRequestDevice's own doc comment in NativeBridgeMethods.cs for the
+      full picture of when that is). Devices appear in DevicesList live, as
+      NativeBridgeMethods' scan subscription feeds them to this page's
+      Devices collection (see code-behind) — there's no fixed timeout here,
+      matching how a real Web Bluetooth chooser stays open until the person
+      picks something or backs out.
+    -->
+    <Grid RowDefinitions="Auto,*,Auto" Padding="24,32,24,16" RowSpacing="16">
+
+        <Label Grid.Row="0"
+               Text="Select a Bluetooth device"
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="White" />
+
+        <Grid Grid.Row="1">
+
+            <CollectionView x:Name="DevicesList"
+                             ItemsSource="{Binding Devices}"
+                             SelectionMode="Single"
+                             SelectionChanged="OnDeviceSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="services:BleDeviceInfo">
+                        <Grid Padding="12,14">
+                            <Label Text="{Binding Name, TargetNullValue='Unknown device'}"
+                                   FontSize="16"
+                                   TextColor="White" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Shown until the first scan result arrives; hidden (and left
+                 hidden, even if the list later empties again some other way)
+                 once at least one device has been offered. -->
+            <VerticalStackLayout IsVisible="{Binding IsEmpty}"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Spacing="16">
+                <ActivityIndicator IsRunning="True" Color="White" />
+                <Label Text="Scanning for nearby devices…"
+                       TextColor="#C8C8C8"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <Button Grid.Row="2"
+                Text="Cancel"
+                BackgroundColor="Transparent"
+                TextColor="#C8C8C8"
+                Clicked="OnCancelClicked" />
+
+    </Grid>
+
+</ContentPage>

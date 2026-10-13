@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<!-- BLE permissions (checklist §6). API 31+ (Android 12+) uses the new
+	     runtime-requestable BLUETOOTH_SCAN/BLUETOOTH_CONNECT pair;
+	     neverForLocation on BLUETOOTH_SCAN declares this app doesn't derive
+	     physical location from BLE scan results, which is true here (device
+	     discovery only) and lets a user decline the separate location
+	     permission Android would otherwise also ask for. Pre-12 devices
+	     fall back to the legacy BLUETOOTH/BLUETOOTH_ADMIN pair, which in
+	     turn required ACCESS_FINE_LOCATION at runtime (not compile-time) on
+	     API 23-30 for BLE scanning to return any results — still declare it
+	     here via maxSdkVersion so it's only pulled in on those older OSes. -->
+	<uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+	<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+	<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="30" />
+
+	<!-- Declares this app doesn't require BLE hardware to be installable at
+	     all (so it isn't hidden from devices without it on the Play Store);
+	     Shiny.BluetoothLE's own manifest merge may already add this, but
+	     it's harmless to be explicit. Remove if BLE truly is a hard
+	     requirement for your use case. -->
+	<uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
+
+	<!-- Foreground service that keeps a running workout (and its BLE
+	     connections) alive with the app in the background or the screen off —
+	     see Platforms/Android/ErgnovaSessionService.cs. It's declared with the
+	     connectedDevice type, which on Android 14+ (API 34) requires
+	     FOREGROUND_SERVICE_CONNECTED_DEVICE PLUS at least one qualifying
+	     permission that is already declared/granted at the moment the service
+	     starts. BLUETOOTH_CONNECT/SCAN qualify too, but they're runtime
+	     permissions the rider may not have granted yet (a strength session with
+	     no sensor never asks for them) — starting the service then throws a
+	     SecurityException. CHANGE_NETWORK_STATE is also on the qualifying list
+	     and is a normal, install-time-granted permission, so it makes the
+	     start unconditional. -->
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+	<!-- The service holds a PARTIAL_WAKE_LOCK so the CPU keeps servicing BLE
+	     notifications and the recording tick with the screen off
+	     (ErgnovaSessionService.AcquireWakeLock). PowerManager.NewWakeLock
+	     needs this permission; without it the acquire fails (caught, logged,
+	     and silently skipped) and the CPU may sleep mid-workout. Normal,
+	     install-time-granted. -->
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+	<!-- Now implemented — see Platforms/Android/ErgnovaSessionService.cs and
+	     AndroidBackgroundSessionService.cs. POST_NOTIFICATIONS is Android
+	     13+'s runtime-requestable permission for showing any notification at
+	     all (older versions need no permission for this); declaring it here
+	     only lets the app ask, same relationship BLUETOOTH_SCAN/CONNECT above
+	     have to RequestAccessAsync() — the actual system prompt comes from
+	     PostNotificationsPermission via Permissions.RequestAsync(), called
+	     from AndroidBackgroundSessionService.EnsurePermissionsAsync(). -->
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+	<!-- File save/export bridge (checklist §7) — legacy scoped-storage write
+	     permission for API <= 28; API 29+ (scoped storage) needs nothing
+	     extra for FileSaver's normal save-to-app-accessible-location flow. -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+</manifest>

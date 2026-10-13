@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Stage 3 of the workout notification: the pulled-open view. Built by
+  BackgroundNotificationViews.BuildExpanded inside DecoratedCustomViewStyle.
+
+  Height budget: an expanded notification is capped at ~256dp, and the system's
+  header (~24dp) and action button (~48dp) come out of that. Worst case here is
+  a scripted ride with a full six-sensor set:
+
+      title 20 + notes 2 x 21 + grid 2 rows x 42 + divider 11 + totals 24 = 181dp
+
+  which is why the metric grid switches to 3 columns above 4 metrics (two rows,
+  not three) and why the notes stop at step + target.
+
+    notif_notes    context lines (scripted step / target, strength exercise / rest)
+    notif_grid     rows of notif_row, each holding notif_cell children
+    notif_divider  only shown when there are both metrics and totals. A FrameLayout
+                   rather than a <View>, because RemoteViews rejects plain Views.
+    notif_totals   calories / distance chips; weightSum 3 for the same reason as
+                   the collapsed row's
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/notif_title"
+            style="@android:style/TextAppearance.Material.Notification.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/notif_status"
+            style="@android:style/TextAppearance.Material.Notification.Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notif_message"
+        style="@android:style/TextAppearance.Material.Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/notif_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:id="@+id/notif_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <FrameLayout
+        android:id="@+id/notif_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="4dp"
+        android:background="#33808080"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/notif_totals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3" />
+</LinearLayout>

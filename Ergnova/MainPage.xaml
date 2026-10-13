@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!-- SPDX-FileCopyrightText: 2026 seancconner -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ergnova.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#111318">
+
+    <!--
+      Checklist §3/§4: the web app already owns its own in-app navigation
+      (Overview/Workout/History/Diet/Settings tabs, all drawn by app.js —
+      see web/index.html's <nav class="tab-bar">), so this page is just a
+      single full-bleed HybridWebView with no MAUI Shell chrome layered on
+      top of it. HybridRoot points at wwwroot (HybridWebView's default
+      root, populated by Ergnova.csproj's BuildWebApp MSBuild target from
+      web/dist — see that file). DefaultFile is the Vite build's entry
+      HTML. RawMessageReceived is currently unused — see the doc comment
+      on OnRawMessageReceived in the code-behind for why it's wired up
+      anyway.
+    -->
+    <HybridWebView x:Name="Hybrid"
+                    HybridRoot="wwwroot"
+                    DefaultFile="index.html"
+                    RawMessageReceived="OnRawMessageReceived"
+                    BackgroundColor="#111318"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+
+</ContentPage>

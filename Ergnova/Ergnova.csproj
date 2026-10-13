@@ -1,0 +1,348 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+
+    <!-- A multi-targeted SDK project like this one builds each TargetFramework
+		     (android/ios/maccatalyst/windows) as a separate "inner build" of this
+		     same project file. The SDK's own DispatchToInnerBuilds target
+		     (Microsoft.Common.CrossTargeting.targets) runs those inner builds via
+		     `BuildInParallel="$(BuildInParallel)"` — which defaults to allowing
+		     them to run concurrently. That's what caused the intermittent
+		     "could not find file ...web\dist\favicon.ico/.svg" copy errors below:
+		     BuildWebApp's `npm run build:maui` + RemoveDir + Copy into the one
+		     shared Resources\Raw\wwwroot folder was firing once per inner build,
+		     and one inner build's clean/rebuild could delete files a moment
+		     before another inner build's Copy task tried to read them. Forcing
+		     inner builds to run one after another removes that race; the
+		     Inputs/Outputs guard added to BuildWebApp below then makes the
+		     2nd/3rd/4th inner build's pass through that target a fast no-op
+		     instead of redundantly re-running `npm run build:maui` every time.
+		     Do NOT remove this — it's unrelated to the wwwroot-corruption bug
+		     fixed below (that one was a duplicate/inconsistent MauiAsset
+		     LogicalName declaration, not a race) and is still needed to stop
+		     4 concurrent inner builds from stepping on the same physical
+		     web/dist and Resources\Raw\wwwroot folders. -->
+    <BuildInParallel>false</BuildInParallel>
+
+    <!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+    <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Ergnova</RootNamespace>
+    <Authors>seancconner</Authors>
+    <Copyright>Copyright (C) 2026 seancconner</Copyright>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Enable XAML source generation for faster build times and improved performance.
+		     This generates C# code from XAML at compile time instead of runtime inflation.
+		     To disable, remove this line.
+		     For individual files, you can override by setting Inflator metadata:
+		       <MauiXaml Update="MyPage.xaml" Inflator="Default" /> (reverts to defaults: Runtime for Debug, XamlC for Release)
+		       <MauiXaml Update="MyPage.xaml" Inflator="Runtime" /> (force runtime inflation) -->
+    <MauiXamlInflator>SourceGen</MauiXamlInflator>
+
+    <!-- Display name -->
+    <ApplicationTitle>Ergnova</ApplicationTitle>
+
+    <!-- App Identifier (checklist §10). "com.ergnova.app" is a sensible
+		     placeholder reverse-domain id matching the project's real name —
+		     used in place of the stock "com.companyname.ergnova". Swap this
+		     for whatever domain/org id you actually want before any store
+		     submission (Play/App Store/Microsoft Store) — it's painful to
+		     change afterward, since it's baked into store listings, signing,
+		     and (on Android) can't be changed at all post-publish. -->
+    <ApplicationId>com.ergnova.app</ApplicationId>
+
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+    <WindowsPackageType>None</WindowsPackageType>
+
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+    <!-- 23.0 (Android 6.0), not the MAUI template's default 21.0:
+         androidx.lifecycle.runtime — pulled in transitively by MAUI itself —
+         declares minSdkVersion 23, and the manifest merger fails the build
+         rather than silently narrowing ("uses-sdk:minSdkVersion 21 cannot be
+         smaller than version 23 declared in library ...
+         androidx.lifecycle.lifecycle-runtime-android.aar"). Raising this is
+         the right fix rather than tools:overrideLibrary, which forces the
+         merge through and defers the problem to a runtime crash on whatever
+         API-21/22 device actually hits a missing framework API. Nothing here
+         wanted API 21 anyway: the BLE permission model this app is built
+         around (ACCESS_FINE_LOCATION for scanning on API 23-30, the
+         BLUETOOTH_SCAN/CONNECT pair on 31+ — see Platforms/Android/
+         AndroidManifest.xml) starts at 23, and runtime permissions — which
+         Shiny's RequestAccessAsync() depends on — didn't exist before it. -->
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+
+    <!-- HybridWebView uses reflection-based JSON for JS<->C# invocation
+		     and is unavailable under full trimming/Native AOT unless this is
+		     set (see "Trimming feature switches" in the MAUI docs). Not
+		     needed today since this project doesn't set $(TrimMode)=full or
+		     PublishAot — Release builds only use the default *partial*
+		     linker, which HybridWebView tolerates fine — but if app size
+		     ever motivates adopting full trimming later, this is the switch
+		     that keeps HybridWebView working when you do (you'd also want
+		     to move the JS-invocation calls in NativeBridgeMethods.cs over
+		     to the JsonSerializerContext-based SetInvokeJavaScriptTarget
+		     overload at that point — see that file's comments). -->
+    <MauiHybridWebViewSupported>true</MauiHybridWebViewSupported>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- App Icon / Splash Screen (checklist §10). appiconfg.png is the
+		     transparent, safe-zone-padded foreground layer (mark only, extra
+		     margin so Android's adaptive-icon mask doesn't clip it) —
+		     Android composites it over Color at runtime and applies its own
+		     mask shape. appicon.png is the flat, full-bleed fallback for
+		     iOS/Windows/Mac Catalyst, which apply their own corner rounding —
+		     deliberately square, not pre-rounded, to avoid double-rounding
+		     artifacts. -->
+    <MauiIcon Include="Resources\AppIcon\appicon.png" ForegroundFile="Resources\AppIcon\appiconfg.png" Color="#111318" />
+
+    <!-- Splash background color matches the app's actual dark theme
+		     (see web/vite.config.js's PWA manifest background_color /
+		     web/index.html's theme-color meta) rather than the MAUI
+		     template's default purple. splash.png is its own transparent,
+		     generously-padded mark (not the same file as appicon.png) —
+		     MauiSplashScreen centers it over the BaseSize/Color background,
+		     a normal pattern for a wordmark-free logo like this one. -->
+    <MauiSplashScreen Include="Resources\Splash\splash.png" Color="#111318" BaseSize="256,256" />
+
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
+
+    <!-- Raw Assets, wwwroot included. A single glob rooted at Resources\Raw
+		     (not Resources\Raw\wwwroot) so %(RecursiveDir) naturally includes
+		     "wwwroot\" as part of every logical path under there — no manual
+		     prefix, no second competing declaration. This used to be split
+		     into two MauiAsset declarations with two different glob bases
+		     (one here, one re-declared inside BuildWebApp with a hand-typed
+		     "wwwroot\" prefix) computing LogicalName inconsistently for the
+		     same physical files — that mismatch was the actual cause of
+		     wwwroot files getting packaged under the wrong identity (one
+		     file's bytes showing up served as another file). Re-declared
+		     again inside BuildWebApp below for the same reason as before:
+		     this top-level glob only ever sees whatever's on disk at
+		     MSBuild's initial evaluation, which is before BuildWebApp has
+		     run for this build, so a clean checkout's freshly-generated
+		     wwwroot files would silently miss being packaged without it. -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.101" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+
+    <!-- BLE bridge (checklist §5).
+		     Was pinned to Version="3.*", which resolved to 3.3.4 — a version
+		     whose own NuGet listing's Supports section omits Windows entirely.
+		     Confirmed against shinylib.net's own release notes: Windows BLE
+		     (foreground scanning/connecting) was added as the headline feature
+		     of v4 ("BluetoothLE, BLE Hosting, HTTP Transfers, and Locations all
+		     now work on Windows"), and the current docs (shinylib.net/ble/)
+		     list Windows scanning as "Full" support. Bumped to Version="5.*" —
+		     a floating major-version wildcard again, but this specific
+		     regression (Windows support present in an early beta, silently
+		     absent from the GA release that "3.*" drifted to) is much less
+		     likely to recur now that Windows is a whole major version's worth
+		     of shipped, blogged-about, GA'd feature rather than a beta-only
+		     capability.
+		     Also confirmed against shinylib.net/ble/{manager,peripheral,gatt}:
+		     Shiny v4 moved every GATT operation onto IPeripheral directly
+		     (peripheral.GetServiceAsync/GetCharacteristicAsync/
+		     ReadCharacteristicAsync/WriteCharacteristicAsync/NotifyCharacteristic/
+		     CancelConnection/WhenStatusChanged) — the shape
+		     Services/NativeBridgeMethods.cs already used, so most of it needed
+		     no change; see that file's own updated header note for the couple
+		     of call sites that did.
+		     Could not restore+build this in the environment that made this
+		     change (no NuGet access here — see that file's honesty note) —
+		     confirm the resolved version on first restore and skim
+		     https://shinylib.net/ble/release-notes for anything between then
+		     and now.
+		     Shiny.Hosting.Maui is the MAUI integration package (provides
+		     the builder.UseShiny() call in MauiProgram.cs) — Shiny.BluetoothLE
+		     alone isn't enough to get IBleManager into the DI container in a
+		     MAUI app; see https://shinylib.net/mauihost/ if that package name
+		     turns out to have changed for v5. -->
+    <!-- Pinned to the exact versions `dotnet list package` resolved (5.9.0 for
+         both), so every build ships the same Shiny code that was reviewed for
+         licensing (see THIRD_PARTY_NOTICES.md §7). Bump deliberately. -->
+    <PackageReference Include="Shiny.BluetoothLE" Version="5.9.0" />
+    <PackageReference Include="Shiny.Hosting.Maui" Version="5.9.0" />
+
+    <!-- Services/NativeBridgeMethods.cs's BleRequestDevice (device-picker
+		     support) uses System.Reactive.Subjects.Subject<T> to fan scan
+		     results out to the picker UI. This used to carry an explicit
+		     <PackageReference Include="System.Reactive" Version="6.*" />,
+		     added defensively because the transitive reference through
+		     Shiny.BluetoothLE couldn't be confirmed without a live restore.
+		     It's now confirmed — and the explicit reference has been
+		     REMOVED, because it actively broke the Windows build:
+
+		       NU1605: Detected package downgrade: System.Reactive from
+		       7.0.0 to 6.1.0
+		         Ergnova -> Shiny.BluetoothLE 5.6.4 -> System.Reactive (>= 7.0.0)
+		         Ergnova -> System.Reactive (>= 6.0.0)
+
+		     Shiny.BluetoothLE 5.6.4 requires System.Reactive >= 7.0.0, so
+		     the "6.*" pin (resolving to 6.1.0) was a downgrade — and since
+		     MAUI builds with TreatWarningsAsErrors, NU1605 is a hard build
+		     failure on net10.0-windows rather than a warning. That error is
+		     also the confirmation the old comment was waiting for: Shiny
+		     does pull System.Reactive in transitively, at a version it
+		     actually wants, so this project doesn't need to name it at all.
+		     Subject<T> still lives in System.Reactive in 7.x, so the
+		     bridge code needs no change.
+
+		     Deliberately removed rather than re-pinned to "7.*": pinning
+		     any version here just re-creates the same conflict the next
+		     time Shiny bumps its Reactive floor. Letting it float
+		     transitively means it tracks whatever Shiny actually needs. If
+		     a future direct dependency on System.Reactive ever justifies
+		     naming it again, match Shiny's current floor rather than
+		     guessing a lower one. -->
+
+    <!-- File save/export bridge (checklist §7) — FileSaver.Default.SaveAsync
+		     gives a real native save/share-sheet flow on all four targets
+		     instead of hand-rolling one per platform. -->
+    <PackageReference Include="CommunityToolkit.Maui" Version="15.0.1" />
+  </ItemGroup>
+
+  <!-- ── Web app build pipeline (checklist §3) ───────────────────────────
+	     Builds ../../web (the Vite/vanilla-JS PWA) in MAUI mode, so F5 in
+	     VS2026 "just works" without a separate manual `npm run build:maui`
+	     step. Runs `npm ci` only when node_modules is missing/stale (i.e.
+	     usually just once per clone), then always rebuilds the web bundle
+	     before every build. Skips itself with a clear error if Node/npm
+	     isn't on PATH, rather than failing deep inside a cryptic MSBuild
+	     error.
+
+	     Copying the built output into Resources\Raw\wwwroot is entirely
+	     owned by Vite itself now (the copy-maui-dist plugin's closeBundle()
+	     hook in web/vite.config.js, which also removes stale content-hashed
+	     files from a previous build before copying the new ones in) — this
+	     target no longer does its own separate RemoveDir/Copy of the same
+	     folder afterward. That second copy used to be pure redundant work
+	     (rewriting content Vite had just finished writing a moment earlier)
+	     and, combined with the MauiAsset LogicalName issue above, was part
+	     of what made wwwroot's contents unreliable; with Vite as the sole
+	     writer there's one less thing racing against anything else that
+	     might touch that folder (e.g. a VS design-time build). -->
+  <PropertyGroup>
+    <WebAppDir>$(MSBuildProjectDirectory)\..\web</WebAppDir>
+    <WebAppDistDir>$(WebAppDir)\dist</WebAppDistDir>
+  </PropertyGroup>
+
+  <!-- BuildWebApp's Inputs/Outputs below (everything the Vite build actually
+	     reads, vs. a stamp file touched right after it succeeds) — combined
+	     with <BuildInParallel>false</BuildInParallel> above, this means only
+	     the first of the 4 sequential inner builds actually re-runs
+	     `npm run build:maui`; the rest see an up-to-date stamp and skip
+	     straight through. -->
+  <ItemGroup>
+    <WebAppSourceFiles Include="$(WebAppDir)\src\**\*;$(WebAppDir)\public\**\*;$(WebAppDir)\index.html;$(WebAppDir)\vite.config.js;$(WebAppDir)\package.json" />
+  </ItemGroup>
+
+  <!-- DesignTimeBuild guard (all three web-build targets below): Visual
+	     Studio runs background MSBuild evaluations for IntelliSense, the
+	     Solution Explorer tree, XAML source-gen, etc., completely separate
+	     from an actual F5/Build. Those design-time passes still evaluate
+	     BeforeTargets="BeforeBuild;Compile", so without this guard
+	     the Node version check, `npm ci`, and `npm run build:maui` could
+	     all fire silently from one — and a real build's own writes into
+	     web/dist and Resources\Raw\wwwroot can themselves cause VS to
+	     notice "files changed" and kick off a fresh design-time pass mid-
+	     build, racing the build that triggered it. -->
+  <Target Name="CheckNodeInstalled" BeforeTargets="BuildWebApp"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingProject)' == 'true'">
+    <Exec Command="node --version" ContinueOnError="true" StandardOutputImportance="low" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NodeCheckExitCode" />
+    </Exec>
+    <Error Condition="'$(NodeCheckExitCode)' != '0'" Text="Node.js/npm was not found on PATH. Install Node.js (needed to build the web/ Vite app — see checklist §2) and try again." />
+  </Target>
+
+  <!-- Was Condition="!Exists('$(WebAppDir)\node_modules')" — only ever
+	     caught a *missing* node_modules, not a stale or wrong one (e.g.
+	     package-lock.json changed since the last install, or — the one
+	     that actually bit us — a node_modules copied/zipped in from a
+	     different OS, with the wrong platform's native Rollup/esbuild
+	     binaries inside it and every JS file otherwise perfectly intact).
+	     Uses MSBuild's own Inputs/Outputs incremental-build comparison
+	     rather than a hand-rolled Condition — a first attempt at the
+	     latter using $([System.IO.Directory]::GetLastWriteTimeUtc(...))
+	     hit MSB4185: System.IO.Directory isn't on MSBuild's allow-listed
+	     set of types property functions can call (System.IO.File mostly
+	     is, Directory mostly isn't). Inputs/Outputs sidesteps that
+	     allow-list entirely — it's MSBuild's own built-in mechanism for
+	     "skip this target if its outputs are already newer than its
+	     inputs", so there's no property-function call to reject in the
+	     first place. node_modules\.install-stamp is a zero-byte marker
+	     the Touch step below creates/refreshes right after a successful
+	     npm ci; comparing package-lock.json against a stamp file (rather
+	     than node_modules itself) sidesteps a separate MSBuild quirk
+	     where a directory's own last-write time doesn't reliably update
+	     just because something changed inside it. Same caveat as before:
+	     this still can't detect a same-lockfile-wrong-platform
+	     node_modules by itself — that one's on not zipping node_modules
+	     across machines in the first place. -->
+  <Target Name="RestoreWebAppDeps" DependsOnTargets="CheckNodeInstalled" BeforeTargets="BuildWebApp"
+	        Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingProject)' == 'true'"
+	        Inputs="$(WebAppDir)\package-lock.json"
+	        Outputs="$(WebAppDir)\node_modules\.install-stamp">
+    <Exec Command="npm ci" WorkingDirectory="$(WebAppDir)" />
+    <Touch Files="$(WebAppDir)\node_modules\.install-stamp" AlwaysCreate="true" />
+  </Target>
+
+  <Target Name="BuildWebApp" BeforeTargets="BeforeBuild;Compile" DependsOnTargets="RestoreWebAppDeps"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingProject)' == 'true'"
+          Inputs="@(WebAppSourceFiles)"
+          Outputs="$(WebAppDistDir)\.build-stamp">
+    <!-- Builds the Vite bundle AND copies it into Resources\Raw\wwwroot —
+	       see the copy-maui-dist plugin's closeBundle() hook in
+	       web/vite.config.js. No separate RemoveDir/Copy here anymore;
+	       Vite is the sole writer of that folder (see PropertyGroup
+	       comment above). -->
+    <Exec Command="npm run build:maui" WorkingDirectory="$(WebAppDir)" />
+    <!-- Lives in dist/, not wwwroot/ — `npm run build:maui` (vite) empties
+		     and repopulates dist/ on every real run, so this is naturally
+		     recreated fresh each time the target actually executes; keeping it
+		     out of wwwroot/ also means it never gets swept up by the MauiAsset
+		     glob below and packaged into the app. -->
+    <Touch Files="$(WebAppDistDir)\.build-stamp" AlwaysCreate="true" />
+    <!-- Re-declared here (not just as the static wildcard above) so files
+		     copied moments ago by the Vite plugin's closeBundle() step are
+		     actually included in *this* build — see the comment on the
+		     wwwroot-inclusive glob above. Only runs when the Inputs/Outputs
+		     check above actually let this target's body execute (i.e. the
+		     one inner build that did the rebuild); the other, skipped inner
+		     builds pick up the already-copied files through their own
+		     default MauiAsset glob instead, since (thanks to
+		     <BuildInParallel>false</BuildInParallel> above) their own
+		     project evaluation happens only after this one finished writing
+		     them to disk. -->
+    <ItemGroup>
+      <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

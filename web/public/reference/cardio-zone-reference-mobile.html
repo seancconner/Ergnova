@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!-- SPDX-FileCopyrightText: 2026 seancconner -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cardio Zone Reference</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+
+  :root {
+    --bg: #F6F4EF;
+    --panel: #FFFFFF;
+    --panel-alt: #EEEBE3;
+    --ink: #1C232B;
+    --ink-soft: #5B6570;
+    --ink-faint: #8B93A0;
+    --border: #DAD5C8;
+    --border-strong: #C7C0AE;
+    --accent: #B9701F;
+
+    --z1: #7C8B99;
+    --z2: #2E74A8;
+    --z3: #3B9270;
+    --z4: #C98A2E;
+    --z5: #D6702F;
+    --z6: #C34838;
+    --z7: #9C4587;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12171C; --panel: #1A2129; --panel-alt: #202932;
+      --ink: #ECEAE4; --ink-soft: #A9B2BA; --ink-faint: #6E7882;
+      --border: #2C3743; --border-strong: #3A4753; --accent: #E0A24C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12171C; --panel: #1A2129; --panel-alt: #202932;
+    --ink: #ECEAE4; --ink-soft: #A9B2BA; --ink-faint: #6E7882;
+    --border: #2C3743; --border-strong: #3A4753; --accent: #E0A24C;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  /* Scrollbars hidden everywhere on this page — matches the host app's own
+     convention (src/style.css). Only the drawn track/thumb is hidden;
+     scrolling itself (wheel, trackpad, touch drag, keys) is unaffected. */
+  * {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* legacy Edge/IE */
+  }
+  *::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Chromium Edge */
+    width: 0;
+    height: 0;
+  }
+
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+  body {
+    margin: 0; min-height: 100%;
+    background: var(--bg); color: var(--ink);
+    font-family: var(--font-body); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 56px; }
+  button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- Header ---------- */
+  header.top { background: var(--panel); border-bottom: 1px solid var(--border); }
+  .top-inner {
+    max-width: 480px; margin: 0 auto; padding: 16px 16px 14px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .brand h1 { font-family: var(--font-display); font-size: 1.22rem; margin: 0 0 2px; letter-spacing: -0.01em; }
+  .brand p { margin: 0; color: var(--ink-soft); font-size: 0.78rem; }
+  #themeToggle {
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+    background: var(--panel-alt); border: 1px solid var(--border-strong);
+    font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ---------- Readout ---------- */
+  .readout { margin-top: 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .readout-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px 8px; }
+  .readout-head h2 { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-faint); margin: 0; }
+  #resetBtn { font-size: 0.76rem; background: none; border: none; color: var(--accent); cursor: pointer; padding: 4px; }
+  .readout-grid, .derived-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+  .stat-in { background: var(--panel); padding: 10px 14px 12px; }
+  .stat-in label { display: block; font-size: 0.7rem; color: var(--ink-faint); margin-bottom: 4px; }
+  .stat-in input {
+    width: 100%; font-family: var(--font-mono); font-size: 1.15rem; font-weight: 600;
+    background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--ink); padding: 0;
+  }
+  .stat-in input:focus { border-bottom-color: var(--accent); }
+  .stat-in input::-webkit-outer-spin-button, .stat-in input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .derived-grid { border-top: 1px solid var(--border); }
+  .stat-out { background: var(--panel-alt); padding: 10px 14px; }
+  .stat-out .k { font-size: 0.68rem; color: var(--ink-faint); }
+  .stat-out .v { font-family: var(--font-mono); font-size: 0.96rem; font-weight: 600; margin-top: 1px; }
+  .stat-out .note { font-size: 0.66rem; color: var(--ink-faint); margin-top: 1px; }
+
+  /* ---------- Accordion ---------- */
+  .accordion { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details { border: 1px solid var(--border); border-radius: 12px; background: var(--panel); overflow: hidden; }
+  summary {
+    list-style: none; cursor: pointer; padding: 14px 16px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-size: 0.96rem; font-weight: 600;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary .chev { font-family: var(--font-body); font-weight: 400; color: var(--ink-faint); transition: transform .15s ease; flex-shrink: 0; }
+  details[open] summary .chev { transform: rotate(90deg); }
+  .acc-body { padding: 0 14px 14px; border-top: 1px solid var(--border); }
+  .acc-sub { font-size: 0.82rem; color: var(--ink-soft); margin: 12px 0 12px; }
+
+  .callout {
+    border: 1px solid var(--border-strong); border-left: 3px solid var(--accent); border-radius: 6px;
+    padding: 12px 13px; font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 14px; background: var(--panel-alt);
+  }
+  .callout b { color: var(--ink); }
+
+  /* ---------- Shared card pattern (zones, intervals, sequences) ---------- */
+  .card { display: grid; grid-template-columns: 4px 1fr; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--panel); margin-bottom: 10px; }
+  .card:last-child { margin-bottom: 0; }
+  .card .content { padding: 12px 14px; }
+
+  /* Zone cards */
+  .z-top { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .z-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); }
+  .z-name { font-weight: 600; font-size: 0.96rem; }
+  .z-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .z-stats .k { font-size: 0.66rem; color: var(--ink-faint); }
+  .z-stats .v { font-family: var(--font-mono); font-weight: 600; font-size: 0.96rem; margin-top: 2px; }
+  .z-stats .v.na { font-family: var(--font-body); font-weight: 500; font-size: 0.82rem; color: var(--ink-faint); }
+  .z-stats .sub { font-size: 0.68rem; color: var(--ink-faint); margin-top: 1px; }
+  .z-feel { font-size: 0.8rem; color: var(--ink-soft); }
+
+  /* Spec cards (intervals + sequence sessions) */
+  .s-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
+  .s-name { font-weight: 600; font-size: 0.92rem; }
+  .s-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); white-space: nowrap; }
+  .s-why { font-size: 0.82rem; color: var(--ink-soft); margin: 0 0 9px; }
+  .f-rows { display: flex; flex-direction: column; }
+  .f-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; font-size: 0.83rem; padding: 6px 0; border-top: 1px dashed var(--border); }
+  .f-row:first-child { border-top: none; }
+  .f-val { font-family: var(--font-mono); font-weight: 600; text-align: right; }
+
+  /* Goal cards */
+  .winner-tag { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.02em; padding: 3px 8px; border-radius: 20px; white-space: nowrap; text-transform: uppercase; }
+  .winner-steady { background: color-mix(in srgb, var(--z2) 18%, transparent); color: var(--z2); }
+  .winner-interval { background: color-mix(in srgb, var(--z5) 18%, transparent); color: var(--z5); }
+  .winner-both { background: color-mix(in srgb, var(--z3) 18%, transparent); color: var(--z3); }
+  .goal-structure { font-size: 0.8rem; color: var(--ink); background: var(--panel-alt); border-radius: 6px; padding: 8px 10px; }
+  .goal-structure b { font-weight: 600; }
+
+  /* Week schedule */
+  .week-title { font-size: 0.84rem; font-weight: 600; margin: 0 0 8px; }
+  .week-note { font-size: 0.72rem; color: var(--ink-faint); margin: -6px 0 10px; }
+  .week-block { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+  .week-block:last-child { margin-bottom: 0; }
+  .day-row { display: grid; grid-template-columns: 40px 4px 1fr; border-bottom: 1px solid var(--border); background: var(--panel); }
+  .day-row:last-child { border-bottom: none; }
+  .day-row .d { padding: 8px 6px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); }
+  .day-row .txt { padding: 8px 10px; font-size: 0.81rem; }
+  .day-row .txt .t1 { font-weight: 600; }
+  .day-row .txt .t2 { color: var(--ink-soft); font-size: 0.74rem; }
+
+  footer { margin-top: 26px; border-top: 1px solid var(--border); padding-top: 14px; font-size: 0.74rem; color: var(--ink-faint); line-height: 1.6; }
+  footer p { margin: 0 0 8px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <h1>Cardio Zone Reference</h1>
+      <p>Zones &amp; sequences, tuned to your numbers</p>
+    </div>
+    <button id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="readout">
+    <div class="readout-head">
+      <h2>Your inputs</h2>
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+    <div class="readout-grid">
+      <div class="stat-in"><label for="inFtp">FTP (W)</label><input id="inFtp" type="number" inputmode="numeric" value="290" min="50" max="600" step="1"></div>
+      <div class="stat-in"><label for="inRhr">Rest HR (bpm)</label><input id="inRhr" type="number" inputmode="numeric" value="58" min="30" max="100" step="1"></div>
+      <div class="stat-in"><label for="inMhr">Max HR (bpm)</label><input id="inMhr" type="number" inputmode="numeric" value="192" min="120" max="230" step="1"></div>
+      <div class="stat-in"><label for="inWt">Weight (lb)</label><input id="inWt" type="number" inputmode="numeric" value="181" min="80" max="350" step="1"></div>
+    </div>
+    <div class="derived-grid">
+      <div class="stat-out"><div class="k">Power-to-weight</div><div class="v" id="outWkg">–</div><div class="note" id="outWkgNote">&nbsp;</div></div>
+      <div class="stat-out"><div class="k">HR reserve</div><div class="v" id="outHrr">–</div><div class="note">Max − resting HR</div></div>
+      <div class="stat-out"><div class="k">Est. VO₂max</div><div class="v" id="outVo2">–</div><div class="note">Rough field estimate</div></div>
+      <div class="stat-out"><div class="k">HR vs. age norm</div><div class="v" id="outAgeHr">–</div><div class="note">Use tested, not predicted</div></div>
+    </div>
+  </div>
+
+  <div class="accordion">
+
+    <details open id="acc-zones">
+      <summary><span>Zones</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <p class="acc-sub">Power reacts instantly; HR lags 30–90s, so it's most useful for zones 1–5.</p>
+        <div class="callout"><b>How exact is this?</b> Power zones are exact — % of your tested FTP. HR zones are estimated (Karvonen method), not a measured lactate threshold. Reliable for Z1–Z3, reasonable for Z4, shakier for Z5, and not meaningful for Z6–Z7 — those efforts end before HR catches up. When in doubt, ride to power.</div>
+        <div id="zoneRows"></div>
+      </div>
+    </details>
+
+    <details id="acc-intervals">
+      <summary><span>Intervals &amp; Duration</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <p class="acc-sub">Total time includes a 10–15 min warm-up/cool-down at Zone 1–2, on top of the work shown.</p>
+        <div id="ivlRows"></div>
+      </div>
+    </details>
+
+    <details id="acc-goals">
+      <summary><span>Steady vs. Intervals</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <p class="acc-sub">Which approach actually drives each goal — most training uses both, in different proportions.</p>
+        <div id="goalRows"></div>
+      </div>
+    </details>
+
+    <details id="acc-week">
+      <summary><span>Weekly Structure</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <div class="callout"><b>The 80/20 rule:</b> ~80% of weekly time in Zone 1–2, the rest genuinely hard (Zone 4+). Zone 3 "tempo" is used sparingly — tiring enough to blunt recovery, not intense enough to drive the same adaptations.</div>
+        <div class="week-block">
+          <div class="content" style="padding:12px 14px 0;"><p class="week-title">Time-crunched — ~5 hr/week</p></div>
+          <div id="weekA"></div>
+        </div>
+        <div class="week-block">
+          <div class="content" style="padding:12px 14px 0;"><p class="week-title">High-volume — ~10+ hr/week</p></div>
+          <div id="weekB"></div>
+        </div>
+      </div>
+    </details>
+
+    <details id="acc-fatloss">
+      <summary><span>Visceral Fat Loss</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <div class="callout"><b>Why this mix:</b> visceral fat has more beta-adrenergic receptors than fat under the skin, so it responds disproportionately to the adrenaline spike from hard efforts — intervals outperform steady cardio here at matched calories. But daily high intensity raises cortisol, which works against you, so volume (Session C) stays the base with intensity (A &amp; B) layered on top. Diet still does most of the work.</div>
+        <div id="fatlossSessions"></div>
+        <p class="week-title" style="margin-top:16px;">Sample week</p>
+        <p class="week-note">5–6 sessions, ~5–6.5 hr. Start with 1× Session A/week if new to this.</p>
+        <div class="week-block"><div id="fatlossWeek"></div></div>
+      </div>
+    </details>
+
+    <details id="acc-subq">
+      <summary><span>Subcutaneous Fat Loss</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <div class="callout"><b>Why this differs:</b> subcutaneous fat — especially "stubborn" spots — carries more alpha-2 receptors, resisting the same adrenaline signal. It responds more to volume and duration than intensity spikes. No spot reduction exists, and "fasted cardio burns more fat" has mixed evidence once you look at a full day. Resistance training also helps here, via muscle retention — worth pairing in even though it's outside a cardio plan.</div>
+        <div id="subqSessions"></div>
+        <p class="week-title" style="margin-top:16px;">Sample week</p>
+        <p class="week-note">6–7 sessions, ~7–8 hr. Heavier on volume, lighter on hard intervals.</p>
+        <div class="week-block"><div id="subqWeek"></div></div>
+      </div>
+    </details>
+
+    <details id="acc-maintain">
+      <summary><span>Cardio Maintenance</span><span class="chev">›</span></summary>
+      <div class="acc-body">
+        <div class="callout"><b>The lever is intensity, not volume.</b> Detraining research (Hickson et al.) found cutting frequency/duration by two-thirds while keeping intensity held VO2max/FTP for months — cutting intensity is what lets fitness slide. So this isn't a smaller build-up plan; it's the same hard effort, done far less often. Body fat % from here is mostly a food question — maintenance calories, not more cardio. If FTP drifts down over months, add the second session back.</div>
+        <div id="maintainSessions"></div>
+        <p class="week-title" style="margin-top:16px;">Sample week</p>
+        <p class="week-note">Shown at the 2-session tier. Just Monday alone is the true floor.</p>
+        <div class="week-block"><div id="maintainWeek"></div></div>
+      </div>
+    </details>
+
+  </div>
+
+  <footer>
+    <p><b>Method:</b> power zones use the standard 7-zone model (% of FTP). HR zones use the Karvonen / heart-rate-reserve method — target HR = resting HR + (% × [max HR − resting HR]). VO₂max is estimated from the Uth–Sørensen–Overgaard–Pedersen formula (15.3 × max HR ÷ resting HR), a rough field estimate, not a lab value.</p>
+    <p>General guidelines, not individual coaching. Introduce high intensity gradually if you're new to it, and check with a doctor first if you have cardiovascular risk factors.</p>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  "use strict";
+
+  var DEFAULTS = { ftp: 290, rhr: 58, mhr: 192, wt: 181 };
+  var STORE_KEY = "cardioZoneRef.v1";
+  var THEME_KEY = "cardioZoneRef.theme";
+
+  var els = {
+    ftp: document.getElementById('inFtp'), rhr: document.getElementById('inRhr'),
+    mhr: document.getElementById('inMhr'), wt: document.getElementById('inWt'),
+  };
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) { var s = JSON.parse(raw); if (s && typeof s.ftp === 'number') return s; }
+    } catch (e) { /* unavailable */ }
+    return Object.assign({}, DEFAULTS);
+  }
+  function saveState(s) { try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) { /* ignore */ } }
+
+  var state = loadState();
+  els.ftp.value = state.ftp; els.rhr.value = state.rhr; els.mhr.value = state.mhr; els.wt.value = state.wt;
+
+  function w(pct, ftp) { return Math.round(pct * ftp); }
+  function fmtPct(x) { return Math.round(x * 100) + '%'; }
+
+  function specCard(title, tag, why, fields, color) {
+    var fieldsHtml = fields.map(function(f) {
+      return '<div class="f-row"><div>' + f[0] + '</div><div class="f-val">' + f[1] + '</div></div>';
+    }).join('');
+    return '<div class="card"><div class="bar" style="background:var(--' + color + ')"></div><div class="content">' +
+      '<div class="s-top"><div class="s-name">' + title + '</div><div class="s-tag">' + tag + '</div></div>' +
+      (why ? '<div class="s-why">' + why + '</div>' : '') +
+      '<div class="f-rows">' + fieldsHtml + '</div></div></div>';
+  }
+
+  function dayRow(d, color, t1, t2) {
+    return '<div class="day-row"><div class="d">' + d + '</div><div class="bar" style="background:var(--' + color + ')"></div>' +
+      '<div class="txt"><div class="t1">' + t1 + '</div>' + (t2 ? '<div class="t2">' + t2 + '</div>' : '') + '</div></div>';
+  }
+
+  var POWER_ZONES = [
+    { name: 'Active Recovery',     lo: 0,    hi: 0.55, hrLo: 0.50, hrHi: 0.60, rpe: 'RPE 1–2 · full conversation, could sing',   color: 'z1' },
+    { name: 'Endurance',           lo: 0.56, hi: 0.75, hrLo: 0.60, hrHi: 0.70, rpe: 'RPE 2–3 · easy conversation',                color: 'z2' },
+    { name: 'Tempo',                lo: 0.76, hi: 0.90, hrLo: 0.70, hrHi: 0.80, rpe: 'RPE 4–5 · broken sentences only',           color: 'z3' },
+    { name: 'Threshold',           lo: 0.91, hi: 1.05, hrLo: 0.80, hrHi: 0.90, rpe: 'RPE 6–7 · one word at a time',              color: 'z4' },
+    { name: 'VO\u2082max',              lo: 1.06, hi: 1.20, hrLo: 0.90, hrHi: 1.00, rpe: 'RPE 8–9 · can\u2019t talk',                 color: 'z5' },
+    { name: 'Anaerobic Capacity',  lo: 1.21, hi: 1.50, hrLo: null, hrHi: null, rpe: 'RPE 9 · gasping, short bursts',             color: 'z6' },
+    { name: 'Neuromuscular Power', lo: 1.51, hi: null, hrLo: null, hrHi: null, rpe: 'RPE 10 · maximal, all-out',                 color: 'z7' },
+  ];
+
+  var IVL = [
+    { z: 'Z1', color: 'z1', name: 'Active Recovery', length: 'Continuous', reps: 'N/A', total: '20–45 min', freq: 'Anytime' },
+    { z: 'Z2', color: 'z2', name: 'Endurance', length: 'Continuous', reps: 'N/A', total: '60–240+ min', freq: '3–6x/wk' },
+    { z: 'Z3', color: 'z3', name: 'Tempo', length: '15–30 min blocks', reps: '1–3 reps, 5 min rest', total: '60–120 min', freq: '0–2x/wk' },
+    { z: 'Z4', color: 'z4', name: 'Threshold', length: '8–20 min efforts', reps: '2–4 reps, rest ≈ 50% work', total: '60–90 min', freq: '1–2x/wk' },
+    { z: 'Z5', color: 'z5', name: 'VO\u2082max', length: '3–5 min efforts', reps: '4–6 reps, rest ≈ 1:1', total: '45–75 min', freq: '1x/wk (2 max)' },
+    { z: 'Z6', color: 'z6', name: 'Anaerobic Capacity', length: '30s–3 min efforts', reps: '5–10 reps, rest 2–4x work', total: '45–60 min', freq: '1x/wk' },
+    { z: 'Z7', color: 'z7', name: 'Neuromuscular Power', length: '5–15 sec efforts', reps: '6–10 reps, full recovery', total: '30–45 min', freq: '1x/wk' },
+  ];
+  var ADAPT = { 'Z1': 'Blood flow, clears fatigue', 'Z2': 'Aerobic base, mitochondria, fat use', 'Z3': 'Muscular endurance', 'Z4': 'Raises FTP directly', 'Z5': 'VO\u2082max, oxygen delivery', 'Z6': 'Lactate buffering', 'Z7': 'Max power, sprint speed' };
+
+  var GOALS = [
+    { title: 'Fat loss / weight management', tag: 'Both', cls: 'winner-both', bar: 'z3',
+      why: 'Zone 2 burns a higher share of fat per calorie and is easy to sustain. Intervals burn more calories per minute and add some afterburn, but are harder to recover from daily.',
+      how: 'Zone 2 most days, plus 1–2 interval sessions/week.' },
+    { title: 'Aerobic base / endurance', tag: 'Steady', cls: 'winner-steady', bar: 'z2',
+      why: 'Mitochondrial density and fat-oxidation enzymes are built almost entirely by low-intensity time. No interval shortcut exists.',
+      how: '3–6+ hr/week Zone 2, ideally unbroken.' },
+    { title: 'FTP / threshold power', tag: 'Both', cls: 'winner-both', bar: 'z3',
+      why: 'Threshold work (Z3–4) directly stresses what you\u2019re raising, but only pays off on top of an aerobic base.',
+      how: 'Sweet-spot / Z4 intervals 1–2x/week, resting on Z2.' },
+    { title: 'VO\u2082max', tag: 'Intervals', cls: 'winner-interval', bar: 'z5',
+      why: 'Steady riding can\u2019t push oxygen uptake high enough for long enough. Only ~3–5 min Z5 efforts reliably work.',
+      how: '4–6 × 4 min @ Z5, 1–2x/week.' },
+    { title: 'Sprint / repeated hard efforts', tag: 'Intervals', cls: 'winner-interval', bar: 'z5',
+      why: 'Steady riding has essentially zero effect here — needs Z6–7-specific short, maximal work.',
+      how: 'Short max efforts, full recovery, 1x/week.' },
+    { title: 'Heart health / longevity', tag: 'Both', cls: 'winner-both', bar: 'z3',
+      why: 'Volume lowers resting HR and blood pressure. Adding some vigorous work gives extra benefit beyond volume alone.',
+      how: 'Mostly Zone 2, plus one harder session a week.' },
+    { title: 'Time efficiency (limited hours)', tag: 'Intervals', cls: 'winner-interval', bar: 'z5',
+      why: 'Per minute, intervals produce more threshold/VO2max adaptation — most efficient use of tight time.',
+      how: '2–3 focused sessions + whatever Zone 2 fits.' },
+  ];
+
+  function computeAndRender() {
+    var ftp = parseFloat(els.ftp.value) || DEFAULTS.ftp;
+    var rhr = parseFloat(els.rhr.value) || DEFAULTS.rhr;
+    var mhr = parseFloat(els.mhr.value) || DEFAULTS.mhr;
+    var wtLb = parseFloat(els.wt.value) || DEFAULTS.wt;
+    state = { ftp: ftp, rhr: rhr, mhr: mhr, wt: wtLb };
+    saveState(state);
+
+    var hrr = mhr - rhr;
+    var wtKg = wtLb / 2.20462;
+    var wkg = ftp / wtKg;
+    var vo2 = 15.3 * (mhr / rhr);
+
+    document.getElementById('outWkg').textContent = wkg.toFixed(2) + ' W/kg';
+    document.getElementById('outHrr').textContent = hrr + ' bpm';
+    document.getElementById('outVo2').textContent = vo2.toFixed(1) + ' mL/kg/min';
+    var wkgTier = wkg < 2.6 ? 'Building base' : wkg < 3.3 ? 'Moderate' : wkg < 3.9 ? 'Good' : wkg < 4.6 ? 'Very good' : wkg < 5.5 ? 'Excellent' : 'Exceptional';
+    document.getElementById('outWkgNote').textContent = wkgTier;
+    document.getElementById('outAgeHr').textContent = 'Use tested, not predicted';
+
+    var rowsHtml = '';
+    POWER_ZONES.forEach(function(z, i) {
+      var wLo = Math.round(z.lo * ftp), wHi = z.hi === null ? null : Math.round(z.hi * ftp);
+      var powerStr = z.hi === null ? (wLo + '+ W') : (wLo + '–' + wHi + ' W');
+      var pctStr = z.hi === null ? ('>' + fmtPct(z.lo)) : (fmtPct(z.lo) + '–' + fmtPct(z.hi));
+      var hrHtml;
+      if (z.hrLo === null) {
+        hrHtml = '<div class="k">Heart rate</div><div class="v na">Use power</div><div class="sub">Too short to register</div>';
+      } else {
+        var hLo = Math.round(rhr + hrr * z.hrLo), hHi = Math.round(rhr + hrr * z.hrHi);
+        hrHtml = '<div class="k">Heart rate</div><div class="v">' + hLo + '–' + hHi + ' bpm</div><div class="sub">' + fmtPct(z.hrLo) + '–' + fmtPct(z.hrHi) + ' HRR</div>';
+      }
+      rowsHtml += '<div class="card"><div class="bar" style="background:var(--' + z.color + ')"></div><div class="content">' +
+        '<div class="z-top"><span class="z-num">Z' + (i + 1) + '</span><span class="z-name">' + z.name + '</span></div>' +
+        '<div class="z-stats"><div><div class="k">Power</div><div class="v">' + powerStr + '</div><div class="sub">' + pctStr + ' FTP</div></div>' +
+        '<div>' + hrHtml + '</div></div>' +
+        '<div class="z-feel">' + z.rpe + '</div></div></div>';
+    });
+    document.getElementById('zoneRows').innerHTML = rowsHtml;
+
+    renderFatLoss(ftp);
+    renderSubQ(ftp);
+    renderMaintain(ftp);
+  }
+
+  function renderFatLoss(ftp) {
+    var SEQ = [
+      { name: 'A · VO\u2082max intervals', color: 'z5', freq: '2x/wk',
+        why: 'The main driver \u2014 spikes catecholamines to target visceral fat\u2019s adrenergic sensitivity.',
+        steps: [['Warm-up 10 min, ramp', w(0.50, ftp) + '–' + w(0.70, ftp) + ' W'], ['4 × 4 min work', w(1.06, ftp) + '–' + w(1.15, ftp) + ' W'], ['3 min recovery', w(0.55, ftp) + '–' + w(0.65, ftp) + ' W'], ['Cool-down 10 min', w(0.50, ftp) + ' W'], ['Total time', '≈47 min']] },
+      { name: 'B · Sweet-spot tempo', color: 'z4', freq: '1x/wk',
+        why: 'Meaningful stress without Session A\u2019s recovery cost — keeps FTP trending up.',
+        steps: [['Warm-up 10 min, ramp', w(0.50, ftp) + '–' + w(0.65, ftp) + ' W'], ['2 × 15 min work', w(0.88, ftp) + '–' + w(0.94, ftp) + ' W'], ['5 min easy', w(0.60, ftp) + ' W'], ['Cool-down 10 min', w(0.50, ftp) + ' W'], ['Total time', '≈65 min']] },
+      { name: 'C · Long Zone 2', color: 'z2', freq: '2–3x/wk',
+        why: 'The volume engine — most weekly calorie burn, low enough stress to repeat often.',
+        steps: [['Continuous, steady', w(0.65, ftp) + '–' + w(0.72, ftp) + ' W'], ['Total time', '60–90 min']] },
+    ];
+    document.getElementById('fatlossSessions').innerHTML = SEQ.map(function(s) { return specCard(s.name, s.freq, s.why, s.steps, s.color); }).join('');
+    document.getElementById('fatlossWeek').innerHTML =
+      dayRow('Mon', 'z2', 'Session C', '60 min') + dayRow('Tue', 'z5', 'Session A', '~47 min') +
+      dayRow('Wed', 'z2', 'Session C', '60–90 min, or rest') + dayRow('Thu', 'z4', 'Session B', '~65 min') +
+      dayRow('Fri', 'z1', 'Rest / easy spin', '30 min Z1') + dayRow('Sat', 'z5', 'Session A', '~47 min') +
+      dayRow('Sun', 'z2', 'Session C', '90+ min');
+  }
+
+  function renderSubQ(ftp) {
+    var SEQ = [
+      { name: 'A · Extended Zone 2', color: 'z2', freq: '3–4x/wk',
+        why: 'Highest share of energy from fat — responds to time spent here, not single-session intensity.',
+        steps: [['Continuous, steady', w(0.60, ftp) + '–' + w(0.68, ftp) + ' W'], ['Total time', '60–150 min']] },
+      { name: 'B · Moderate tempo', color: 'z3', freq: '1–2x/wk',
+        why: 'Adds calorie burn and keeps fitness trending up, with less payoff to hard intervals than the visceral goal.',
+        steps: [['Warm-up 10 min, ramp', w(0.50, ftp) + '–' + w(0.65, ftp) + ' W'], ['2 × 20 min work', w(0.80, ftp) + '–' + w(0.88, ftp) + ' W'], ['5 min easy', w(0.60, ftp) + ' W'], ['Cool-down 10 min', w(0.50, ftp) + ' W'], ['Total time', '≈65 min']] },
+      { name: 'C · Light maintenance intervals', color: 'z4', freq: '1x/wk',
+        why: 'A smaller piece than in the visceral plan — just enough stimulus to preserve muscle/fitness.',
+        steps: [['Warm-up 10 min, ramp', w(0.50, ftp) + '–' + w(0.65, ftp) + ' W'], ['6 × 2 min work', w(1.00, ftp) + '–' + w(1.10, ftp) + ' W'], ['2 min recovery', w(0.50, ftp) + '–' + w(0.60, ftp) + ' W'], ['Cool-down 10 min', w(0.50, ftp) + ' W'], ['Total time', '≈44 min']] },
+    ];
+    document.getElementById('subqSessions').innerHTML = SEQ.map(function(s) { return specCard(s.name, s.freq, s.why, s.steps, s.color); }).join('');
+    document.getElementById('subqWeek').innerHTML =
+      dayRow('Mon', 'z2', 'Session A', '75 min') + dayRow('Tue', 'z3', 'Session B', '~65 min') +
+      dayRow('Wed', 'z2', 'Session A', '90 min') + dayRow('Thu', 'z1', 'Rest / easy spin', '30 min Z1') +
+      dayRow('Fri', 'z4', 'Session C', '~44 min') + dayRow('Sat', 'z2', 'Session A', '120–150 min') +
+      dayRow('Sun', 'z2', 'Session A', '60–75 min, or rest');
+  }
+
+  function renderMaintain(ftp) {
+    var SEQ = [
+      { name: 'A · Keeper intervals', color: 'z5', freq: '1x/wk min, 2x for margin',
+        why: 'Same real intensity that built your FTP — non-negotiable even as everything else shrinks.',
+        steps: [['Warm-up 10 min, ramp', w(0.50, ftp) + '–' + w(0.65, ftp) + ' W'], ['5 × 3 min work', w(1.05, ftp) + '–' + w(1.15, ftp) + ' W'], ['3 min recovery', w(0.55, ftp) + '–' + w(0.65, ftp) + ' W'], ['Cool-down 10 min', w(0.50, ftp) + ' W'], ['Total time', '≈45 min']] },
+      { name: 'B · Optional easy ride', color: 'z2', freq: '0–2x/wk, optional',
+        why: 'Not required for fitness alone, but helps recovery and buffers against post-loss metabolic efficiency.',
+        steps: [['Continuous, easy', w(0.60, ftp) + '–' + w(0.70, ftp) + ' W'], ['Total time', '30–45 min']] },
+    ];
+    document.getElementById('maintainSessions').innerHTML = SEQ.map(function(s) { return specCard(s.name, s.freq, s.why, s.steps, s.color); }).join('');
+    document.getElementById('maintainWeek').innerHTML =
+      dayRow('Mon', 'z5', 'Session A — Keeper', '~45 min') + dayRow('Tue', 'z1', 'Rest') +
+      dayRow('Wed', 'z2', 'Optional Session B', '30–45 min, or rest') + dayRow('Thu', 'z1', 'Rest') +
+      dayRow('Fri', 'z5', 'Optional 2nd Session A', '~45 min, or rest') + dayRow('Sat', 'z1', 'Free — whatever you enjoy') +
+      dayRow('Sun', 'z1', 'Rest');
+  }
+
+  ['ftp', 'rhr', 'mhr', 'wt'].forEach(function(k) { els[k].addEventListener('input', computeAndRender); });
+  document.getElementById('resetBtn').addEventListener('click', function() {
+    els.ftp.value = DEFAULTS.ftp; els.rhr.value = DEFAULTS.rhr; els.mhr.value = DEFAULTS.mhr; els.wt.value = DEFAULTS.wt;
+    computeAndRender();
+  });
+  computeAndRender();
+
+  // Static: intervals table + goals + the two weekly-structure samples (don't depend on FTP)
+  document.getElementById('ivlRows').innerHTML = IVL.map(function(r) {
+    return specCard(r.z + ' · ' + r.name, r.freq, ADAPT[r.z], [['Effort length', r.length], ['Reps / rest', r.reps], ['Total session', r.total]], r.color);
+  }).join('');
+
+  document.getElementById('goalRows').innerHTML = GOALS.map(function(g) {
+    return '<div class="card"><div class="bar" style="background:var(--' + g.bar + ')"></div><div class="content">' +
+      '<div class="s-top"><div class="s-name">' + g.title + '</div><div class="winner-tag ' + g.cls + '">' + g.tag + ' wins</div></div>' +
+      '<div class="s-why">' + g.why + '</div><div class="goal-structure"><b>Structure:</b> ' + g.how + '</div></div></div>';
+  }).join('');
+
+  document.getElementById('weekA').innerHTML =
+    dayRow('Mon', 'z1', 'Rest') + dayRow('Tue', 'z4', 'Threshold', '3×12 min @ Z4, 5 min rest — 60 min') +
+    dayRow('Wed', 'z2', 'Endurance', '60 min easy') + dayRow('Thu', 'z1', 'Rest / easy', '30 min Z1') +
+    dayRow('Fri', 'z5', 'VO\u2082max', '5×4 min @ Z5, 4 min rest — 50 min') + dayRow('Sat', 'z2', 'Long endurance', '90–120 min + optional Z7 sprints') +
+    dayRow('Sun', 'z1', 'Rest');
+  document.getElementById('weekB').innerHTML =
+    dayRow('Mon', 'z1', 'Recovery spin', '45 min Z1') + dayRow('Tue', 'z4', 'Threshold', '2×20 min @ Z4, 8 min rest — 75 min') +
+    dayRow('Wed', 'z2', 'Endurance', '2–3 hr') + dayRow('Thu', 'z6', 'Endurance + anaerobic', '90 min Z2 + 5×1 min hard') +
+    dayRow('Fri', 'z1', 'Rest') + dayRow('Sat', 'z5', 'VO\u2082max / long tempo', '6×5 min @ Z5, 5 min rest — 75 min') +
+    dayRow('Sun', 'z2', 'Long ride', '3–4 hr');
+
+  // Theme toggle
+  var themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t) {
+    if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    else document.documentElement.removeAttribute('data-theme');
+    var isDark = t === 'dark' || (t !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    themeBtn.textContent = isDark ? '☀️' : '🌙';
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem(THEME_KEY); } catch (e) { /* ignore */ }
+  applyTheme(savedTheme);
+  themeBtn.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var isDarkNow = current === 'dark' || (!current && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDarkNow ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* ignore */ }
+  });
+
+})();
+</script>
+</body>
+</html>

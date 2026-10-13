@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <!-- See https://aka.ms/maui-publish-app-store#add-entitlements for more information about adding entitlements.-->
+    <dict>
+        <!-- App Sandbox must be enabled to distribute a MacCatalyst app through the Mac App Store. -->
+        <key>com.apple.security.app-sandbox</key>
+        <true/>
+        <!-- When App Sandbox is enabled, this value is required to open outgoing network connections. -->
+        <key>com.apple.security.network.client</key>
+        <true/>
+        <!-- BLE bridge (checklist §6) — required for Bluetooth access under
+             App Sandbox / hardened runtime (needed for notarization). -->
+        <key>com.apple.security.device.bluetooth</key>
+        <true/>
+    </dict>
+</plist>
+

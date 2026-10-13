@@ -1,0 +1,516 @@
+[
+  {
+    "id": "seed-recipe:mexican-chicken-burrito-bowl",
+    "name": "Chicken Burrito Bowl",
+    "cuisine": "mexican",
+    "servings": 2,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 300.0,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:rice-white-cooked",
+        "amountG": 288.75,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:black-beans-cooked",
+        "amountG": 215.0,
+        "sizeOptionId": "cup"
+      },
+      {
+        "ingredientId": "seed:bell-pepper-red-raw",
+        "amountG": 111.75,
+        "sizeOptionId": "cup_chopped"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 35.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:salsa",
+        "amountG": 59.147
+      },
+      {
+        "ingredientId": "seed:avocado-raw",
+        "amountG": 68.0,
+        "sizeOptionId": "half"
+      }
+    ],
+    "steps": [
+      "Season the chicken breast with salt and pepper and cook in a skillet over medium heat for 6-7 minutes per side, until it reaches 165°F (74°C); rest, then slice.",
+      "In the same pan, cook the bell pepper and onion for 4-5 minutes, until just softened.",
+      "Warm the black beans in a small pot.",
+      "Build the bowls: start with the rice, then top with the beans, peppers and onion, sliced chicken, salsa, and sliced avocado."
+    ],
+    "perServing": {
+      "cholesterolMg": 127.5,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 2.465875,
+        "monounsaturated": 5.5021985,
+        "total": 11.612897,
+        "polyunsaturated": 3.6448235
+      },
+      "protein": 61.840477500000006,
+      "carbs": {
+        "starch": 57.147830500000005,
+        "fiber": 14.1816245,
+        "total": 76.131395,
+        "sugar": 4.969564999999999
+      },
+      "potassiumMg": 1207.3083000000001,
+      "minerals": {
+        "ironMg": 2.2575,
+        "calciumMg": 0.0,
+        "magnesiumMg": 136.075,
+        "zincMg": 1.5
+      },
+      "calories": 666.45521,
+      "vitamins": {
+        "eMg": 0.7140000000000001,
+        "b12Mcg": 0.44999999999999996,
+        "b2Mg": 0.0,
+        "folateMcg": 197.03999999999996,
+        "b6Mg": 0.8999999999999999,
+        "aMcg": 87.72375,
+        "kMcg": 7.140000000000001,
+        "b3Mg": 20.549999999999997,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 79.00472500000001
+      },
+      "sodiumMg": 311.06149999999997
+    }
+  },
+  {
+    "id": "seed-recipe:mexican-beef-tacos",
+    "name": "Beef Tacos",
+    "cuisine": "mexican",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:ground-beef-85-raw",
+        "amountG": 400
+      },
+      {
+        "ingredientId": "seed:tortilla-corn",
+        "amountG": 120.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:lettuce-romaine-raw",
+        "amountG": 58.75,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 91.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:cheddar-cheese",
+        "amountG": 56.5,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:salsa",
+        "amountG": 59.147
+      }
+    ],
+    "steps": [
+      "Heat a skillet over medium-high heat and cook the ground beef, breaking it up with a spoon, until browned, about 6-8 minutes. Season with salt and pepper.",
+      "Warm the tortillas in a dry skillet or directly over a gas flame for a few seconds per side, until pliable and lightly charred.",
+      "Fill each tortilla with the seasoned beef.",
+      "Top with the shredded lettuce, diced tomato, shredded cheddar, and a spoonful of salsa."
+    ],
+    "perServing": {
+      "cholesterolMg": 85.83125,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 8.98625,
+        "monounsaturated": 7.018036749999999,
+        "total": 20.634511000000003,
+        "polyunsaturated": 4.6302242499999995
+      },
+      "protein": 24.42992625,
+      "carbs": {
+        "starch": 11.54797775,
+        "fiber": 2.72281225,
+        "total": 15.970635,
+        "sugar": 1.6998449999999998
+      },
+      "potassiumMg": 471.241025,
+      "minerals": {
+        "ironMg": 2.0,
+        "magnesiumMg": 18.9,
+        "calciumMg": 101.84124999999999,
+        "zincMg": 4.637875
+      },
+      "calories": 349.238855,
+      "vitamins": {
+        "eMg": 0.0,
+        "b12Mcg": 2.4,
+        "b2Mg": 0.0,
+        "folateMcg": 19.975,
+        "b6Mg": 0.3,
+        "aMcg": 111.02375,
+        "kMcg": 16.851937500000002,
+        "b3Mg": 4.4,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 4.5954250000000005
+      },
+      "sodiumMg": 256.642625
+    }
+  },
+  {
+    "id": "seed-recipe:mexican-guacamole",
+    "name": "Guacamole",
+    "cuisine": "mexican",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:avocado-raw",
+        "amountG": 408.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:lime-raw",
+        "amountG": 27.5,
+        "sizeOptionId": "wedge"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 35.0,
+        "sizeOptionId": "small"
+      },
+      {
+        "ingredientId": "seed:tomato-raw",
+        "amountG": 61.5,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:salsa-verde",
+        "amountG": 29.574
+      }
+    ],
+    "steps": [
+      "Halve and pit the avocados, then scoop the flesh into a bowl.",
+      "Mash to your preferred texture — chunky or smooth — with a fork.",
+      "Stir in the lime juice, diced onion, diced tomato, and salsa verde.",
+      "Season with salt to taste and serve immediately (press plastic wrap directly onto the surface if not serving right away, to slow browning)."
+    ],
+    "perServing": {
+      "cholesterolMg": 0.0,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 2.1493935000000004,
+        "monounsaturated": 7.797787,
+        "total": 15.084217499999998,
+        "polyunsaturated": 5.137036999999999
+      },
+      "protein": 2.396685,
+      "carbs": {
+        "starch": 1.9213100000000003,
+        "fiber": 7.4706525,
+        "total": 11.174925000000002,
+        "sugar": 1.7829625
+      },
+      "potassiumMg": 566.4526,
+      "minerals": {
+        "ironMg": 0.0,
+        "calciumMg": 0.0,
+        "magnesiumMg": 0.0,
+        "zincMg": 0.0
+      },
+      "calories": 173.60018,
+      "vitamins": {
+        "eMg": 2.1420000000000003,
+        "b12Mcg": 0.0,
+        "b2Mg": 0.0,
+        "folateMcg": 84.2825,
+        "b6Mg": 0.0,
+        "aMcg": 6.4575,
+        "kMcg": 22.634625000000003,
+        "b3Mg": 0.0,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 15.54598
+      },
+      "sodiumMg": 43.88505
+    }
+  },
+  {
+    "id": "seed-recipe:mexican-chicken-enchiladas",
+    "name": "Chicken Enchiladas",
+    "cuisine": "mexican",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:chicken-breast-raw",
+        "amountG": 400.0,
+        "sizeOptionId": "breast"
+      },
+      {
+        "ingredientId": "seed:tortilla-corn",
+        "amountG": 240.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:enchilada-sauce",
+        "amountG": 301.65
+      },
+      {
+        "ingredientId": "seed:cheddar-cheese",
+        "amountG": 113,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 55.0,
+        "sizeOptionId": "medium"
+      },
+      {
+        "ingredientId": "seed:sour-cream",
+        "amountG": 56.781
+      }
+    ],
+    "steps": [
+      "Preheat the oven to 375°F (190°C).",
+      "Poach or bake the chicken breast until cooked through (165°F/74°C), then shred with two forks and toss with the diced onion and a few spoonfuls of the enchilada sauce.",
+      "Warm the tortillas briefly so they're pliable, then fill each with the shredded chicken mixture and roll tightly.",
+      "Arrange the rolled tortillas seam-side down in a baking dish, pour the remaining enchilada sauce over the top, and sprinkle with the shredded cheddar.",
+      "Bake for 15-20 minutes, until the sauce is bubbling and the cheese is melted.",
+      "Serve topped with a dollop of sour cream."
+    ],
+    "perServing": {
+      "cholesterolMg": 123.0376975,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 9.040950249999998,
+        "monounsaturated": 5.687996499999999,
+        "total": 18.529566,
+        "polyunsaturated": 3.5078417500000003
+      },
+      "protein": 42.851136,
+      "carbs": {
+        "starch": 25.339980499999996,
+        "fiber": 4.994112499999999,
+        "total": 33.96079400000001,
+        "sugar": 3.626701
+      },
+      "potassiumMg": 598.8696100000001,
+      "minerals": {
+        "ironMg": 0.46667024999999995,
+        "magnesiumMg": 67.93562,
+        "calciumMg": 230.04133999999996,
+        "zincMg": 1.932531
+      },
+      "calories": 474.92734499999995,
+      "vitamins": {
+        "eMg": 0.0,
+        "b12Mcg": 0.3,
+        "b2Mg": 0.0,
+        "folateMcg": 6.612500000000001,
+        "b6Mg": 0.6,
+        "aMcg": 361.9445075,
+        "kMcg": 0.0,
+        "b3Mg": 13.7,
+        "dMcg": 0.0,
+        "b1Mg": 0.0,
+        "cMg": 8.55875
+      },
+      "sodiumMg": 753.7062299999999
+    }
+  },
+  {
+    "id": "seed-recipe:mexican-carne-asada",
+    "name": "Carne Asada",
+    "cuisine": "mexican",
+    "servings": 4,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:flank-steak-raw",
+        "amountG": 600
+      },
+      {
+        "ingredientId": "seed:lime-raw",
+        "amountG": 60.5,
+        "sizeOptionId": "wedge"
+      },
+      {
+        "ingredientId": "seed:cilantro-raw",
+        "amountG": 15.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:garlic-raw",
+        "amountG": 10.5,
+        "sizeOptionId": "clove"
+      },
+      {
+        "ingredientId": "seed:olive-oil",
+        "amountG": 27.208
+      },
+      {
+        "ingredientId": "seed:jalapeno-raw",
+        "amountG": 21.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:onion-raw",
+        "amountG": 55.0,
+        "sizeOptionId": "medium"
+      }
+    ],
+    "steps": [
+      "Combine the lime juice, cilantro, garlic, olive oil, jalapeño, and onion in a bowl or zip-top bag to make the marinade.",
+      "Add the flank steak, turning to coat, and marinate in the fridge for at least 1 hour (up to overnight for deeper flavor).",
+      "Remove the steak from the marinade and pat dry; let it come to room temperature for about 15 minutes before cooking.",
+      "Grill or sear in a hot skillet for 4-5 minutes per side, until well-charred outside and medium-rare to medium inside.",
+      "Rest for 5-10 minutes, then slice thinly against the grain."
+    ],
+    "perServing": {
+      "cholesterolMg": 82.5,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 7.094450999999999,
+        "monounsaturated": 10.7109475,
+        "total": 20.84805,
+        "polyunsaturated": 1.3460600000000003
+      },
+      "protein": 31.752775000000007,
+      "carbs": {
+        "starch": 2.1414999999999997,
+        "fiber": 0.964375,
+        "total": 4.214625000000001,
+        "sugar": 1.1087500000000001
+      },
+      "potassiumMg": 540.6542700000001,
+      "minerals": {
+        "ironMg": 3.3795,
+        "calciumMg": 15.1425,
+        "magnesiumMg": 36.2625,
+        "zincMg": 6.7761
+      },
+      "calories": 332.96343,
+      "vitamins": {
+        "eMg": 1.2832379999999999,
+        "b12Mcg": 2.4000000000000004,
+        "b2Mg": 0.00765,
+        "folateMcg": 6.355,
+        "b6Mg": 0.0502125,
+        "aMcg": 15.2625,
+        "kMcg": 17.294804,
+        "b3Mg": 0.11002500000000001,
+        "dMcg": 0.0,
+        "b1Mg": 0.0051375,
+        "cMg": 13.497874999999999
+      },
+      "sodiumMg": 105.31728999999999
+    }
+  },
+  {
+    "id": "seed-recipe:mexican-shrimp-tacos",
+    "name": "Shrimp Tacos",
+    "cuisine": "mexican",
+    "servings": 3,
+    "sourcePresetId": null,
+    "ingredients": [
+      {
+        "ingredientId": "seed:shrimp-raw",
+        "amountG": 450.0,
+        "sizeOptionId": "large"
+      },
+      {
+        "ingredientId": "seed:tortilla-corn",
+        "amountG": 180.0,
+        "sizeOptionId": "whole"
+      },
+      {
+        "ingredientId": "seed:cabbage-raw",
+        "amountG": 89.0,
+        "sizeOptionId": "cup_shredded"
+      },
+      {
+        "ingredientId": "seed:cotija-cheese",
+        "amountG": 45.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:lime-raw",
+        "amountG": 27.5,
+        "sizeOptionId": "wedge"
+      },
+      {
+        "ingredientId": "seed:cilantro-raw",
+        "amountG": 9.0,
+        "sizeOptionId": "tbsp"
+      },
+      {
+        "ingredientId": "seed:sour-cream",
+        "amountG": 56.781
+      },
+      {
+        "ingredientId": "seed:chili-powder",
+        "amountG": 6.075,
+        "sizeOptionId": "tsp"
+      }
+    ],
+    "steps": [
+      "Toss the shrimp with the chili powder and a pinch of salt.",
+      "Heat a skillet over medium-high heat and cook the shrimp for 1-2 minutes per side, until pink and just cooked through; be careful not to overcook.",
+      "Warm the tortillas in a dry skillet.",
+      "Mix the shredded cabbage with a squeeze of lime juice and the chopped cilantro to make a quick slaw.",
+      "Fill each tortilla with shrimp, the cabbage slaw, a sprinkle of cotija, and a dollop of sour cream."
+    ],
+    "perServing": {
+      "cholesterolMg": 252.36693000000005,
+      "fat": {
+        "trans": 0.0,
+        "saturated": 5.437418666666667,
+        "monounsaturated": 3.6062203333333334,
+        "total": 10.714608000000002,
+        "polyunsaturated": 1.2347940000000002
+      },
+      "protein": 38.44961300000001,
+      "carbs": {
+        "starch": 24.016095666666665,
+        "fiber": 5.567033333333334,
+        "total": 32.120333666666674,
+        "sugar": 2.5372046666666668
+      },
+      "potassiumMg": 651.9703133333334,
+      "minerals": {
+        "ironMg": 1.2855353333333335,
+        "magnesiumMg": 51.272660000000016,
+        "calciumMg": 153.9565366666667,
+        "zincMg": 2.6768205000000003
+      },
+      "calories": 366.6426266666668,
+      "vitamins": {
+        "eMg": 0.5205000000000001,
+        "b12Mcg": 1.6500000000000001,
+        "b2Mg": 0.01215,
+        "folateMcg": 15.446916666666668,
+        "b6Mg": 0.025732500000000002,
+        "aMcg": 59.348010000000016,
+        "kMcg": 31.98841666666667,
+        "b3Mg": 0.14317500000000002,
+        "dMcg": 0.0,
+        "b1Mg": 0.007072500000000001,
+        "cMg": 14.507625000000006
+      },
+      "sodiumMg": 466.16997333333336
+    }
+  }
+]
