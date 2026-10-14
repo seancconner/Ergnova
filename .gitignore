@@ -31,9 +31,10 @@ commitsync*
 reqsync*
 requirements.txt
 
-# Installer pipeline output / secrets (installer/README.md)
-installer/dist/
-installer/.stage/
+# Installer pipeline (scripts, docs and output) — kept out of git entirely.
+installer/
+
+# Signing material — ignored repo-wide, even if it ends up outside installer/
 *.keystore
 *.keystore.base64.txt
 *.p12

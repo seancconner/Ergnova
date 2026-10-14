@@ -74,6 +74,12 @@ export const MERACH_S09_DEFAULT_PARAMS = Object.freeze({
   cadenceCoeff:      { value: 3.0,  unit: 'unitless',   description: 'Speed-per-cadence scaling factor' },
   wattsPerResistance:{ value: 13.5, unit: 'W/level',    description: 'Watts added per resistance level' },
   baseDragCoeff:     { value: 1.25, unit: 'unitless',   description: 'Aero/rolling drag coefficient' },
+  // The per-tick calorie formula (power x seconds-per-rev / 4184 / 0.24) runs about 4.2x faster than
+  // this bike's own calorie counter, but tracks its SHAPE closely (the ratio held 4.17-4.25x across a
+  // 26-minute ride log). This is the factor that brings it onto the bike's counter. It's only the
+  // starting value: MerachDevice re-learns it from the bike's own whole-kcal steps while you ride and
+  // saves the result here (see _learnCalorieScale).
+  calorieScale:      { value: 0.237, unit: 'unitless',   description: 'Bike kcal per kcal of the raw power-based calorie model (learned from the bike)' },
 });
 
 /**
@@ -98,6 +104,13 @@ export function registerMerachS09CalibrationProfile(store) {
         );
         const aeroWatts = params.baseDragCoeff * (ctx.speedMph ** 1.8);
         return { ...params, wattsPerResistance: (ctx.reference - aeroWatts) / ctx.resistance };
+      },
+
+      // Fit the calorie model to the bike's own counter: ctx.computed = kcal the raw (unscaled) model
+      // accumulated over a stretch, ctx.reference = kcal the bike's counter gained over the same stretch.
+      calories: (params, ctx) => {
+        if (!(ctx.computed > 0) || !(ctx.reference > 0)) throw new Error('calories calibration requires ctx.computed > 0 and ctx.reference > 0');
+        return { ...params, calorieScale: ctx.reference / ctx.computed };
       },
 
       // Isolate the drag coefficient with a coast at resistance 0.
@@ -158,6 +171,13 @@ export class MerachDevice extends EventTarget {
     this._totalDistanceMiles = 0;
     this._totalCalories  = 0;
     this._bikeIntegerCal = 0;
+    this._lastBikeCal    = 0;  // previous packet's bike counter — a drop means the bike cleared itself
+    this._calOffset      = 0;  // kcal earned before the bike's last self-reset; see _handleTimerPacket
+    // Learning the calorie scale from the bike's own counter — see _learnCalorieScale().
+    this._learnBikeBase  = null; // bike counter when the current learning window began (null = not started)
+    this._learnRaw       = 0;    // raw (unscaled) model kcal accumulated over that window
+    this._learnedScale   = null; // scale fitted this ride; null until the bike has counted enough kcal
+    this._lastPersistGain = 0;   // bike kcal gain at the last time the scale was saved
     this._rawTimer       = 0;
     this._lastPedalTime  = 0;
     this._lastInputTime  = 0;
@@ -405,6 +425,18 @@ export class MerachDevice extends EventTarget {
     this._rawTimer       = d[10] | (d[11] << 8);
     this._bikeIntegerCal = d[4]  | (d[5]  << 8);
 
+    // The bike clears its console — calories, timer and ticks all back to 0 — about a minute
+    // after the last pedal stroke (seen in a ride log: counters froze at 257 kcal / 1521 s, then
+    // zeroed 62 s later with the bike still connected). Resume pedaling after a rest that long
+    // and the bike counts up from 0 again. With the 16-bit decode the counter can only go DOWN
+    // that way, so bank what's been earned so far and keep counting on top of it; otherwise the
+    // tether below would pull the running total back to ~0 and the workout's calories reset.
+    if (this._bikeIntegerCal < this._lastBikeCal) {
+      this._calOffset = this._totalCalories;
+      this._learnBikeBase = null; this._learnRaw = 0; this._lastPersistGain = 0;  // new learning window; keeps the scale it had
+    }
+    this._lastBikeCal = this._bikeIntegerCal;
+
     if (!this._initialized && this._bikeIntegerCal > 0) {
       this._totalCalories = this._bikeIntegerCal;
     }
@@ -469,12 +501,18 @@ export class MerachDevice extends EventTarget {
 
       if (currentCadence > 0) {
         const kcalPerTick = (currentPower * (60.0 / currentCadence)) / 4184.0 / 0.24;
-        this._totalCalories += deltaTicks * kcalPerTick;
+        const rawKcal     = deltaTicks * kcalPerTick;           // what the power model alone says
+        if (this._learnBikeBase === null) this._learnBikeBase = this._bikeIntegerCal;
+        this._learnRaw      += rawKcal;
+        this._totalCalories += rawKcal * this.calorieScale;     // scaled onto the bike's own counter
+        this._learnCalorieScale();
       }
 
-      // Tether fractional total to the bike's integer calorie display
-      const lo = this._bikeIntegerCal - 0.5;
-      const hi = this._bikeIntegerCal + 0.49;
+      // Tether fractional total to the bike's integer calorie display (plus anything
+      // banked before the bike last reset itself — see _handleTimerPacket)
+      const bikeTotal = this._calOffset + this._bikeIntegerCal;
+      const lo = bikeTotal - 0.5;
+      const hi = bikeTotal + 0.49;
       if (this._totalCalories < lo) this._totalCalories = lo;
       else if (this._totalCalories > hi) this._totalCalories = hi;
 
@@ -520,6 +558,46 @@ export class MerachDevice extends EventTarget {
       calories_total:         this._totalCalories,
       isManned,
     });
+  }
+
+  /**
+   * The factor applied to the power-based per-tick calories: the scale fitted to the bike's own
+   * counter this ride if there is one, else the saved/default `calorieScale` calibration param.
+   */
+  get calorieScale() {
+    return this._learnedScale ?? this._params?.calorieScale ?? MERACH_S09_DEFAULT_PARAMS.calorieScale.value;
+  }
+
+  /**
+   * Fit the calorie model to what this bike actually counts. The bike only reports whole kcal, but over
+   * a stretch of riding its gain divided by the raw model's kcal over the same stretch is the exact
+   * scale that makes the per-tick formula reproduce the bike's rate — so the fractional total moves
+   * between the bike's whole-number steps at the bike's own pace instead of being pinned to the edge
+   * of the +/-0.5 tether. Waits for 20 kcal of bike gain (whole-number rounding is at most ~1 kcal of
+   * that, so ~5% worst case, ~2% typical) and keeps refining as the stretch grows. The window restarts
+   * if the bike clears its counters; the scale carries over. Saved to the calibration store every
+   * 50 kcal so the next ride starts from it.
+   */
+  _learnCalorieScale() {
+    if (this._learnBikeBase === null || !(this._learnRaw > 0)) return;
+    const gain = this._bikeIntegerCal - this._learnBikeBase;
+    if (gain < 20) return;
+    const scale = gain / this._learnRaw;
+    if (!(scale >= 0.02 && scale <= 3)) return;  // not plausible for this hardware: ignore, keep the old scale
+    this._learnedScale = scale;
+    if (gain - this._lastPersistGain >= 50 || this._lastPersistGain === 0) {
+      this._lastPersistGain = gain;
+      this._persistLearnedScale(gain, this._learnRaw);
+    }
+  }
+
+  async _persistLearnedScale(gain, raw) {
+    try {
+      const saved = await this._calibration.calibrate(MERACH_S09_DEVICE_TYPE, 'calories', { computed: raw, reference: gain });
+      this._params = { ...this._params, calorieScale: saved.calorieScale };
+    } catch (err) {
+      console.warn('[merach] could not save the learned calorie scale:', err.message);
+    }
   }
 
   /**

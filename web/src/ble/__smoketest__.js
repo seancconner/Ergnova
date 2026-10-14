@@ -161,6 +161,128 @@ console.log('merach-device.js (16-bit calorie + timer counters, decoded from a r
   check('a short type-0 packet still decodes from its low bytes', device.metrics.elapsedSeconds === 9);
 }
 
+console.log('merach-device.js (bike clears its own counters after idling)');
+{
+  // Captured ride log: the bike froze at 257 kcal / 1521 s when the rider stopped pedaling, then ~62 s
+  // later zeroed calories, timer AND ticks while still connected. Resuming after a rest that long must
+  // keep counting on top of the calories already earned, not tether the total back down to ~0.
+  const calStore = new CalibrationStore();
+  registerMerachS09CalibrationProfile(calStore);
+  const device = new MerachDevice(calStore);
+  device._params = await calStore.load(MERACH_S09_DEVICE_TYPE);
+  let fakeNow = 2_000_000;
+  device._now = () => fakeNow;
+
+  let ticks = 6000;
+  const timerPkt = (cal, tsec) => {
+    const p = new Uint8Array(12);
+    p[0] = 0; p[4] = cal & 255; p[5] = cal >> 8; p[10] = tsec & 255; p[11] = tsec >> 8;
+    return p;
+  };
+  const telemetryPkt = (step) => {
+    ticks += step;
+    const p = new Uint8Array(11);
+    p[0] = 117; p[2] = 180; p[3] = 0;     // pulse 180 -> 90 rpm
+    p[4] = ticks & 255; p[5] = ticks >> 8; p[7] = 4;
+    return p;
+  };
+  const second = (cal, tsec, step) => { fakeNow += 1000; device._handlePacket(telemetryPkt(step)); device._handlePacket(timerPkt(cal, tsec)); };
+
+  device._handlePacket(timerPkt(257, 1521));       // connect mid-ride: seeds from the bike's 16-bit counter
+  device._handlePacket(telemetryPkt(0));           // first telemetry packet: init only
+  for (let i = 0; i < 10; i++) second(257, 1521, 3);
+  const beforeReset = device.metrics.calories;
+  check('before the reset the total follows the bike (257)', beforeReset >= 256.5 && beforeReset <= 257.49);
+
+  ticks = 0;                                        // bike clears itself: ticks, calories and timer -> 0
+  for (let i = 0; i < 5; i++) second(0, 0, 0);
+  check('the bike zeroing its counters does not drop the total', device.metrics.calories >= beforeReset - 1e-9);
+
+  for (let i = 1; i <= 30; i++) second(Math.floor(i / 6), i, 3);   // pedaling again: bike counts 0 -> 5 kcal
+  check('resumed pedaling counts on top of the earlier calories, not from 0',
+    device.metrics.calories >= beforeReset + 4 && device.metrics.calories <= beforeReset + 6);
+  check('total never fell back toward 0 after the reset', device.metrics.calories > 250);
+
+  ticks = 0;                                        // a second idle reset in the same workout
+  const afterFirst = device.metrics.calories;
+  for (let i = 0; i < 5; i++) second(0, 0, 0);
+  for (let i = 1; i <= 12; i++) second(Math.floor(i / 6), i, 3);  // 0 -> 2 kcal
+  check('a second reset stacks on top again',
+    device.metrics.calories >= afterFirst + 1 && device.metrics.calories <= afterFirst + 3);
+}
+
+console.log('merach-device.js (calorie scale learned from the bike\'s own counter)');
+{
+  // The bike only reports whole kcal, but its gain over a stretch divided by the raw power-model kcal over
+  // the same stretch is the scale that makes the per-tick formula run at the bike's own pace. Synthetic
+  // bike below counts exactly TRUE_SCALE x the raw model kcal; the device starts out with a wrong scale (1).
+  const TRUE_SCALE = 0.25;
+  const calStore = new CalibrationStore();
+  registerMerachS09CalibrationProfile(calStore);
+  const device = new MerachDevice(calStore);
+  device._params = { ...(await calStore.load(MERACH_S09_DEVICE_TYPE)), calorieScale: 1 };
+  let fakeNow = 3_000_000;
+  device._now = () => fakeNow;
+
+  check('a default calorieScale ships with the S09 profile',
+    calStore.getParams(MERACH_S09_DEVICE_TYPE).calorieScale > 0);
+
+  const CADENCE = 90, RES = 4;
+  const speedMph = (CADENCE * device._params.cadenceCoeff * 60) / device._params.ticksPerMile;
+  const watts    = device._calculatePower(speedMph, RES, device._params);
+  const rawPerTick = (watts * (60 / CADENCE)) / 4184 / 0.24;     // the model's own kcal per tick
+  let ticks = 1000, raw = 0, sec = 0;
+  const pedalSecond = (bikeOffset = 0) => {
+    const step = sec % 2 ? 5 : 4;                                // ~4.5 ticks/s = 90 rpm x 3 ticks/rev
+    fakeNow += 1000; sec++; ticks += step; raw += step * rawPerTick;
+    const tel = new Uint8Array(11);
+    tel[0] = 117; tel[2] = CADENCE * 2; tel[4] = ticks & 255; tel[5] = ticks >> 8; tel[7] = RES;
+    const cal = Math.round(TRUE_SCALE * raw) - bikeOffset;       // the bike's whole-kcal counter
+    const tim = new Uint8Array(12);
+    tim[0] = 0; tim[4] = cal & 255; tim[5] = cal >> 8; tim[10] = sec & 255; tim[11] = sec >> 8;
+    device._handlePacket(tel); device._handlePacket(tim);
+    return cal;
+  };
+
+  device._handlePacket(Uint8Array.from([117, 0, 0, 0, ticks & 255, ticks >> 8, 0, RES, 0, 0, 0]));  // first telemetry: init only
+  let bike = 0;
+  for (let i = 0; i < 60; i++) bike = pedalSecond();
+  check('until the bike has counted 20 kcal the saved/default scale is used', device.calorieScale === 1);
+
+  for (let i = 0; i < 340; i++) bike = pedalSecond();
+  check('after the bike has counted enough, the scale is fitted to it (0.25 within 5%)',
+    Math.abs(device.calorieScale - TRUE_SCALE) / TRUE_SCALE < 0.05);
+  check('the running total stays within the bike\'s whole-number window',
+    device.metrics.calories >= bike - 1 && device.metrics.calories <= bike + 0.5);
+
+  await new Promise((r) => setTimeout(r, 0));                    // let the fire-and-forget save land
+  check('the fitted scale is saved to the calibration store for the next ride',
+    Math.abs(calStore.getParams(MERACH_S09_DEVICE_TYPE).calorieScale - TRUE_SCALE) / TRUE_SCALE < 0.08);
+
+  // Free-running between whole-kcal steps: with the scale right, the total moves on packets where the bike
+  // number doesn't, instead of sitting pinned at the edge of the tether.
+  let movedBetweenSteps = 0, between = 0, prevBike = bike, prevTotal = device.metrics.calories;
+  for (let i = 0; i < 60; i++) {
+    const b = pedalSecond(), t = device.metrics.calories;
+    if (b === prevBike) { between++; if (t > prevTotal + 1e-9) movedBetweenSteps++; }
+    prevBike = b; prevTotal = t; bike = b;
+  }
+  check('between the bike\'s whole-kcal steps the total keeps rising', between > 20 && movedBetweenSteps / between > 0.8);
+
+  // The bike clears its counters after idling: the fitted scale survives, only the learning window restarts.
+  const fitted = device.calorieScale;
+  device._handlePacket(Uint8Array.from([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+  ticks = 0; raw = 0; sec = 0;
+  for (let i = 0; i < 10; i++) pedalSecond();
+  check('the fitted scale carries over a bike self-reset', device.calorieScale === fitted);
+
+  const refit = await calStore.calibrate(MERACH_S09_DEVICE_TYPE, 'calories', { computed: 100, reference: 25 });
+  check('calibrate(\'calories\') solves calorieScale = reference / computed', closeTo(refit.calorieScale, 0.25));
+  let threw = false;
+  try { await calStore.calibrate(MERACH_S09_DEVICE_TYPE, 'calories', { computed: 0, reference: 25 }); } catch { threw = true; }
+  check('calibrate(\'calories\') rejects a zero computed value', threw);
+}
+
 console.log('merach-device.js (calibration solvers)');
 {
   const calStore = new CalibrationStore();
